@@ -69,6 +69,16 @@ export async function getActiveTrips(): Promise<Trip[]> {
   return sortTrips((data ?? []).map(mapTrip));
 }
 
+function todayIsoDate(): string {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo" }).format(
+    new Date()
+  );
+}
+
+function isUpcomingDeparture(departure: Departure): boolean {
+  return departure.start_date > todayIsoDate();
+}
+
 export async function getActiveTripsWithDepartures(): Promise<
   { trip: Trip; departures: Departure[] }[]
 > {
@@ -103,10 +113,16 @@ export async function getActiveTripsWithDepartures(): Promise<
     departuresByTrip.set(departure.trip_id, list);
   }
 
-  return trips.map((trip) => ({
-    trip,
-    departures: departuresByTrip.get(trip.id) ?? [],
-  }));
+  return trips.flatMap((trip) => {
+    const allDepartures = departuresByTrip.get(trip.id) ?? [];
+    const upcomingDepartures = allDepartures.filter(isUpcomingDeparture);
+
+    if (allDepartures.length > 0 && upcomingDepartures.length === 0) {
+      return [];
+    }
+
+    return [{ trip, departures: upcomingDepartures }];
+  });
 }
 
 export async function getTripBySlug(slug: string): Promise<Trip | null> {

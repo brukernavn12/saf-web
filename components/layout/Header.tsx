@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
+import { images } from "@/lib/image-registry";
 import { cn } from "@/lib/utils";
 import { Nav } from "./Nav";
 import { MobileNav } from "./MobileNav";
@@ -20,15 +22,19 @@ export function Header() {
           : "border-b border-primary/10 bg-cream/95 backdrop-blur-sm"
       )}
     >
-      <div className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+      <div className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:py-5">
         <Link
           href="/"
-          className={cn(
-            "font-serif text-2xl tracking-tight transition-colors duration-300",
-            isOverlay ? "text-cream" : "text-primary"
-          )}
+          className="shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
-          Languedoc
+          <Image
+            src={images.logo.mark}
+            alt="Smaken av Frankrike"
+            width={1024}
+            height={1024}
+            className="h-auto w-[7.5rem] md:w-36"
+            priority
+          />
         </Link>
         <div className="flex items-center gap-4 md:gap-8">
           <Nav isOverlay={isOverlay} />
