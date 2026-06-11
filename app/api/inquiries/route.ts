@@ -11,6 +11,8 @@ interface InquiryBody {
   email: string;
   phone?: string;
   message?: string;
+  preferredDates?: string;
+  preferredNights?: number;
   locale?: Locale;
 }
 
@@ -24,6 +26,8 @@ export async function POST(req: NextRequest) {
       email,
       phone,
       message,
+      preferredDates,
+      preferredNights,
       locale = "no",
     } = body;
 
@@ -66,6 +70,11 @@ export async function POST(req: NextRequest) {
       email: email.trim(),
       phone: phone?.trim() || null,
       message: message?.trim() || null,
+      preferred_dates: preferredDates?.trim() || null,
+      group_size:
+        preferredNights != null && preferredNights > 0
+          ? preferredNights
+          : null,
       type: "interest",
       status: "new",
       language: locale,
@@ -87,6 +96,8 @@ export async function POST(req: NextRequest) {
         message: message?.trim(),
         tripTitle: trip.title_no,
         departureDates,
+        preferredDates: preferredDates?.trim(),
+        preferredNights,
       });
     } catch (emailError) {
       console.error("[inquiries] email error:", emailError);

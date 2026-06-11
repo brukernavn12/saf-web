@@ -66,11 +66,44 @@ export function eurToDisplayNok(
   return Math.round(eur * (trip.price_nok / trip.base_price_eur));
 }
 
+export function hasPackagePricing(
+  trip: Pick<Trip, "price_info">
+): boolean {
+  return Boolean(trip.price_info?.trim());
+}
+
+/** Split pipe-separated price_info into readable lines. */
+export function formatTripPriceInfoLines(priceInfo: string): string[] {
+  return priceInfo
+    .split("|")
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
+/** Short label for trip cards, e.g. "fra kr 4.500". */
+export function getTripCardPriceLabel(trip: Trip): string | null {
+  if (!hasPackagePricing(trip)) {
+    return null;
+  }
+  const match = trip.price_info!.match(/kr\s*[\d.]+/i);
+  return match ? `fra ${match[0].trim()}` : null;
+}
+
 export function formatTripListPrice(trip: Trip, locale: Locale = "no"): string {
+  if (hasPackagePricing(trip)) {
+    return getTripCardPriceLabel(trip) ?? trip.price_info!;
+  }
   if (usesNokPricing(trip)) {
     return formatPriceNok(trip.price_nok, locale);
   }
-  return formatPriceEur(trip.base_price_eur, locale);
+  if (trip.base_price_eur > 0) {
+    return formatPriceEur(trip.base_price_eur, locale);
+  }
+  return formatPriceEur(0, locale);
+}
+
+export function showTripStandardPrice(trip: Trip): boolean {
+  return !hasPackagePricing(trip) && (usesNokPricing(trip) || trip.base_price_eur > 0);
 }
 
 export function formatDeparturePrice(

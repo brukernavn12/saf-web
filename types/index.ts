@@ -31,6 +31,8 @@ export interface Trip {
   max_persons: number;
   base_price_eur: number;
   price_nok: number | null;
+  price_info: string | null;
+  interest_only: boolean;
   duration_days: number | null;
   duration_nights: number | null;
   difficulty_level: string | null;

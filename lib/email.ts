@@ -7,6 +7,8 @@ interface InquiryNotificationParams {
   message?: string | null;
   tripTitle: string;
   departureDates?: string | null;
+  preferredDates?: string | null;
+  preferredNights?: number | null;
 }
 
 export async function sendInquiryNotification(
@@ -32,6 +34,12 @@ export async function sendInquiryNotification(
 
   if (params.phone) lines.push(`Telefon: ${params.phone}`);
   if (params.departureDates) lines.push(`Avgang: ${params.departureDates}`);
+  if (params.preferredNights) {
+    lines.push(`Ønsket antall netter: ${params.preferredNights}`);
+  }
+  if (params.preferredDates) {
+    lines.push(`Foretrukket periode: ${params.preferredDates}`);
+  }
   if (params.message) lines.push("", "Melding:", params.message);
 
   await resend.emails.send({

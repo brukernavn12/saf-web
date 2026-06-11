@@ -2,7 +2,13 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Locale, Trip } from "@/types";
-import { formatTripListPrice, getLocalizedTripField, getTripImage } from "@/lib/utils";
+import {
+  formatTripListPrice,
+  getLocalizedTripField,
+  getTripCardPriceLabel,
+  getTripImage,
+  hasPackagePricing,
+} from "@/lib/utils";
 
 interface TripCardProps {
   trip: Trip;
@@ -50,9 +56,12 @@ export function TripCard({ trip, locale }: TripCardProps) {
               <p>{t("days", { count: trip.duration_days })}</p>
             )}
             <p className="mt-1 font-medium text-primary">
-              {t("fromPrice", {
-                price: formatTripListPrice(trip, locale),
-              })}
+              {hasPackagePricing(trip)
+                ? getTripCardPriceLabel(trip) ??
+                  t("packagePricing")
+                : t("fromPrice", {
+                    price: formatTripListPrice(trip, locale),
+                  })}
             </p>
           </div>
           <span className="text-sm font-medium text-accent group-hover:text-accent/80">

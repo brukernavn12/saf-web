@@ -22,9 +22,9 @@ export function TripBookingSection({
   locale,
 }: TripBookingSectionProps) {
   const t = useTranslations("tripDetail");
+  const formRef = useRef<HTMLDivElement>(null);
   const [activeDepartureId, setActiveDepartureId] = useState<string>();
   const [activeForm, setActiveForm] = useState<DepartureFormType | null>(null);
-  const formRef = useRef<HTMLDivElement>(null);
 
   function showForm(departureId: string, form: DepartureFormType) {
     setActiveDepartureId(departureId);
@@ -32,6 +32,26 @@ export function TripBookingSection({
     requestAnimationFrame(() => {
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
+  }
+
+  if (trip.interest_only) {
+    return (
+      <div
+        ref={formRef}
+        id="interest-form"
+        className="scroll-mt-32 border border-primary/10 bg-white p-6 md:p-8"
+      >
+        <h2 className="font-serif text-2xl text-primary md:text-3xl">
+          {t("expressInterest")}
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-text/70">
+          {t("interestOnlyHint")}
+        </p>
+        <div className="mt-8">
+          <InterestForm tripId={trip.id} locale={locale} extended />
+        </div>
+      </div>
+    );
   }
 
   return (

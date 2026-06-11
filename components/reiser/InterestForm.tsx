@@ -11,12 +11,15 @@ interface InterestFormProps {
   tripId: string;
   departureId?: string;
   locale: Locale;
+  /** Extra fields for harvest / package trips (nights + period). */
+  extended?: boolean;
 }
 
 export function InterestForm({
   tripId,
   departureId,
   locale,
+  extended = false,
 }: InterestFormProps) {
   const t = useTranslations("tripDetail");
   const contact = useTranslations("contact");
@@ -33,6 +36,12 @@ export function InterestForm({
     const form = event.currentTarget;
     const formData = new FormData(form);
 
+    const preferredNightsRaw = formData.get("preferredNights");
+    const preferredNights =
+      preferredNightsRaw && String(preferredNightsRaw).length > 0
+        ? Number(preferredNightsRaw)
+        : undefined;
+
     try {
       const response = await fetch("/api/inquiries", {
         method: "POST",
@@ -44,6 +53,8 @@ export function InterestForm({
           email: formData.get("email"),
           phone: formData.get("phone"),
           message: formData.get("message"),
+          preferredDates: formData.get("preferredPeriod") || undefined,
+          preferredNights,
           locale,
         }),
       });
@@ -75,15 +86,55 @@ export function InterestForm({
       <Input label={contact("name")} name="name" required />
       <Input label={contact("email")} name="email" type="email" required />
       <Input label={contact("phone")} name="phone" type="tel" />
-      <Textarea label={contact("message")} name="message" />
+
+      {extended && (
+        <>
+          <div>
+            <label
+              htmlFor="preferredNights"
+              className="mb-2 block text-sm font-medium text-primary"
+            >
+              {t("preferredNights")}
+            </label>
+            <select
+              id="preferredNights"
+              name="preferredNights"
+              required
+              className="w-full border border-primary/20 bg-white px-4 py-3 text-sm text-text focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+              defaultValue=""
+            >
+              <option value="" disabled>
+                {t("selectNights")}
+              </option>
+              <option value="3">{t("nightsOption", { count: 3 })}</option>
+              <option value="4">{t("nightsOption", { count: 4 })}</option>
+              <option value="5">{t("nightsOption", { count: 5 })}</option>
+            </select>
+          </div>
+          <Input
+            label={t("preferredPeriod")}
+            name="preferredPeriod"
+            placeholder={t("preferredPeriodPlaceholder")}
+            required
+          />
+        </>
+      )}
+
+      <Textarea
+        label={extended ? t("optionalMessage") : contact("message")}
+        name="message"
+        required={!extended}
+      />
+
       {error && (
         <p className="text-sm text-red-700" role="alert">
           {error}
         </p>
       )}
+
       <div className="pt-2">
         <Button type="submit" variant="ghost" disabled={loading}>
-          {loading ? common("loading") : contact("submit")}
+          {loading ? common("loading") : t("expressInterest")}
         </Button>
       </div>
     </form>

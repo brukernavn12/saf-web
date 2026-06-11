@@ -7,8 +7,12 @@ import { TripBookingSection } from "@/components/reiser/TripBookingSection";
 import type { Locale } from "@/types";
 import {
   formatTripListPrice,
+  formatTripPriceInfoLines,
   getLocalizedTripField,
+  getTripCardPriceLabel,
   getTripImage,
+  hasPackagePricing,
+  showTripStandardPrice,
 } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -82,14 +86,26 @@ export default async function TripDetailPage({
               </p>
             </div>
           )}
-          <div>
-            <p className="text-xs uppercase tracking-wider text-text/50">
-              {t("price")}
-            </p>
-            <p className="mt-1 font-medium text-primary">
-              {formatTripListPrice(trip, locale)}
-            </p>
-          </div>
+          {(trip.price_info || showTripStandardPrice(trip)) && (
+            <div className={trip.price_info ? "min-w-full sm:min-w-[280px] flex-1" : undefined}>
+              <p className="text-xs uppercase tracking-wider text-text/50">
+                {t("price")}
+              </p>
+              {trip.price_info ? (
+                <ul className="mt-2 space-y-1.5 font-medium text-primary">
+                  {formatTripPriceInfoLines(trip.price_info).map((line) => (
+                    <li key={line} className="leading-snug">
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-1 font-medium text-primary">
+                  {formatTripListPrice(trip, locale)}
+                </p>
+              )}
+            </div>
+          )}
           {trip.difficulty_level && (
             <div>
               <p className="text-xs uppercase tracking-wider text-text/50">
