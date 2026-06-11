@@ -39,4 +39,33 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-public/images/
+# Full local image library (~1GB) — only curated site assets are tracked
+public/images/**
+
+!public/images/hero/
+public/images/hero/*
+!public/images/hero/hero.jpg
+
+!public/images/logo/
+public/images/logo/*
+!public/images/logo/Smaken logo uten drue og tag.png
+!public/images/logo/logo med tagline uten bakgrunn.png
+
+!public/images/om-oss/
+public/images/om-oss/*
+!public/images/om-oss/morten rotete.jpg
+!public/images/om-oss/smaken teams bakgrunn 1.png
+
+!public/images/reiser/
+public/images/reiser/*
+!public/images/reiser/la liviniere.webp
+!public/images/reiser/caunes minervois.jpeg
+!public/images/reiser/fontfroide.jpeg
+!public/images/reiser/mat.jpg
+!public/images/reiser/halles.jpg
+!public/images/reiser/peyre.jpg
+!public/images/reiser/deux riviere 1.webp
+!public/images/reiser/deux riviere2.webp
+!public/images/reiser/pontdugard.jpeg
+!public/images/reiser/IMG_1611.webp
+!public/images/reiser/IMG_1592.webp
