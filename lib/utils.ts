@@ -172,6 +172,28 @@ export function formatDepartureRange(
   })} – ${formatDate(endDate, locale)}`;
 }
 
+/** Trip card range, e.g. "30. apr – 4. mai 2027". */
+export function formatDepartureCardRange(
+  startDate: string,
+  endDate: string,
+  locale: Locale = "no"
+): string {
+  const localeTag = locale === "en" ? "en-GB" : `${locale}-NO`;
+  const formatPart = (date: string, withYear: boolean) => {
+    const d = new Date(date);
+    const day = new Intl.DateTimeFormat(localeTag, { day: "numeric" }).format(d);
+    const month = new Intl.DateTimeFormat(localeTag, { month: "short" })
+      .format(d)
+      .replace(/\.$/, "");
+    if (withYear) {
+      return `${day}. ${month} ${d.getFullYear()}`;
+    }
+    return `${day}. ${month}`;
+  };
+
+  return `${formatPart(startDate, false)} – ${formatPart(endDate, true)}`;
+}
+
 const LOCALIZED_TRIP_FIELD_LOCALES: Locale[] = ["no", "sv", "en"];
 
 function readNonEmptyTripString(
