@@ -1,0 +1,134 @@
+{
+  "metadata": {
+    "title": "Languedoc – The Taste of France",
+    "description": "Authentic journeys in southern France since 2007. Wine, gastronomy and nature with Elisabeth and Morten."
+  },
+  "nav": {
+    "trips": "Trips",
+    "privateTrips": "Private trips",
+    "about": "About us",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "The Taste of France",
+      "title": "Languedoc. Properly.",
+      "subtitle": "Authentic journeys in southern France since 2007",
+      "ctaTrips": "View trips",
+      "ctaContact": "Contact us"
+    },
+    "categories": {
+      "title": "Three ways to experience southern France",
+      "wine": {
+        "title": "Wine & gastronomy",
+        "description": "Taste your way through Languedoc's vineyards, markets and kitchens – with time for both the food and the people behind it."
+      },
+      "nature": {
+        "title": "Active nature",
+        "description": "Hiking, kayaking and landscapes at a gentle pace. We take you to places the tour buses never find."
+      },
+      "private": {
+        "title": "Private trips",
+        "description": "Tailored experiences for families, friends or small groups who want something entirely their own."
+      }
+    },
+    "about": {
+      "title": "Elisabeth and Morten",
+      "lead": "We live in Languedoc and design trips we would take ourselves.",
+      "body": "Since 2007 we have shown guests from Scandinavia and beyond what we call «proper» southern France – not the polished travel-brochure version, but places and people we know personally. We travel with you, bridging language and culture, and make sure it feels safe, warm and a little adventurous."
+    },
+    "newsletter": {
+      "title": "Travel tips from Languedoc",
+      "description": "Season departures, small recommendations and news – a few times a year, no noise.",
+      "placeholder": "Your email address",
+      "submit": "Subscribe",
+      "success": "Thank you! We'll send you an email to confirm your subscription."
+    }
+  },
+  "trips": {
+    "title": "Our trips",
+    "description": "Small groups, personal leadership and genuine encounters with southern France.",
+    "fromPrice": "from {price}",
+    "days": "{count} days",
+    "viewTrip": "View trip",
+    "noTrips": "No trips available right now. Please get in touch – we're happy to help.",
+    "configError": "Supabase is not configured. Ensure .env.local is saved with NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY, then restart the dev server."
+  },
+  "tripDetail": {
+    "persons": "Number of people",
+    "includes": "What's included",
+    "excludes": "Not included",
+    "departures": "Upcoming departures",
+    "noDepartures": "No departures scheduled yet.",
+    "spotsLeft": "{count} spots left",
+    "bookNow": "Send enquiry",
+    "secureSpot": "Secure your spot",
+    "bookingHint": "Choose a departure above and complete the form.",
+    "minPersons": "Minimum {count} people",
+    "duration": "Duration",
+    "days": "{count} days",
+    "nights": "{count} nights",
+    "price": "Price",
+    "difficulty": "Level",
+    "meetingPoint": "Meeting point",
+    "guide": "Guide",
+    "expressInterest": "Express interest",
+    "interestHint": "Unsure about dates or group size? Send us a message – we'll reply personally.",
+    "interestSuccess": "Thank you for your interest! We'll be in touch soon.",
+    "selectDeparture": "Please select a departure first.",
+    "paymentError": "Payment could not be started. Please try again or contact us.",
+    "depositInfo": "Deposit (25%) is paid now via Vipps. The remainder is due later.",
+    "depositForPersons": "Deposit for {count} people: {deposit} ({perPerson} per person)",
+    "totalTripPrice": "Total trip price: {total} for {count} people",
+    "approxNok": "Vipps charge: approx. {amount} NOK",
+    "redirecting": "Redirecting to Vipps…",
+    "roomAllocation": "Room allocation: {count} double room(s)",
+    "roomAllocationWithSingle": "Room allocation: {count} double room(s) + 1 single room",
+    "includesSingleSupplement": "Includes single room supplement ({amount})"
+  },
+  "payment": {
+    "waitingTitle": "Confirming payment…",
+    "waitingDescription": "This usually takes a few seconds.",
+    "successTitle": "Deposit received",
+    "successDescription": "Thank you! We've registered your deposit and will send a confirmation by email.",
+    "cancelledTitle": "Payment cancelled",
+    "cancelledDescription": "The payment was not completed. You can try again from the trip page.",
+    "backToTrips": "Back to trips"
+  },
+  "privateTrips": {
+    "title": "Private trips",
+    "description": "We create journeys for families, friends and small groups who want something bespoke – with the same care as our scheduled departures.",
+    "cta": "Tell us about your dream trip"
+  },
+  "about": {
+    "title": "About us",
+    "description": "The Taste of France – journeys in Languedoc with Elisabeth and Morten."
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "description": "Practical information about trips, booking and your stay.",
+    "comingSoon": "FAQ content coming soon."
+  },
+  "contact": {
+    "title": "Contact us",
+    "description": "We're happy to answer questions about trips, dates and private arrangements.",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "submit": "Send message",
+    "success": "Thank you for your enquiry. We'll be in touch soon."
+  },
+  "footer": {
+    "tagline": "The Taste of France – authentic journeys in Languedoc since 2007.",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "readMore": "Read more",
+    "loading": "Loading…",
+    "error": "Something went wrong. Please try again later."
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "metadata": {
+    "title": "Languedoc – Smaken av Frankrike",
+    "description": "Autentiske reiser i Sør-Frankrike siden 2007. Vin, gastronomi og natur med Elisabeth og Morten."
+  },
+  "nav": {
+    "trips": "Reiser",
+    "privateTrips": "Privatreiser",
+    "about": "Om oss",
+    "faq": "FAQ",
+    "contact": "Kontakt",
+    "openMenu": "Åpne meny",
+    "closeMenu": "Lukk meny"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Smaken av Frankrike",
+      "title": "Languedoc. Ordentlig.",
+      "subtitle": "Autentiske reiser i Sør-Frankrike siden 2007",
+      "ctaTrips": "Se reiser",
+      "ctaContact": "Kontakt oss"
+    },
+    "categories": {
+      "title": "Tre måter å oppleve Sør-Frankrike",
+      "wine": {
+        "title": "Vin & gastronomi",
+        "description": "Smak deg gjennom Languedocs vingårder, markeder og kjøkken – med tid til både maten og menneskene bak."
+      },
+      "nature": {
+        "title": "Aktiv natur",
+        "description": "Vandring, kajakk og landskap i rolig tempo. Vi tar deg til steder turistbussene ikke finner."
+      },
+      "private": {
+        "title": "Privatreiser",
+        "description": "Skreddersydde opplevelser for familier, venner eller små grupper som vil ha noe helt eget."
+      }
+    },
+    "about": {
+      "title": "Elisabeth og Morten",
+      "lead": "Vi bor i Languedoc og arrangerer reiser vi selv ville tatt.",
+      "body": "Siden 2007 har vi vist nordmenn, svensker og andre gjester det vi kaller «ordentlig» Sør-Frankrike – ikke det polerte reisebyrå-bildet, men steder og mennesker vi kjenner personlig. Vi er med på turen, oversetter både språk og kultur, og sørger for at det skal føles trygt, varmt og litt eventyrlig."
+    },
+    "newsletter": {
+      "title": "Få reisetips fra Languedoc",
+      "description": "Sesongens avganger, små anbefalinger og nyheter – noen få ganger i året, uten støy.",
+      "placeholder": "Din e-postadresse",
+      "submit": "Meld meg på",
+      "success": "Takk! Vi sender deg en e-post for å bekrefte påmeldingen."
+    }
+  },
+  "trips": {
+    "title": "Våre reiser",
+    "description": "Små grupper, personlig lederskap og ekte møter med Sør-Frankrike.",
+    "fromPrice": "fra {price}",
+    "days": "{count} dager",
+    "viewTrip": "Se reise",
+    "noTrips": "Ingen reiser tilgjengelig akkurat nå. Ta gjerne kontakt – vi hjelper deg gjerne.",
+    "configError": "Supabase er ikke konfigurert. Sjekk at .env.local er lagret med NEXT_PUBLIC_SUPABASE_URL og NEXT_PUBLIC_SUPABASE_ANON_KEY, og restart dev-serveren."
+  },
+  "tripDetail": {
+    "persons": "Antall personer",
+    "includes": "Dette er inkludert",
+    "excludes": "Ikke inkludert",
+    "departures": "Kommende avganger",
+    "noDepartures": "Ingen avganger er satt opp ennå.",
+    "spotsLeft": "{count} plasser igjen",
+    "bookNow": "Send forespørsel",
+    "secureSpot": "Sikre din plass",
+    "bookingHint": "Velg avgang ovenfor og fyll ut skjemaet.",
+    "minPersons": "Minimum {count} personer",
+    "duration": "Varighet",
+    "days": "{count} dager",
+    "nights": "{count} netter",
+    "price": "Pris",
+    "difficulty": "Nivå",
+    "meetingPoint": "Oppmøtested",
+    "guide": "Guide",
+    "expressInterest": "Meld din interesse",
+    "interestHint": "Usikker på dato eller antall? Send oss en melding – vi svarer personlig.",
+    "interestSuccess": "Takk for interessen! Vi tar kontakt så snart vi kan.",
+    "selectDeparture": "Velg en avgang først.",
+    "paymentError": "Betalingen kunne ikke startes. Prøv igjen eller kontakt oss.",
+    "depositInfo": "Depositum (25%) betales nå via Vipps. Restbeløp forfaller senere.",
+    "depositForPersons": "Depositum for {count} personer: {deposit} ({perPerson} per person)",
+    "totalTripPrice": "Total reisepris: {total} for {count} personer",
+    "approxNok": "Beløp i Vipps: ca. {amount} kr",
+    "redirecting": "Sender deg til Vipps…",
+    "roomAllocation": "Romfordeling: {count} dobbeltrom",
+    "roomAllocationWithSingle": "Romfordeling: {count} dobbeltrom + 1 enkeltrom",
+    "includesSingleSupplement": "Inkluderer enkeltromtillegg ({amount})"
+  },
+  "payment": {
+    "waitingTitle": "Bekrefter betalingen…",
+    "waitingDescription": "Dette tar vanligvis noen sekunder.",
+    "successTitle": "Depositum mottatt",
+    "successDescription": "Takk! Vi har registrert depositumet ditt og sender deg en bekreftelse på e-post.",
+    "cancelledTitle": "Betaling avbrutt",
+    "cancelledDescription": "Betalingen ble ikke fullført. Du kan prøve igjen fra reisesiden.",
+    "backToTrips": "Tilbake til reiser"
+  },
+  "privateTrips": {
+    "title": "Privatreiser",
+    "description": "Vi lager reiser for familier, venner og små grupper som vil ha noe skreddersydd – med samme omsorg som våre faste avganger.",
+    "cta": "Fortell oss om drømmereisen"
+  },
+  "about": {
+    "title": "Om oss",
+    "description": "Smaken av Frankrike – reiser i Languedoc med Elisabeth og Morten."
+  },
+  "faq": {
+    "title": "Ofte stilte spørsmål",
+    "description": "Praktisk informasjon om reiser, booking og opphold.",
+    "comingSoon": "FAQ-innhold kommer snart."
+  },
+  "contact": {
+    "title": "Kontakt oss",
+    "description": "Vi svarer gjerne på spørsmål om reiser, datoer og privatløsninger.",
+    "name": "Navn",
+    "email": "E-post",
+    "phone": "Telefon",
+    "message": "Melding",
+    "submit": "Send melding",
+    "success": "Takk for henvendelsen. Vi tar kontakt så snart vi kan."
+  },
+  "footer": {
+    "tagline": "Smaken av Frankrike – autentiske reiser i Languedoc siden 2007.",
+    "rights": "Alle rettigheter reservert."
+  },
+  "common": {
+    "readMore": "Les mer",
+    "loading": "Laster…",
+    "error": "Noe gikk galt. Prøv igjen senere."
+  }
+}
