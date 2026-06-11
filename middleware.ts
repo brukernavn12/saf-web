@@ -1,6 +1,3 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-
 const locales = ["no", "sv", "en"] as const;
 const defaultLocale = "no";
 const LOCALE_COOKIE = "NEXT_LOCALE";
@@ -11,12 +8,16 @@ function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }
 
-function getCookieLocale(request: NextRequest): Locale | undefined {
-  const locale = request.cookies.get(LOCALE_COOKIE)?.value;
+function getCookieLocale(request: Request): Locale | undefined {
+  const cookieHeader = request.headers.get("cookie") ?? "";
+  const match = cookieHeader.match(
+    new RegExp(`${LOCALE_COOKIE}=(${locales.join("|")})`)
+  );
+  const locale = match?.[1];
   return locale && isLocale(locale) ? locale : undefined;
 }
 
-function getPreferredLocale(request: NextRequest): Locale {
+function getPreferredLocale(request: Request): Locale {
   const cookieLocale = getCookieLocale(request);
   if (cookieLocale) {
     return cookieLocale;
@@ -27,27 +28,24 @@ function getPreferredLocale(request: NextRequest): Locale {
   return matched ?? defaultLocale;
 }
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const segment = pathname.split("/")[1];
-
-  if (segment && isLocale(segment)) {
-    return NextResponse.next();
-  }
-
+export function middleware(request: Request) {
+  const url = new URL(request.url);
   const locale = getPreferredLocale(request);
-  const url = request.nextUrl.clone();
-  url.pathname = `/${locale}${pathname === "/" ? "" : pathname}`;
+  url.pathname = `/${locale}${url.pathname === "/" ? "" : url.pathname}`;
 
-  const response = NextResponse.redirect(url, 307);
-  response.cookies.set(LOCALE_COOKIE, locale, {
-    path: "/",
-    sameSite: "lax",
+  return new Response(null, {
+    status: 307,
+    headers: {
+      Location: url.toString(),
+      "Set-Cookie": `${LOCALE_COOKIE}=${locale}; Path=/; SameSite=Lax`,
+    },
   });
-
-  return response;
 }
 
+// Only unprefixed paths — locale routes never hit middleware (no pass-through needed).
 export const config = {
-  matcher: ["/", "/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: [
+    "/",
+    "/((?!api|_next|_vercel|.*\\..*|no(?:/|$)|sv(?:/|$)|en(?:/|$)).*)",
+  ],
 };
