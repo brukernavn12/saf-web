@@ -39,8 +39,14 @@ export function TripBookingSection({
       <div
         ref={formRef}
         id="interest-form"
-        className="scroll-mt-32 border border-primary/10 bg-white p-6 md:p-8"
+        className="scroll-mt-32 space-y-8"
       >
+        {trip.min_persons_to_confirm > 0 && (
+          <p className="border border-primary/10 bg-primary/5 px-5 py-4 text-sm leading-relaxed text-text/80">
+            {t("confirmMinimum", { count: trip.min_persons_to_confirm })}
+          </p>
+        )}
+        <div className="border border-primary/10 bg-white p-6 md:p-8">
         <h2 className="font-serif text-2xl text-primary md:text-3xl">
           {t("expressInterest")}
         </h2>
@@ -48,7 +54,12 @@ export function TripBookingSection({
           {t("interestOnlyHint")}
         </p>
         <div className="mt-8">
-          <InterestForm tripId={trip.id} locale={locale} extended />
+          <InterestForm
+            tripId={trip.id}
+            locale={locale}
+            extended={Boolean(trip.price_info)}
+          />
+        </div>
         </div>
       </div>
     );
@@ -56,7 +67,7 @@ export function TripBookingSection({
 
   return (
     <div className="space-y-8">
-      {!trip.interest_only && trip.min_persons_to_confirm > 0 && (
+      {trip.min_persons_to_confirm > 0 && (
         <p className="border border-primary/10 bg-primary/5 px-5 py-4 text-sm leading-relaxed text-text/80">
           {t("confirmMinimum", { count: trip.min_persons_to_confirm })}
         </p>

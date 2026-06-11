@@ -97,6 +97,7 @@
     "persons": "Antall personer",
     "includes": "Dette er inkludert",
     "excludes": "Ikke inkludert",
+    "itinerary": "Program dag for dag",
     "departures": "Kommende avganger",
     "noDepartures": "Ingen avganger er satt opp ennå.",
     "spotsLeft": "{count} plasser igjen",

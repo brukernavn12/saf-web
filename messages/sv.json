@@ -97,6 +97,7 @@
     "persons": "Antal personer",
     "includes": "Detta ingår",
     "excludes": "Ingår inte",
+    "itinerary": "Program dag för dag",
     "departures": "Kommande avgångar",
     "noDepartures": "Inga avgångar är uppsatta ännu.",
     "spotsLeft": "{count} platser kvar",

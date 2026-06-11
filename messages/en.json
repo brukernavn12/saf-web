@@ -97,6 +97,7 @@
     "persons": "Number of people",
     "includes": "What's included",
     "excludes": "Not included",
+    "itinerary": "Day-by-day programme",
     "departures": "Upcoming departures",
     "noDepartures": "No departures scheduled yet.",
     "spotsLeft": "{count} spots left",

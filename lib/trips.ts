@@ -18,6 +18,9 @@ function mapTrip(row: Record<string, unknown>): Trip {
     price_nok: row.price_nok ? Number(row.price_nok) : null,
     price_info:
       typeof row.price_info === "string" ? row.price_info : null,
+    itinerary: Array.isArray(row.itinerary)
+      ? (row.itinerary as string[])
+      : null,
     interest_only: Boolean(row.interest_only),
     single_room_supplement_eur: row.single_room_supplement_eur
       ? Number(row.single_room_supplement_eur)

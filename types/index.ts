@@ -27,6 +27,7 @@ export interface Trip {
   tags: string[] | null;
   includes_no: string[] | null;
   excludes_no: string[] | null;
+  itinerary: string[] | null;
   min_persons: number;
   min_persons_per_booking: number;
   min_persons_to_confirm: number;

@@ -126,7 +126,7 @@ export default async function TripDetailPage({
               </p>
             </div>
           )}
-          {!trip.interest_only && trip.min_persons_to_confirm > 0 && (
+          {trip.min_persons_to_confirm > 0 && (
             <div className="min-w-full sm:min-w-[240px]">
               <p className="text-xs uppercase tracking-wider text-text/50">
                 {t("confirmation")}
@@ -145,6 +145,24 @@ export default async function TripDetailPage({
                 {paragraph}
               </p>
             ))}
+          </div>
+        )}
+
+        {trip.itinerary && trip.itinerary.length > 0 && (
+          <div className="mt-14 max-w-3xl">
+            <h2 className="font-serif text-2xl text-primary md:text-3xl">
+              {t("itinerary")}
+            </h2>
+            <ol className="mt-6 space-y-4">
+              {trip.itinerary.map((day, index) => (
+                <li
+                  key={index}
+                  className="flex gap-4 border-l-2 border-accent/40 pl-5 text-sm leading-relaxed text-text/80"
+                >
+                  <span className="font-medium text-primary">{day}</span>
+                </li>
+              ))}
+            </ol>
           </div>
         )}
 
