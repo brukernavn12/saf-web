@@ -22,17 +22,17 @@
     },
     "categories": {
       "title": "Tre måter å oppleve Sør-Frankrike",
-      "wine": {
-        "title": "Vin & gastronomi",
-        "description": "Smak deg gjennom Languedocs vingårder, markeder og kjøkken – med tid til både maten og menneskene bak."
-      },
-      "nature": {
-        "title": "Aktiv natur",
-        "description": "Vandring, kajakk og landskap i rolig tempo. Vi tar deg til steder turistbussene ikke finner."
+      "trips": {
+        "title": "Reiser",
+        "description": "Faste reiser med avgangsdatoer – vin, mat, natur og kultur i små grupper med norske reiseledere."
       },
       "private": {
         "title": "Privatreiser",
         "description": "Skreddersydde opplevelser for familier, venner eller små grupper som vil ha noe helt eget."
+      },
+      "business": {
+        "title": "Bedrift & team",
+        "description": "Skreddersydde opplegg for team, ledelse og bedrifter – fra incentives til samlinger med mening."
       }
     },
     "about": {
@@ -155,7 +155,12 @@
   "privateTrips": {
     "title": "Privatreiser",
     "description": "Vi lager reiser for familier, venner og små grupper som vil ha noe skreddersydd – med samme omsorg som våre faste avganger.",
-    "cta": "Fortell oss om drømmereisen"
+    "cta": "Fortell oss om drømmereisen",
+    "business": {
+      "title": "Bedrift & team",
+      "description": "Vi skreddersyr opplegg for team, ledelse og bedrifter – fra incentives og belønning til strategisamlinger og ledergruppe-reiser. Dere bestemmer tempo, innhold og gruppestørrelse; vi tar oss av logistikk, lokalkunnskap og opplevelser dere ikke finner på egen hånd.",
+      "cta": "Snakk med oss om bedriftsreise"
+    }
   },
   "about": {
     "title": "Om oss",

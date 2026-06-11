@@ -22,17 +22,17 @@
     },
     "categories": {
       "title": "Three ways to experience southern France",
-      "wine": {
-        "title": "Wine & gastronomy",
-        "description": "Taste your way through Languedoc's vineyards, markets and kitchens – with time for both the food and the people behind it."
-      },
-      "nature": {
-        "title": "Active nature",
-        "description": "Hiking, kayaking and landscapes at a gentle pace. We take you to places the tour buses never find."
+      "trips": {
+        "title": "Trips",
+        "description": "Scheduled departures – wine, food, nature and culture in small groups with Norwegian hosts."
       },
       "private": {
         "title": "Private trips",
         "description": "Tailored experiences for families, friends or small groups who want something entirely their own."
+      },
+      "business": {
+        "title": "Business & teams",
+        "description": "Tailored programmes for teams, leadership groups and companies – from incentives to meaningful off-sites."
       }
     },
     "about": {
@@ -155,7 +155,12 @@
   "privateTrips": {
     "title": "Private trips",
     "description": "We create journeys for families, friends and small groups who want something bespoke – with the same care as our scheduled departures.",
-    "cta": "Tell us about your dream trip"
+    "cta": "Tell us about your dream trip",
+    "business": {
+      "title": "Business & teams",
+      "description": "We tailor programmes for teams, leadership groups and companies – from incentives and rewards to strategy retreats and executive travel. You set the pace, content and group size; we handle logistics, local knowledge and experiences you will not find on your own.",
+      "cta": "Talk to us about a corporate trip"
+    }
   },
   "about": {
     "title": "About us",

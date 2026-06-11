@@ -1,4 +1,5 @@
 import { createSupabaseClient } from "@/lib/supabase";
+import { normalizeTripItinerary } from "@/lib/utils";
 import type { Departure, Trip } from "@/types";
 
 function mapTrip(row: Record<string, unknown>): Trip {
@@ -18,9 +19,7 @@ function mapTrip(row: Record<string, unknown>): Trip {
     price_nok: row.price_nok ? Number(row.price_nok) : null,
     price_info:
       typeof row.price_info === "string" ? row.price_info : null,
-    itinerary: Array.isArray(row.itinerary)
-      ? (row.itinerary as string[])
-      : null,
+    itinerary: normalizeTripItinerary(row.itinerary),
     interest_only: Boolean(row.interest_only),
     single_room_supplement_eur: row.single_room_supplement_eur
       ? Number(row.single_room_supplement_eur)

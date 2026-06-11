@@ -25,6 +25,24 @@ export default async function PrivateTripsPage({
       >
         {t("cta")}
       </Link>
+
+      <section
+        id="bedrift"
+        className="scroll-mt-32 mt-20 border-t border-primary/10 pt-16"
+      >
+        <h2 className="font-serif text-3xl text-primary md:text-4xl">
+          {t("business.title")}
+        </h2>
+        <p className="mt-6 text-lg leading-relaxed text-text/75">
+          {t("business.description")}
+        </p>
+        <Link
+          href="/kontakt"
+          className="mt-8 inline-block border border-primary px-6 py-3 text-sm font-medium text-primary transition-colors hover:border-accent hover:text-accent"
+        >
+          {t("business.cta")}
+        </Link>
+      </section>
     </Section>
   );
 }

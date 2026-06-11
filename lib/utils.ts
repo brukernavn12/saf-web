@@ -238,3 +238,46 @@ export function getTripImage(trip: Trip): string | null {
 
   return raw;
 }
+
+/** Normalize itinerary from Supabase (text[] may arrive as array, JSON string, or null). */
+export function normalizeTripItinerary(value: unknown): string[] | null {
+  if (value == null) return null;
+
+  if (Array.isArray(value)) {
+    const items = value
+      .map((item) => (typeof item === "string" ? item.trim() : ""))
+      .filter(Boolean);
+    return items.length > 0 ? items : null;
+  }
+
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    if (!trimmed) return null;
+    try {
+      return normalizeTripItinerary(JSON.parse(trimmed));
+    } catch {
+      return [trimmed];
+    }
+  }
+
+  return null;
+}
+
+/** Split "Dag 1: Beskrivelse" into label and body for itinerary rows. */
+export function parseItineraryDay(
+  entry: string,
+  index: number
+): { day: string; description: string } {
+  const trimmed = entry.trim();
+  const match = trimmed.match(/^Dag\s+(\d+)\s*:\s*(.+)$/i);
+  if (match) {
+    return { day: `Dag ${match[1]}`, description: match[2].trim() };
+  }
+
+  const enMatch = trimmed.match(/^Day\s+(\d+)\s*:\s*(.+)$/i);
+  if (enMatch) {
+    return { day: `Day ${enMatch[1]}`, description: enMatch[2].trim() };
+  }
+
+  return { day: `Dag ${index + 1}`, description: trimmed };
+}

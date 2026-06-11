@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getTripWithDepartures } from "@/lib/trips";
 import { Section } from "@/components/ui/Section";
 import { TripBookingSection } from "@/components/reiser/TripBookingSection";
+import { TripItinerarySection } from "@/components/reiser/TripItinerarySection";
 import type { Locale } from "@/types";
 import {
   formatTripListPrice,
@@ -151,21 +152,10 @@ export default async function TripDetailPage({
         )}
 
         {trip.itinerary && trip.itinerary.length > 0 && (
-          <div className="mt-14 max-w-3xl">
-            <h2 className="font-serif text-2xl text-primary md:text-3xl">
-              {t("itinerary")}
-            </h2>
-            <ol className="mt-6 space-y-4">
-              {trip.itinerary.map((day, index) => (
-                <li
-                  key={index}
-                  className="flex gap-4 border-l-2 border-accent/40 pl-5 text-sm leading-relaxed text-text/80"
-                >
-                  <span className="font-medium text-primary">{day}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
+          <TripItinerarySection
+            itinerary={trip.itinerary}
+            title={t("itinerary")}
+          />
         )}
 
         <div className="mt-14 grid gap-10 md:grid-cols-2">

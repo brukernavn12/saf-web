@@ -14,6 +14,7 @@ create table trips (
   category text not null,
   includes_no text[],
   excludes_no text[],
+  itinerary text[],
   min_persons int default 2,
   max_persons int default 8,
   base_price_eur numeric not null,

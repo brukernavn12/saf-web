@@ -15,9 +15,9 @@ export type ImageCategory =
 
 export type ImageContextKey =
   | "home.hero"
-  | "home.category.wine"
-  | "home.category.nature"
+  | "home.category.trips"
   | "home.category.private"
+  | "home.category.business"
   | "home.about"
   | "page.om-oss"
   | "logo.mark"
@@ -135,9 +135,9 @@ export const IMAGE_CATALOG: Record<string, ImageAsset> = {
 /** Explicit context → image id assignments (each image id appears at most once). */
 export const IMAGE_ASSIGNMENTS: Record<string, string> = {
   "home.hero": "hero.vineyard",
-  "home.category.wine": "reiser.caunesMinervois",
-  "home.category.nature": "reiser.pontdugard",
+  "home.category.trips": "reiser.caunesMinervois",
   "home.category.private": "reiser.deuxRiviere2",
+  "home.category.business": "reiser.pontdugard",
   "home.about": "team.morten",
   "page.om-oss": "team.background",
   "logo.mark": "logo.mark",
@@ -284,9 +284,9 @@ export const images = {
     teamBackground: getImagePathForContext("page.om-oss"),
   },
   categories: {
-    wine: getImagePathForContext("home.category.wine"),
-    nature: getImagePathForContext("home.category.nature"),
+    trips: getImagePathForContext("home.category.trips"),
     private: getImagePathForContext("home.category.private"),
+    business: getImagePathForContext("home.category.business"),
   },
   reiser: {
     laLiviniere: pathForAssetId("reiser.laLiviniere"),

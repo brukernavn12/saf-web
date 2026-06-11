@@ -22,17 +22,17 @@
     },
     "categories": {
       "title": "Tre sätt att uppleva Sydfrankrike",
-      "wine": {
-        "title": "Vin & gastronomi",
-        "description": "Smaka dig igenom Languedocs vingårdar, marknader och kök – med tid för både maten och människorna bakom."
-      },
-      "nature": {
-        "title": "Aktiv natur",
-        "description": "Vandring, kajak och landskap i lugn takt. Vi tar dig till platser turistbussarna inte hittar."
+      "trips": {
+        "title": "Resor",
+        "description": "Fasta resor med avgångsdatum – vin, mat, natur och kultur i små grupper med norska reseledare."
       },
       "private": {
         "title": "Privata resor",
         "description": "Skräddarsydda upplevelser för familjer, vänner eller små grupper som vill ha något helt eget."
+      },
+      "business": {
+        "title": "Företag & team",
+        "description": "Skräddarsydda upplägg för team, ledning och företag – från incentives till meningsfulla sammankomster."
       }
     },
     "about": {
@@ -155,7 +155,12 @@
   "privateTrips": {
     "title": "Privata resor",
     "description": "Vi skapar resor för familjer, vänner och små grupper som vill ha något skräddarsytt – med samma omsorg som våra ordinarie avgångar.",
-    "cta": "Berätta om drömresan"
+    "cta": "Berätta om drömresan",
+    "business": {
+      "title": "Företag & team",
+      "description": "Vi skräddarsyr upplägg för team, ledning och företag – från incentives och belöning till strategisammankomster och ledningsgruppresor. Ni bestämmer tempo, innehåll och gruppstorlek; vi tar hand om logistik, lokalkunskap och upplevelser ni inte hittar på egen hand.",
+      "cta": "Prata med oss om företagsresa"
+    }
   },
   "about": {
     "title": "Om oss",

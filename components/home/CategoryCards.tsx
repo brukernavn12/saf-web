@@ -5,16 +5,16 @@ import { Section } from "@/components/ui/Section";
 import { images } from "@/lib/image-registry";
 
 const categories = [
-  { key: "wine", href: "/reiser?kategori=vin", image: images.categories.wine },
-  {
-    key: "nature",
-    href: "/reiser?kategori=natur",
-    image: images.categories.nature,
-  },
+  { key: "trips", href: "/reiser", image: images.categories.trips },
   {
     key: "private",
     href: "/privatreiser",
     image: images.categories.private,
+  },
+  {
+    key: "business",
+    href: "/privatreiser#bedrift",
+    image: images.categories.business,
   },
 ] as const;
 
