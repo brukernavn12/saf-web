@@ -45,6 +45,7 @@ public/images/**
 !public/images/hero/
 public/images/hero/*
 !public/images/hero/hero.jpg
+!public/images/hero/hero-vineyard.jpeg
 
 !public/images/logo/
 public/images/logo/*

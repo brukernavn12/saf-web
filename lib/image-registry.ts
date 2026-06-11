@@ -49,6 +49,12 @@ function asset(
 /** Curated images used by the site (not the full /public/images/reiser/ library). */
 export const IMAGE_CATALOG: Record<string, ImageAsset> = {
   "hero.main": asset("hero.main", "hero", "hero.jpg", ["hero"]),
+  "hero.vineyard": asset(
+    "hero.vineyard",
+    "hero",
+    "hero-vineyard.jpeg",
+    ["hero", "vineyard"]
+  ),
 
   "logo.mark": asset(
     "logo.mark",
@@ -128,7 +134,7 @@ export const IMAGE_CATALOG: Record<string, ImageAsset> = {
 
 /** Explicit context → image id assignments (each image id appears at most once). */
 export const IMAGE_ASSIGNMENTS: Record<string, string> = {
-  "home.hero": "reiser.laLiviniere",
+  "home.hero": "hero.vineyard",
   "home.category.wine": "reiser.caunesMinervois",
   "home.category.nature": "reiser.pontdugard",
   "home.category.private": "reiser.deuxRiviere2",
@@ -137,8 +143,8 @@ export const IMAGE_ASSIGNMENTS: Record<string, string> = {
   "logo.mark": "logo.mark",
   "logo.withTagline": "logo.withTagline",
 
-  "trip.vin-vingarder-minervois": "reiser.fontfroide",
-  "trip.vin-vingarder-minervois.gallery.0": "hero.main",
+  "trip.vin-vingarder-minervois": "reiser.laLiviniere",
+  "trip.vin-vingarder-minervois.gallery.0": "reiser.fontfroide",
 
   "trip.smak-languedoc": "reiser.mat",
   "trip.smak-languedoc.gallery.0": "reiser.halles",
