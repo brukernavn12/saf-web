@@ -1,5 +1,5 @@
 const DEPOSIT_PCT = 25;
-export const MIN_BOOKING_PERSONS = 2;
+export const MIN_BOOKING_PERSONS = 1;
 
 export function convertEurToNok(eur: number, rate: number): number {
   return Math.max(1, Math.round(eur * rate));

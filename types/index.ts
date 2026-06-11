@@ -28,6 +28,8 @@ export interface Trip {
   includes_no: string[] | null;
   excludes_no: string[] | null;
   min_persons: number;
+  min_persons_per_booking: number;
+  min_persons_to_confirm: number;
   max_persons: number;
   base_price_eur: number;
   price_nok: number | null;
@@ -86,6 +88,8 @@ export interface Booking {
   mobility_notes: string | null;
   health_notes: string | null;
   room_type: string | null;
+  room_preference: string | null;
+  room_mate_name: string | null;
   terms_accepted_at: string | null;
   agent_id: string | null;
   language: Locale;

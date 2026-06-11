@@ -60,11 +60,11 @@ export function DepartureList({
                   {formatDate(departure.start_date, locale)} –{" "}
                   {formatDate(departure.end_date, locale)}
                 </p>
-                <p className="mt-1 text-sm text-text/60">
-                  {t("minPersons", { count: departure.min_persons })}
-                  {departure.guide_name &&
-                    ` · ${t("guide")}: ${departure.guide_name}`}
-                </p>
+                {departure.guide_name && (
+                  <p className="mt-1 text-sm text-text/60">
+                    {t("guide")}: {departure.guide_name}
+                  </p>
+                )}
                 {departure.notes && (
                   <p className="mt-1 text-sm text-text/60">{departure.notes}</p>
                 )}

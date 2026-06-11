@@ -8,6 +8,13 @@ function mapTrip(row: Record<string, unknown>): Trip {
     is_private: trip.is_private ?? false,
     featured: trip.featured ?? false,
     base_price_eur: Number(row.base_price_eur),
+    min_persons_per_booking: Number(
+      row.min_persons_per_booking ?? row.min_persons ?? 1
+    ),
+    min_persons_to_confirm: Number(
+      row.min_persons_to_confirm ?? row.min_persons ?? 2
+    ),
+    min_persons: Number(row.min_persons ?? row.min_persons_to_confirm ?? 2),
     price_nok: row.price_nok ? Number(row.price_nok) : null,
     price_info:
       typeof row.price_info === "string" ? row.price_info : null,

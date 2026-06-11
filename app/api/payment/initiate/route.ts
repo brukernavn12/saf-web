@@ -19,6 +19,8 @@ interface InitiateBody {
   email: string;
   phone: string;
   persons: number;
+  roomPreference?: "share_with_named" | "open_to_share";
+  roomMateName?: string;
   locale?: Locale;
 }
 
@@ -32,6 +34,8 @@ export async function POST(req: NextRequest) {
       email,
       phone,
       persons,
+      roomPreference,
+      roomMateName,
       locale = "no",
     } = body;
 
@@ -60,11 +64,23 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Avgang ikke funnet" }, { status: 404 });
     }
 
-    const minPersons = Math.max(MIN_BOOKING_PERSONS, departure.min_persons);
+    const tripRow = departure.trips as {
+      title_no: string;
+      base_price_eur: number;
+      max_persons: number;
+      single_room_supplement_eur: number | null;
+      min_persons_per_booking: number | null;
+      min_persons: number | null;
+    };
+
+    const minPersons = Math.max(
+      MIN_BOOKING_PERSONS,
+      tripRow.min_persons_per_booking ?? tripRow.min_persons ?? MIN_BOOKING_PERSONS
+    );
 
     if (persons < minPersons) {
       return NextResponse.json(
-        { error: `Minimum ${minPersons} personer` },
+        { error: `Minimum ${minPersons} personer per bestilling` },
         { status: 400 }
       );
     }
@@ -73,12 +89,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Ikke nok plasser" }, { status: 400 });
     }
 
-    const trip = departure.trips as {
-      title_no: string;
-      base_price_eur: number;
-      max_persons: number;
-      single_room_supplement_eur: number | null;
-    };
+    const trip = tripRow;
 
     if (persons > trip.max_persons) {
       return NextResponse.json(
@@ -120,6 +131,16 @@ export async function POST(req: NextRequest) {
 
     const roomType = singleRooms > 0 ? "with_single_supplement" : "shared";
 
+    if (
+      roomPreference === "share_with_named" &&
+      !roomMateName?.trim()
+    ) {
+      return NextResponse.json(
+        { error: "Oppgi navn på reisefølge" },
+        { status: 400 }
+      );
+    }
+
     const { data: booking, error: bookingError } = await db
       .from("bookings")
       .insert({
@@ -136,6 +157,11 @@ export async function POST(req: NextRequest) {
         payment_method: "vipps",
         language: locale,
         room_type: roomType,
+        room_preference: roomPreference ?? null,
+        room_mate_name:
+          roomPreference === "share_with_named"
+            ? roomMateName?.trim() ?? null
+            : null,
         terms_accepted_at: new Date().toISOString(),
       })
       .select("id")

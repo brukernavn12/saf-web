@@ -126,6 +126,16 @@ export default async function TripDetailPage({
               </p>
             </div>
           )}
+          {!trip.interest_only && trip.min_persons_to_confirm > 0 && (
+            <div className="min-w-full sm:min-w-[240px]">
+              <p className="text-xs uppercase tracking-wider text-text/50">
+                {t("confirmation")}
+              </p>
+              <p className="mt-1 font-medium text-primary">
+                {t("confirmMinimum", { count: trip.min_persons_to_confirm })}
+              </p>
+            </div>
+          )}
         </div>
 
         {description && (

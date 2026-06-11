@@ -56,6 +56,12 @@ export function TripBookingSection({
 
   return (
     <div className="space-y-8">
+      {!trip.interest_only && trip.min_persons_to_confirm > 0 && (
+        <p className="border border-primary/10 bg-primary/5 px-5 py-4 text-sm leading-relaxed text-text/80">
+          {t("confirmMinimum", { count: trip.min_persons_to_confirm })}
+        </p>
+      )}
+
       <DepartureList
         trip={trip}
         departures={departures}

@@ -14,7 +14,13 @@ import type { Departure, Locale, Trip } from "@/types";
 
 interface BookingFormProps {
   tripId: string;
-  trip: Pick<Trip, "price_nok" | "base_price_eur" | "single_room_supplement_eur">;
+  trip: Pick<
+    Trip,
+    | "price_nok"
+    | "base_price_eur"
+    | "single_room_supplement_eur"
+    | "min_persons_per_booking"
+  >;
   departureId?: string;
   departures: Departure[];
   locale: Locale;
@@ -31,7 +37,10 @@ export function BookingForm({
   const contact = useTranslations("contact");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [persons, setPersons] = useState(MIN_BOOKING_PERSONS);
+  const [persons, setPersons] = useState(1);
+  const [roomPreference, setRoomPreference] = useState<
+    "share_with_named" | "open_to_share"
+  >("open_to_share");
   const [eurToNokRate, setEurToNokRate] = useState<number | null>(null);
 
   useEffect(() => {
@@ -46,7 +55,7 @@ export function BookingForm({
   const selectedDeparture = departures.find((d) => d.id === departureId);
   const minPersons = Math.max(
     MIN_BOOKING_PERSONS,
-    selectedDeparture?.min_persons ?? MIN_BOOKING_PERSONS
+    trip.min_persons_per_booking ?? MIN_BOOKING_PERSONS
   );
   const pricePerPerson = selectedDeparture?.price_eur ?? trip.base_price_eur;
   const singleRoomSupplementEur = trip.single_room_supplement_eur;
@@ -76,15 +85,21 @@ export function BookingForm({
     }
 
     if (persons < minPersons) {
-      setError(t("minPersons", { count: minPersons }));
+      setError(t("minPersonsBooking", { count: minPersons }));
+      return;
+    }
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const roomMateName = formData.get("roomMateName")?.toString().trim();
+
+    if (roomPreference === "share_with_named" && !roomMateName) {
+      setError(t("roomMateNameRequired"));
       return;
     }
 
     setLoading(true);
     setError(null);
-
-    const form = event.currentTarget;
-    const formData = new FormData(form);
 
     try {
       const response = await fetch("/api/payment/initiate", {
@@ -97,6 +112,9 @@ export function BookingForm({
           email: formData.get("email"),
           phone: formData.get("phone"),
           persons,
+          roomPreference,
+          roomMateName:
+            roomPreference === "share_with_named" ? roomMateName : undefined,
           locale,
         }),
       });
@@ -133,6 +151,39 @@ export function BookingForm({
         }
         required
       />
+
+      <fieldset className="space-y-3">
+        <legend className="text-sm font-medium text-primary">
+          {t("roomPreference")}
+        </legend>
+        <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-text/80">
+          <input
+            type="radio"
+            name="roomPreference"
+            value="share_with_named"
+            checked={roomPreference === "share_with_named"}
+            onChange={() => setRoomPreference("share_with_named")}
+            className="mt-1"
+          />
+          <span>{t("roomShareWithNamed")}</span>
+        </label>
+        {roomPreference === "share_with_named" && (
+          <div className="ml-6">
+            <Input label={t("roomMateName")} name="roomMateName" required />
+          </div>
+        )}
+        <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-text/80">
+          <input
+            type="radio"
+            name="roomPreference"
+            value="open_to_share"
+            checked={roomPreference === "open_to_share"}
+            onChange={() => setRoomPreference("open_to_share")}
+            className="mt-1"
+          />
+          <span>{t("roomOpenToShare")}</span>
+        </label>
+      </fieldset>
 
       <div className="space-y-3 border border-primary/10 bg-primary/5 p-4 text-sm">
         <p className="text-text/70">{t("depositInfo")}</p>
