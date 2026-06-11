@@ -128,7 +128,7 @@ export const IMAGE_CATALOG: Record<string, ImageAsset> = {
 
 /** Explicit context → image id assignments (each image id appears at most once). */
 export const IMAGE_ASSIGNMENTS: Record<string, string> = {
-  "home.hero": "hero.main",
+  "home.hero": "reiser.laLiviniere",
   "home.category.wine": "reiser.caunesMinervois",
   "home.category.nature": "reiser.pontdugard",
   "home.category.private": "reiser.deuxRiviere2",
@@ -137,8 +137,8 @@ export const IMAGE_ASSIGNMENTS: Record<string, string> = {
   "logo.mark": "logo.mark",
   "logo.withTagline": "logo.withTagline",
 
-  "trip.vin-vingarder-minervois": "reiser.laLiviniere",
-  "trip.vin-vingarder-minervois.gallery.0": "reiser.fontfroide",
+  "trip.vin-vingarder-minervois": "reiser.fontfroide",
+  "trip.vin-vingarder-minervois.gallery.0": "hero.main",
 
   "trip.smak-languedoc": "reiser.mat",
   "trip.smak-languedoc.gallery.0": "reiser.halles",
