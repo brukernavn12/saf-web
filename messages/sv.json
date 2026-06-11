@@ -40,6 +40,41 @@
       "lead": "Vi bor i Languedoc och arrangerar resor vi själva skulle göra.",
       "body": "Sedan 2007 har vi visat nordbor och andra gäster det vi kallar «på riktigt» Sydfrankrike – inte den polerade resebyråbilden, utan platser och människor vi känner personligen. Vi följer med på resan, tolkar både språk och kultur, och ser till att det känns tryggt, varmt och lite äventyrligt."
     },
+    "reviews": {
+      "title": "Det säger våra gäster",
+      "stats": {
+        "recommend": "skulle rekommendera resan till en vän",
+        "balance": "tyckte balansen mellan program och egen tid var perfekt"
+      },
+      "review1": {
+        "quote": "Resan var komplett. 10/10. Platsen, kulturen, maten och vinet – och besöken på vingårdarna var riktigt bra.",
+        "author": ""
+      },
+      "review2": {
+        "quote": "En sällsynt upplevelse. Utan stress, så att vi kunde njuta av allt från vinrankor och blommor längs vägen till restaurangbesök man ofta inte hittar på egen hand. Merci beaucoup.",
+        "author": ""
+      },
+      "review3": {
+        "quote": "För att du, Morten, är en fin och flexibel värd. Du behärskar rollen för att du känner miljön – bland vinproducenter, det lokala området och som importör.",
+        "author": ""
+      },
+      "review4": {
+        "quote": "Det var som att resa med goda vänner – bara utan stress. Små grupper, varma människor och ett värdskap som verkligen bryr sig.",
+        "author": "Kari och Torbjörn"
+      },
+      "review5": {
+        "quote": "Detta kan varmt rekommenderas. Fantastiskt värdskap, underbara måltider, stora upplevelser. 10 av 10.",
+        "author": "Kjersti"
+      },
+      "review6": {
+        "quote": "Ingen stress, inget tjafs – bara flow. Vi hann andas, njuta och faktiskt vara närvarande hela vägen. Balsam för själen.",
+        "author": "Aslaug"
+      },
+      "featured": {
+        "quote": "Jag tror att jag talar för väldigt många när jag säger att Frankrike för nordbor är synonymt med det goda livet. Människorna och måltiderna. Naturen och kulturen. Historien och vardagslivet.",
+        "attribution": "Kung Harald V"
+      }
+    },
     "newsletter": {
       "title": "Få resetips från Languedoc",
       "description": "Säsongens avgångar, små rekommendationer och nyheter – några gånger per år, utan brus.",

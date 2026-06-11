@@ -40,6 +40,41 @@
       "lead": "We live in Languedoc and design trips we would take ourselves.",
       "body": "Since 2007 we have shown guests from Scandinavia and beyond what we call «proper» southern France – not the polished travel-brochure version, but places and people we know personally. We travel with you, bridging language and culture, and make sure it feels safe, warm and a little adventurous."
     },
+    "reviews": {
+      "title": "What our guests say",
+      "stats": {
+        "recommend": "would recommend the trip to a friend",
+        "balance": "felt the balance between programme and free time was perfect"
+      },
+      "review1": {
+        "quote": "The trip was complete. 10/10. The place, culture, food and wine – and the vineyard visits were truly excellent.",
+        "author": ""
+      },
+      "review2": {
+        "quote": "An experience of the rare kind. No stress, so we could enjoy everything from vines and flowers along the road to restaurant visits you rarely find on your own. Merci beaucoup.",
+        "author": ""
+      },
+      "review3": {
+        "quote": "Because you, Morten, are a wonderful and flexible host. You master the role because you know the environment – among wine producers, the local area and as an importer.",
+        "author": ""
+      },
+      "review4": {
+        "quote": "It felt like travelling with good friends – just without stress. Small groups, warm people and hospitality that truly cares.",
+        "author": "Kari and Torbjørn"
+      },
+      "review5": {
+        "quote": "This comes with our warmest recommendation. Fantastic hospitality, lovely meals, great experiences. 10 out of 10.",
+        "author": "Kjersti"
+      },
+      "review6": {
+        "quote": "No stress, no rush – just flow. We had time to breathe, enjoy and actually be present all the way. Balm for the soul.",
+        "author": "Aslaug"
+      },
+      "featured": {
+        "quote": "I believe I speak on behalf of very many when I say that France for Norwegians is synonymous with the good life. The people and the meals. Nature and culture. History and everyday life.",
+        "attribution": "King Harald V"
+      }
+    },
     "newsletter": {
       "title": "Travel tips from Languedoc",
       "description": "Season departures, small recommendations and news – a few times a year, no noise.",
