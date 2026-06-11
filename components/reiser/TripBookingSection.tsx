@@ -37,6 +37,7 @@ export function TripBookingSection({
   return (
     <div className="space-y-8">
       <DepartureList
+        trip={trip}
         departures={departures}
         locale={locale}
         activeDepartureId={activeDepartureId}
@@ -61,10 +62,9 @@ export function TripBookingSection({
             {activeForm === "booking" ? (
               <BookingForm
                 tripId={trip.id}
+                trip={trip}
                 departureId={activeDepartureId}
                 departures={departures}
-                pricePerPersonEur={trip.base_price_eur}
-                singleRoomSupplementEur={trip.single_room_supplement_eur}
                 locale={locale}
               />
             ) : (

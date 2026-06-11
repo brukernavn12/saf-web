@@ -1,13 +1,14 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import type { Departure, Locale } from "@/types";
-import { formatDate, formatPrice } from "@/lib/utils";
+import type { Departure, Locale, Trip } from "@/types";
+import { formatDate, formatDeparturePrice } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 
 export type DepartureFormType = "booking" | "interest";
 
 interface DepartureListProps {
+  trip: Trip;
   departures: Departure[];
   locale: Locale;
   activeDepartureId?: string;
@@ -17,6 +18,7 @@ interface DepartureListProps {
 }
 
 export function DepartureList({
+  trip,
   departures,
   locale,
   activeDepartureId,
@@ -40,7 +42,11 @@ export function DepartureList({
       <ul className="mt-6 divide-y divide-primary/10 border border-primary/10">
         {departures.map((departure) => {
           const isActive = activeDepartureId === departure.id;
-          const price = departure.price_eur;
+          const price = formatDeparturePrice(
+            trip,
+            departure.price_eur ?? trip.base_price_eur,
+            locale
+          );
 
           return (
             <li
@@ -65,9 +71,7 @@ export function DepartureList({
               </div>
               <div className="flex flex-col items-start gap-3 sm:items-end">
                 {price != null && (
-                  <p className="font-medium text-primary">
-                    {formatPrice(price, locale)}
-                  </p>
+                  <p className="font-medium text-primary">{price}</p>
                 )}
                 <p className="text-sm text-accent">
                   {t("spotsLeft", { count: departure.available_spots })}

@@ -9,24 +9,22 @@ import {
   convertEurToNok,
   MIN_BOOKING_PERSONS,
 } from "@/lib/payment";
-import { formatPrice } from "@/lib/utils";
-import type { Departure, Locale } from "@/types";
+import { formatTripAmount, usesNokPricing } from "@/lib/utils";
+import type { Departure, Locale, Trip } from "@/types";
 
 interface BookingFormProps {
   tripId: string;
+  trip: Pick<Trip, "price_nok" | "base_price_eur" | "single_room_supplement_eur">;
   departureId?: string;
   departures: Departure[];
-  pricePerPersonEur: number;
-  singleRoomSupplementEur: number | null;
   locale: Locale;
 }
 
 export function BookingForm({
   tripId,
+  trip,
   departureId,
   departures,
-  pricePerPersonEur,
-  singleRoomSupplementEur,
   locale,
 }: BookingFormProps) {
   const t = useTranslations("tripDetail");
@@ -50,7 +48,9 @@ export function BookingForm({
     MIN_BOOKING_PERSONS,
     selectedDeparture?.min_persons ?? MIN_BOOKING_PERSONS
   );
-  const pricePerPerson = selectedDeparture?.price_eur ?? pricePerPersonEur;
+  const pricePerPerson = selectedDeparture?.price_eur ?? trip.base_price_eur;
+  const singleRoomSupplementEur = trip.single_room_supplement_eur;
+  const pricedInNok = usesNokPricing(trip);
   const {
     totalEur,
     depositEur,
@@ -146,7 +146,7 @@ export function BookingForm({
         {includesSingleSupplement && (
           <p className="text-text/70">
             {t("includesSingleSupplement", {
-              amount: formatPrice(singleSupplementEur, locale),
+              amount: formatTripAmount(singleSupplementEur, trip, locale),
             })}
           </p>
         )}
@@ -154,17 +154,17 @@ export function BookingForm({
         <p className="font-medium text-primary">
           {t("depositForPersons", {
             count: persons,
-            deposit: formatPrice(depositEur, locale),
-            perPerson: formatPrice(depositPerPerson, locale),
+            deposit: formatTripAmount(depositEur, trip, locale),
+            perPerson: formatTripAmount(depositPerPerson, trip, locale),
           })}
         </p>
         <p className="font-medium text-primary">
           {t("totalTripPrice", {
             count: persons,
-            total: formatPrice(totalEur, locale),
+            total: formatTripAmount(totalEur, trip, locale),
           })}
         </p>
-        {depositNok != null && (
+        {!pricedInNok && depositNok != null && (
           <p className="text-text/60">
             {t("approxNok", {
               amount: depositNok.toLocaleString(

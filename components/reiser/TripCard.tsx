@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Locale, Trip } from "@/types";
-import { formatPrice, getLocalizedTripField, getTripImage } from "@/lib/utils";
+import { formatTripListPrice, getLocalizedTripField, getTripImage } from "@/lib/utils";
 
 interface TripCardProps {
   trip: Trip;
@@ -51,7 +51,7 @@ export function TripCard({ trip, locale }: TripCardProps) {
             )}
             <p className="mt-1 font-medium text-primary">
               {t("fromPrice", {
-                price: formatPrice(trip.base_price_eur, locale),
+                price: formatTripListPrice(trip, locale),
               })}
             </p>
           </div>

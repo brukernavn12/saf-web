@@ -8,6 +8,7 @@ function mapTrip(row: Record<string, unknown>): Trip {
     is_private: trip.is_private ?? false,
     featured: trip.featured ?? false,
     base_price_eur: Number(row.base_price_eur),
+    price_nok: row.price_nok ? Number(row.price_nok) : null,
     single_room_supplement_eur: row.single_room_supplement_eur
       ? Number(row.single_room_supplement_eur)
       : null,

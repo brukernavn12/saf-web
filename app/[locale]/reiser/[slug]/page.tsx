@@ -6,7 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { TripBookingSection } from "@/components/reiser/TripBookingSection";
 import type { Locale } from "@/types";
 import {
-  formatPrice,
+  formatTripListPrice,
   getLocalizedTripField,
   getTripImage,
 } from "@/lib/utils";
@@ -87,7 +87,7 @@ export default async function TripDetailPage({
               {t("price")}
             </p>
             <p className="mt-1 font-medium text-primary">
-              {formatPrice(trip.base_price_eur, locale)}
+              {formatTripListPrice(trip, locale)}
             </p>
           </div>
           {trip.difficulty_level && (
