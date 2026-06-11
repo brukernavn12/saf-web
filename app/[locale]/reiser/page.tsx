@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { getActiveTrips } from "@/lib/trips";
+import { getActiveTripsWithDepartures } from "@/lib/trips";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import { Section } from "@/components/ui/Section";
 import { TripCard } from "@/components/reiser/TripCard";
@@ -16,7 +16,7 @@ export default async function TripsPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "trips" });
   const configured = isSupabaseConfigured();
-  const trips = configured ? await getActiveTrips() : [];
+  const tripItems = configured ? await getActiveTripsWithDepartures() : [];
 
   return (
     <Section className="pt-32">
@@ -28,10 +28,15 @@ export default async function TripsPage({
           {t("description")}
         </p>
       </div>
-      {trips.length > 0 ? (
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {trips.map((trip) => (
-            <TripCard key={trip.id} trip={trip} locale={locale} />
+      {tripItems.length > 0 ? (
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {tripItems.map(({ trip, departures }) => (
+            <TripCard
+              key={trip.id}
+              trip={trip}
+              departures={departures}
+              locale={locale}
+            />
           ))}
         </div>
       ) : (

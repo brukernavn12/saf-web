@@ -143,19 +143,79 @@ export function formatDate(
   ).format(new Date(date));
 }
 
+/** Compact range for cards, e.g. "7.–11. mai 2026". */
+export function formatDepartureRange(
+  startDate: string,
+  endDate: string,
+  locale: Locale = "no"
+): string {
+  const localeTag = locale === "en" ? "en-GB" : `${locale}-NO`;
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const sameMonth =
+    start.getMonth() === end.getMonth() &&
+    start.getFullYear() === end.getFullYear();
+
+  if (sameMonth) {
+    const dayFmt = new Intl.DateTimeFormat(localeTag, { day: "numeric" });
+    const endFmt = new Intl.DateTimeFormat(localeTag, {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    return `${dayFmt.format(start)}.–${endFmt.format(end)}`;
+  }
+
+  return `${formatDate(startDate, locale, {
+    day: "numeric",
+    month: "short",
+  })} – ${formatDate(endDate, locale)}`;
+}
+
+const LOCALIZED_TRIP_FIELD_LOCALES: Locale[] = ["no", "sv", "en"];
+
+function readNonEmptyTripString(
+  trip: Trip,
+  key: keyof Trip
+): string | null {
+  const value = trip[key];
+  if (typeof value === "string" && value.trim() !== "") {
+    return value;
+  }
+  return null;
+}
+
+/** Requested locale → Norwegian → first other available translation. */
 export function getLocalizedTripField(
   trip: Trip,
   field: "title" | "tagline" | "description",
   locale: Locale
 ): string | null {
-  const key = `${field}_${locale}` as keyof Trip;
-  const fallbackKey = `${field}_no` as keyof Trip;
-  const value = trip[key] ?? trip[fallbackKey];
+  const chain = [
+    locale,
+    ...LOCALIZED_TRIP_FIELD_LOCALES.filter((loc) => loc !== locale),
+  ] as Locale[];
 
-  if (typeof value === "string") {
-    return value;
+  for (const loc of chain) {
+    const value = readNonEmptyTripString(trip, `${field}_${loc}` as keyof Trip);
+    if (value) {
+      return value;
+    }
   }
 
+  return null;
+}
+
+/** Localized string arrays with Norwegian fallback (includes/excludes are no-only in DB). */
+export function getLocalizedTripStringArray(
+  trip: Trip,
+  field: "includes" | "excludes"
+): string[] | null {
+  const key = `${field}_no` as keyof Trip;
+  const value = trip[key];
+  if (Array.isArray(value) && value.length > 0) {
+    return value;
+  }
   return null;
 }
 

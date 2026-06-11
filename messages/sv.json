@@ -90,6 +90,8 @@
     "packagePricing": "Paketpriser",
     "days": "{count} dagar",
     "viewTrip": "Se resa",
+    "upcomingDepartures": "Kommande avgångar",
+    "expressInterest": "Anmäl intresse",
     "noTrips": "Inga resor tillgängliga just nu. Kontakta oss gärna – vi hjälper dig.",
     "configError": "Supabase är inte konfigurerat. Kontrollera att .env.local är sparad med NEXT_PUBLIC_SUPABASE_URL och NEXT_PUBLIC_SUPABASE_ANON_KEY, och starta om dev-servern."
   },

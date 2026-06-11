@@ -90,6 +90,8 @@
     "packagePricing": "Package pricing",
     "days": "{count} days",
     "viewTrip": "View trip",
+    "upcomingDepartures": "Upcoming departures",
+    "expressInterest": "Express interest",
     "noTrips": "No trips available right now. Please get in touch – we're happy to help.",
     "configError": "Supabase is not configured. Ensure .env.local is saved with NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY, then restart the dev server."
   },

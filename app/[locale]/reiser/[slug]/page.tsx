@@ -9,6 +9,7 @@ import {
   formatTripListPrice,
   formatTripPriceInfoLines,
   getLocalizedTripField,
+  getLocalizedTripStringArray,
   getTripCardPriceLabel,
   getTripImage,
   hasPackagePricing,
@@ -34,8 +35,9 @@ export default async function TripDetailPage({
   const { trip, departures } = result;
   const title = getLocalizedTripField(trip, "title", locale) ?? trip.title_no;
   const tagline = getLocalizedTripField(trip, "tagline", locale);
-  const description =
-    getLocalizedTripField(trip, "description", locale) ?? trip.description_no;
+  const description = getLocalizedTripField(trip, "description", locale);
+  const includes = getLocalizedTripStringArray(trip, "includes");
+  const excludes = getLocalizedTripStringArray(trip, "excludes");
   const heroImage = getTripImage(trip);
 
   return (
@@ -167,13 +169,13 @@ export default async function TripDetailPage({
         )}
 
         <div className="mt-14 grid gap-10 md:grid-cols-2">
-          {trip.includes_no && trip.includes_no.length > 0 && (
+          {includes && includes.length > 0 && (
             <div>
               <h2 className="font-serif text-2xl text-primary">
                 {t("includes")}
               </h2>
               <ul className="mt-4 space-y-2">
-                {trip.includes_no.map((item) => (
+                {includes.map((item) => (
                   <li
                     key={item}
                     className="flex gap-3 text-sm leading-relaxed text-text/75"
@@ -185,13 +187,13 @@ export default async function TripDetailPage({
               </ul>
             </div>
           )}
-          {trip.excludes_no && trip.excludes_no.length > 0 && (
+          {excludes && excludes.length > 0 && (
             <div>
               <h2 className="font-serif text-2xl text-primary">
                 {t("excludes")}
               </h2>
               <ul className="mt-4 space-y-2">
-                {trip.excludes_no.map((item) => (
+                {excludes.map((item) => (
                   <li
                     key={item}
                     className="flex gap-3 text-sm leading-relaxed text-text/75"

@@ -69,6 +69,46 @@ export async function getActiveTrips(): Promise<Trip[]> {
   return sortTrips((data ?? []).map(mapTrip));
 }
 
+export async function getActiveTripsWithDepartures(): Promise<
+  { trip: Trip; departures: Departure[] }[]
+> {
+  const trips = await getActiveTrips();
+  if (trips.length === 0) {
+    return [];
+  }
+
+  const supabase = createSupabaseClient();
+  if (!supabase) {
+    return trips.map((trip) => ({ trip, departures: [] }));
+  }
+
+  const tripIds = trips.map((trip) => trip.id);
+  const { data, error } = await supabase
+    .from("departures")
+    .select("*")
+    .in("trip_id", tripIds)
+    .in("status", ["open", "confirmed"])
+    .order("start_date", { ascending: true });
+
+  if (error) {
+    console.error("Failed to fetch departures:", error.message, error.details);
+    return trips.map((trip) => ({ trip, departures: [] }));
+  }
+
+  const departuresByTrip = new Map<string, Departure[]>();
+  for (const row of data ?? []) {
+    const departure = mapDeparture(row);
+    const list = departuresByTrip.get(departure.trip_id) ?? [];
+    list.push(departure);
+    departuresByTrip.set(departure.trip_id, list);
+  }
+
+  return trips.map((trip) => ({
+    trip,
+    departures: departuresByTrip.get(trip.id) ?? [],
+  }));
+}
+
 export async function getTripBySlug(slug: string): Promise<Trip | null> {
   const supabase = createSupabaseClient();
   if (!supabase) return null;

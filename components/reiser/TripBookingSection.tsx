@@ -34,7 +34,7 @@ export function TripBookingSection({
     });
   }
 
-  if (trip.interest_only) {
+  if (trip.interest_only || departures.length === 0) {
     return (
       <div
         ref={formRef}
