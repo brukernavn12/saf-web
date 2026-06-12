@@ -4,6 +4,10 @@
 -- Ingen avganger – interessebasert reise med fast pris i NOK.
 -- Frontend: vis pris og interesseskjema (ingen Vipps/booking).
 
+alter table trips
+  add column if not exists price_nok numeric,
+  add column if not exists interest_only boolean default false;
+
 insert into trips (
   slug,
   title_no,
@@ -113,3 +117,6 @@ on conflict (slug) do update set
 
 delete from departures
 where trip_id = (select id from trips where slug = 'krim-og-languedoc-2027');
+
+-- Verifiser (skal returnere én rad):
+-- select slug, status, interest_only, price_nok from trips where slug = 'krim-og-languedoc-2027';

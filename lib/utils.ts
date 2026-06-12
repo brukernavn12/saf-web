@@ -1,5 +1,5 @@
 import { getTripImageUrls } from "@/lib/image-registry";
-import type { Locale, Trip } from "@/types";
+import type { Departure, Locale, Trip } from "@/types";
 
 function normalizeLocalImagePath(path: string): string {
   const segments = path.split("/");
@@ -143,6 +143,40 @@ export function formatDate(
   ).format(new Date(date));
 }
 
+/** Today's date in Europe/Oslo as YYYY-MM-DD. */
+export function todayIsoDateInOslo(): string {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo" }).format(
+    new Date()
+  );
+}
+
+/** Coerce Supabase/API date values to YYYY-MM-DD for safe string comparison. */
+export function normalizeIsoDate(value: unknown): string | null {
+  if (value instanceof Date) {
+    return value.toISOString().slice(0, 10);
+  }
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    if (!trimmed) return null;
+    const match = trimmed.match(/^(\d{4}-\d{2}-\d{2})/);
+    return match ? match[1] : null;
+  }
+  return null;
+}
+
+/** True when start_date is strictly after today (Oslo). */
+export function isUpcomingDepartureDate(startDate: unknown): boolean {
+  const start = normalizeIsoDate(startDate);
+  if (!start) return false;
+  return start > todayIsoDateInOslo();
+}
+
+export function isUpcomingDeparture(
+  departure: Pick<Departure, "start_date">
+): boolean {
+  return isUpcomingDepartureDate(departure.start_date);
+}
+
 /** Compact range for cards, e.g. "7.–11. mai 2026". */
 export function formatDepartureRange(
   startDate: string,
@@ -242,7 +276,10 @@ export function getLocalizedTripStringArray(
 }
 
 export function getSiteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "https://languedoc.no";
+  return (
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    "https://saf-web-self.vercel.app"
+  );
 }
 
 export function getTripImage(trip: Trip): string | null {

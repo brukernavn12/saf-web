@@ -1,5 +1,9 @@
 import { createSupabaseClient } from "@/lib/supabase";
-import { normalizeTripItinerary } from "@/lib/utils";
+import {
+  isUpcomingDeparture,
+  normalizeIsoDate,
+  normalizeTripItinerary,
+} from "@/lib/utils";
 import type { Departure, Trip } from "@/types";
 
 function mapTrip(row: Record<string, unknown>): Trip {
@@ -35,6 +39,8 @@ function mapDeparture(row: Record<string, unknown>): Departure {
   const departure = row as unknown as Departure;
   return {
     ...departure,
+    start_date: normalizeIsoDate(row.start_date) ?? String(row.start_date),
+    end_date: normalizeIsoDate(row.end_date) ?? String(row.end_date),
     price_eur: row.price_eur ? Number(row.price_eur) : null,
   };
 }
@@ -66,16 +72,6 @@ export async function getActiveTrips(): Promise<Trip[]> {
   }
 
   return sortTrips((data ?? []).map(mapTrip));
-}
-
-function todayIsoDate(): string {
-  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Oslo" }).format(
-    new Date()
-  );
-}
-
-function isUpcomingDeparture(departure: Departure): boolean {
-  return departure.start_date > todayIsoDate();
 }
 
 export async function getActiveTripsWithDepartures(): Promise<
@@ -162,7 +158,7 @@ export async function getDeparturesForTrip(tripId: string): Promise<Departure[]>
     return [];
   }
 
-  return (data ?? []).map(mapDeparture);
+  return (data ?? []).map(mapDeparture).filter(isUpcomingDeparture);
 }
 
 export async function getTripWithDepartures(
