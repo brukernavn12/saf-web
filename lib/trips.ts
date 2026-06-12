@@ -57,14 +57,24 @@ function sortTrips(trips: Trip[]): Trip[] {
 }
 
 export async function getActiveTrips(): Promise<Trip[]> {
+  return getActiveTripsByVisibility(false);
+}
+
+export async function getPrivateTrips(): Promise<Trip[]> {
+  return getActiveTripsByVisibility(true);
+}
+
+async function getActiveTripsByVisibility(isPrivate: boolean): Promise<Trip[]> {
   const supabase = createSupabaseClient();
   if (!supabase) return [];
 
-  const { data, error } = await supabase
-    .from("trips")
-    .select("*")
-    .eq("status", "active")
-    .or("is_private.is.null,is_private.eq.false");
+  let query = supabase.from("trips").select("*").eq("status", "active");
+
+  query = isPrivate
+    ? query.eq("is_private", true)
+    : query.or("is_private.is.null,is_private.eq.false");
+
+  const { data, error } = await query;
 
   if (error) {
     console.error("Failed to fetch trips:", error.message, error.details);
@@ -74,10 +84,9 @@ export async function getActiveTrips(): Promise<Trip[]> {
   return sortTrips((data ?? []).map(mapTrip));
 }
 
-export async function getActiveTripsWithDepartures(): Promise<
-  { trip: Trip; departures: Departure[] }[]
-> {
-  const trips = await getActiveTrips();
+async function attachDeparturesToTrips(
+  trips: Trip[]
+): Promise<{ trip: Trip; departures: Departure[] }[]> {
   if (trips.length === 0) {
     return [];
   }
@@ -120,6 +129,18 @@ export async function getActiveTripsWithDepartures(): Promise<
   });
 }
 
+export async function getActiveTripsWithDepartures(): Promise<
+  { trip: Trip; departures: Departure[] }[]
+> {
+  return attachDeparturesToTrips(await getActiveTrips());
+}
+
+export async function getPrivateTripsWithDepartures(): Promise<
+  { trip: Trip; departures: Departure[] }[]
+> {
+  return attachDeparturesToTrips(await getPrivateTrips());
+}
+
 export async function getTripBySlug(slug: string): Promise<Trip | null> {
   const supabase = createSupabaseClient();
   if (!supabase) return null;
@@ -129,7 +150,6 @@ export async function getTripBySlug(slug: string): Promise<Trip | null> {
     .select("*")
     .eq("slug", slug)
     .eq("status", "active")
-    .or("is_private.is.null,is_private.eq.false")
     .maybeSingle();
 
   if (error) {

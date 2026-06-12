@@ -81,7 +81,7 @@ $desc$,
     '/images/reiser/fontfroide.jpeg',
     '/images/reiser/caunes minervois.jpeg'
   ],
-  false,
+  true,
   false,
   true,
   true,

@@ -1,7 +1,12 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { getPrivateTripsWithDepartures } from "@/lib/trips";
+import { isSupabaseConfigured } from "@/lib/supabase";
 import { Section } from "@/components/ui/Section";
+import { TripCard } from "@/components/reiser/TripCard";
 import type { Locale } from "@/types";
+
+export const dynamic = "force-dynamic";
 
 export default async function PrivateTripsPage({
   params: { locale },
@@ -10,30 +15,52 @@ export default async function PrivateTripsPage({
 }) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "privateTrips" });
+  const configured = isSupabaseConfigured();
+  const tripItems = configured ? await getPrivateTripsWithDepartures() : [];
 
   return (
-    <Section className="pt-32" narrow>
-      <h1 className="font-serif text-4xl text-primary md:text-5xl">
-        {t("title")}
-      </h1>
-      <p className="mt-6 text-lg leading-relaxed text-text/75">
-        {t("description")}
-      </p>
-      <Link
-        href="/kontakt"
-        className="mt-8 inline-block border border-accent bg-accent px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-accent/90"
-      >
-        {t("cta")}
-      </Link>
+    <Section className="pt-32">
+      <div className="mb-12 max-w-2xl">
+        <h1 className="font-serif text-4xl text-primary md:text-5xl">
+          {t("title")}
+        </h1>
+        <p className="mt-6 text-lg leading-relaxed text-text/75">
+          {t("description")}
+        </p>
+        <Link
+          href="/kontakt"
+          className="mt-8 inline-block border border-accent bg-accent px-6 py-3 text-sm font-medium text-cream transition-colors hover:bg-accent/90"
+        >
+          {t("cta")}
+        </Link>
+      </div>
+
+      {tripItems.length > 0 && (
+        <div className="mb-20">
+          <h2 className="font-serif text-2xl text-primary md:text-3xl">
+            {t("tripsTitle")}
+          </h2>
+          <div className="mt-8 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {tripItems.map(({ trip, departures }) => (
+              <TripCard
+                key={trip.id}
+                trip={trip}
+                departures={departures}
+                locale={locale}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       <section
         id="bedrift"
-        className="scroll-mt-32 mt-20 border-t border-primary/10 pt-16"
+        className="scroll-mt-32 border-t border-primary/10 pt-16"
       >
         <h2 className="font-serif text-3xl text-primary md:text-4xl">
           {t("business.title")}
         </h2>
-        <p className="mt-6 text-lg leading-relaxed text-text/75">
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-text/75">
           {t("business.description")}
         </p>
         <Link
