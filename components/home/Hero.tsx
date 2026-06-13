@@ -1,10 +1,16 @@
+"use client";
+
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { ButtonLink } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { images } from "@/lib/image-registry";
 
 export function Hero() {
   const t = useTranslations("home.hero");
+
+  function scrollToCategories() {
+    document.getElementById("categories")?.scrollIntoView({ behavior: "smooth" });
+  }
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
@@ -28,7 +34,9 @@ export function Hero() {
           {t("subtitle")}
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <ButtonLink href="/reiser">{t("ctaTrips")}</ButtonLink>
+          <Button type="button" onClick={scrollToCategories}>
+            {t("ctaTrips")}
+          </Button>
           <ButtonLink href="/kontakt" variant="secondary">
             {t("ctaContact")}
           </ButtonLink>

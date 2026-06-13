@@ -20,6 +20,8 @@ export type ImageContextKey =
   | "home.category.business"
   | "home.about"
   | "page.om-oss"
+  | "page.om-oss.morten"
+  | "page.om-oss.elisabeth"
   | "logo.mark"
   | "logo.withTagline"
   | `trip.${string}`
@@ -70,6 +72,12 @@ export const IMAGE_CATALOG: Record<string, ImageAsset> = {
   ),
 
   "team.morten": asset("team.morten", "om-oss", "morten rotete.jpg", [
+    "team",
+  ]),
+  "team.mortenPortrait": asset("team.mortenPortrait", "om-oss", "morten.jpg", [
+    "team",
+  ]),
+  "team.elisabeth": asset("team.elisabeth", "om-oss", "elisabeth.jpg", [
     "team",
   ]),
   "team.background": asset(
@@ -130,6 +138,7 @@ export const IMAGE_CATALOG: Record<string, ImageAsset> = {
     "IMG_1592.webp",
     ["vineyard", "harvest"]
   ),
+  "reiser.ina": asset("reiser.ina", "om-oss", "Ina.webp", ["food", "team"]),
 };
 
 /** Explicit context → image id assignments (each image id appears at most once). */
@@ -140,6 +149,8 @@ export const IMAGE_ASSIGNMENTS: Record<string, string> = {
   "home.category.business": "reiser.pontdugard",
   "home.about": "team.morten",
   "page.om-oss": "team.background",
+  "page.om-oss.morten": "team.mortenPortrait",
+  "page.om-oss.elisabeth": "team.elisabeth",
   "logo.mark": "logo.mark",
   "logo.withTagline": "logo.withTagline",
 
@@ -154,6 +165,8 @@ export const IMAGE_ASSIGNMENTS: Record<string, string> = {
 
   "trip.vindrueplukking-minervois": "reiser.harvest1",
   "trip.vindrueplukking-minervois.gallery.0": "reiser.harvest2",
+
+  "trip.matreise-med-ina": "reiser.ina",
 };
 
 const TRIP_SLUGS = [
@@ -161,6 +174,7 @@ const TRIP_SLUGS = [
   "smak-languedoc",
   "aktiv-gorges-herault",
   "vindrueplukking-minervois",
+  "matreise-med-ina",
 ] as const;
 
 export type TripSlug = (typeof TRIP_SLUGS)[number];
@@ -281,6 +295,8 @@ export const images = {
   },
   omOss: {
     morten: getImagePathForContext("home.about"),
+    mortenPortrait: getImagePathForContext("page.om-oss.morten"),
+    elisabeth: getImagePathForContext("page.om-oss.elisabeth"),
     teamBackground: getImagePathForContext("page.om-oss"),
   },
   categories: {

@@ -11,28 +11,54 @@ export default async function AboutPage({
 }) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "about" });
-  const home = await getTranslations({ locale, namespace: "home.about" });
+
+  const paragraphs = [
+    "intro",
+    "elisabeth",
+    "morten",
+    "together",
+    "closing",
+  ] as const;
 
   return (
     <Section narrow>
-      <div className="relative mb-10 aspect-[21/9] overflow-hidden">
-        <Image
-          src={images.omOss.teamBackground}
-          alt={t("title")}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 768px"
-          priority
-        />
-      </div>
       <h1 className="font-serif text-4xl text-primary md:text-5xl">
         {t("title")}
       </h1>
-      <p className="mt-4 text-lg text-text/70">{t("description")}</p>
-      <div className="mt-10 space-y-4 leading-relaxed text-text/80">
-        <p className="text-lg">{home("lead")}</p>
-        <p>{home("body")}</p>
+      <p className="mt-6 font-serif text-xl leading-snug text-primary md:text-2xl">
+        {t("tagline")}
+      </p>
+
+      <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-10">
+        <div className="relative aspect-[4/5] overflow-hidden bg-primary/10">
+          <Image
+            src={images.omOss.elisabeth}
+            alt={t("elisabethPhotoAlt")}
+            fill
+            className="object-cover object-top"
+            sizes="(max-width: 768px) 100vw, 384px"
+            priority
+          />
+        </div>
+        <div className="relative aspect-[4/5] overflow-hidden bg-primary/10">
+          <Image
+            src={images.omOss.mortenPortrait}
+            alt={t("mortenPhotoAlt")}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 384px"
+          />
+        </div>
       </div>
+
+      <div className="mt-10 space-y-6 leading-relaxed text-text/80">
+        {paragraphs.map((key) => (
+          <p key={key}>{t(key)}</p>
+        ))}
+      </div>
+      <p className="mt-10 font-serif text-xl leading-snug text-primary md:text-2xl">
+        {t("signoff")}
+      </p>
     </Section>
   );
 }

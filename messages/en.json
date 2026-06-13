@@ -16,35 +16,39 @@
     "hero": {
       "eyebrow": "The Taste of France",
       "title": "Languedoc. Properly.",
-      "subtitle": "Authentic journeys in southern France since 2007",
-      "ctaTrips": "View trips",
+      "subtitle": "Authentic journeys in southern France",
+      "ctaTrips": "See our trips",
       "ctaContact": "Contact us"
     },
     "categories": {
       "eyebrow": "Explore",
-      "title": "Three ways to experience southern France",
+      "title": "Experience southern France with ease",
       "explore": "Explore",
       "trips": {
-        "title": "Trips",
-        "description": "Scheduled departures – wine, food, nature and culture in small groups with Norwegian hosts."
+        "label": "Scheduled departures",
+        "title": "Join the next departure",
+        "description": ""
       },
       "private": {
+        "label": "Bespoke",
         "title": "Private trips",
-        "description": "Tailored experiences for families, friends or small groups who want something entirely their own."
+        "description": "Tailored for friends, clubs, associations and small groups."
       },
       "business": {
+        "label": "For teams",
         "title": "Business & teams",
-        "description": "Tailored programmes for teams, leadership groups and companies – from incentives to meaningful off-sites."
+        "description": "Incentives and retreats – shaped for you."
       }
     },
     "about": {
       "eyebrow": "Hosts",
       "title": "Elisabeth and Morten",
-      "lead": "We live in Languedoc and design trips we would take ourselves.",
-      "body": "Since 2007 we have shown guests from Scandinavia and beyond what we call «proper» southern France – not the polished travel-brochure version, but places and people we know personally. We travel with you, bridging language and culture, and make sure it feels safe, warm and a little adventurous."
+      "lead": "We know Languedoc from the inside – and design trips we would take ourselves.",
+      "body": "Since 2007 we have shown guests «proper» southern France – places and people we know personally, with us every step of the way.",
+      "since": "Since 2007 · Languedoc, France"
     },
     "reviews": {
-      "eyebrow": "Voices",
+      "eyebrow": "Feedback",
       "title": "What our guests say",
       "stats": {
         "recommend": "would recommend the trip to a friend",
@@ -75,14 +79,14 @@
         "author": "Aslaug"
       },
       "featured": {
-        "quote": "I believe I speak on behalf of very many when I say that France for Norwegians is synonymous with the good life. The people and the meals. Nature and culture. History and everyday life.",
-        "attribution": "King Harald V"
+        "quote": "To eat in the south of France is to understand that a meal can be the whole point of the day – and that life is meant to be tasted slowly.",
+        "attribution": "M. F. K. Fisher"
       }
     },
     "newsletter": {
       "eyebrow": "Newsletter",
-      "title": "Travel tips from Languedoc",
-      "description": "Season departures, small recommendations and news – a few times a year, no noise.",
+      "title": "Stay in touch with Languedoc",
+      "description": "Departures and news – a few times a year.",
       "placeholder": "Your email address",
       "submit": "Subscribe",
       "success": "Thank you! We'll send you an email to confirm your subscription."
@@ -90,7 +94,7 @@
   },
   "trips": {
     "title": "Our trips",
-    "description": "Small groups, personal leadership and genuine encounters with southern France.",
+    "description": "Languedoc with people who know every vineyard, every market and every table worth sitting at.",
     "fromPrice": "from {price}",
     "packagePricing": "Package pricing",
     "days": "{count} days",
@@ -159,23 +163,44 @@
   },
   "privateTrips": {
     "title": "Private trips",
-    "description": "We create journeys for families, friends and small groups who want something bespoke – with the same care as our scheduled departures.",
-    "cta": "Tell us about your dream trip",
+    "description": "For friends who want to travel properly. Wine clubs who want to meet the producers. Associations with a shared passion. Groups who want something entirely their own.",
+    "cta": "Talk to us about a tailored trip",
     "tripsTitle": "Current private trips",
     "example": {
-      "intro": "This is what a private trip can become – when we have free rein and a group with a shared passion.",
-      "title": "Example of a tailored group trip",
       "link": "Read about the trip"
+    },
+    "examples": {
+      "wineClub": {
+        "title": "Wine club in Minervois",
+        "description": "Five days among the wine growers. Tastings, producers and evenings that stretch on."
+      },
+      "birthday": {
+        "title": "50th birthday celebration",
+        "description": "A milestone worth remembering. We handle everything – you are guests from the first moment."
+      },
+      "corporate": {
+        "title": "Corporate trip with purpose",
+        "description": "Professional input, shared experiences and good food. Languedoc as the setting."
+      }
     },
     "business": {
       "title": "Business & teams",
-      "description": "We tailor programmes for teams, leadership groups and companies – from incentives and rewards to strategy retreats and executive travel. You set the pace, content and group size; we handle logistics, local knowledge and experiences you will not find on your own.",
+      "description": "Gatherings that work. We build a programme where Languedoc does the heavy lifting – vineyards, culture and good food create conversations no meeting room can match.",
+      "exampleLabel": "Example of a closed group trip",
       "cta": "Talk to us about a corporate trip"
     }
   },
   "about": {
     "title": "About us",
-    "description": "The Taste of France – journeys in Languedoc with Elisabeth and Morten."
+    "tagline": "Two French souls in Norwegian bodies.",
+    "intro": "Over a combined 18 years in Languedoc, friends and acquaintances kept asking us the same question: «Why don't you organise trips for others?» We laughed a little and replied «not quite the right time for that». But the idea stuck – and the desire to share this place grew stronger than we could ignore.",
+    "elisabeth": "Elisabeth is a teacher by background, a tour leader and a cook in practice. She remembers what everyone wants in their glass without asking twice, and has a natural gift for gathering people around a table in a way that helps them relax, laugh and feel they are exactly where they should be. With Elisabeth, no guest is left to fend for themselves.",
+    "morten": "Morten also works with wine and has come to know the region the way only those who have truly let themselves be absorbed by a place can. With Languedoc as his home ground, he knows the producers by name, which cellar hides the vintages nobody knows about, and which restaurant in which village serves the best meal on a Tuesday in May. He brings that knowledge with him – and shares it gladly.",
+    "together": "Together we offer something few travel organisers can: genuine access. Not guided tours behind a rope, but conversations around the producers' own tables and experiences that happen because we know the people behind them.",
+    "closing": "The best trips are not about seeing as much as possible. They are about coming home with a feeling that you were truly somewhere.",
+    "signoff": "Live like a local. Be treated like a guest.",
+    "mortenPhotoAlt": "Morten",
+    "elisabethPhotoAlt": "Elisabeth"
   },
   "faq": {
     "title": "Frequently asked questions",
@@ -193,7 +218,8 @@
     "success": "Thank you for your enquiry. We'll be in touch soon."
   },
   "footer": {
-    "tagline": "The Taste of France – authentic journeys in Languedoc since 2007.",
+    "tagline": "The Taste of France – authentic journeys in southern France.",
+    "copyright": "© 2026 The Taste of France",
     "rights": "All rights reserved."
   },
   "common": {

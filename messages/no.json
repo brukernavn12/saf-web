@@ -16,35 +16,39 @@
     "hero": {
       "eyebrow": "Smaken av Frankrike",
       "title": "Languedoc. Ordentlig.",
-      "subtitle": "Autentiske reiser i Sør-Frankrike siden 2007",
-      "ctaTrips": "Se reiser",
+      "subtitle": "Autentiske reiser i Sør-Frankrike",
+      "ctaTrips": "Se reisene",
       "ctaContact": "Kontakt oss"
     },
     "categories": {
       "eyebrow": "Utvalg",
-      "title": "Tre måter å oppleve Sør-Frankrike",
+      "title": "Opplev Sør-Frankrike med lave skuldre",
       "explore": "Utforsk",
       "trips": {
-        "title": "Reiser",
-        "description": "Faste reiser med avgangsdatoer – vin, mat, natur og kultur i små grupper med norske reiseledere."
+        "label": "Faste avganger",
+        "title": "Bli med på neste avgang",
+        "description": ""
       },
       "private": {
+        "label": "Skreddersøm",
         "title": "Privatreiser",
-        "description": "Skreddersydde opplevelser for familier, venner eller små grupper som vil ha noe helt eget."
+        "description": "Skreddersydd for venner, klubber, foreninger og små grupper."
       },
       "business": {
+        "label": "For team",
         "title": "Bedrift & team",
-        "description": "Skreddersydde opplegg for team, ledelse og bedrifter – fra incentives til samlinger med mening."
+        "description": "Incentives og samlinger – tilpasset dere."
       }
     },
     "about": {
       "eyebrow": "Vertskap",
       "title": "Elisabeth og Morten",
-      "lead": "Vi bor i Languedoc og arrangerer reiser vi selv ville tatt.",
-      "body": "Siden 2007 har vi vist nordmenn, svensker og andre gjester det vi kaller «ordentlig» Sør-Frankrike – ikke det polerte reisebyrå-bildet, men steder og mennesker vi kjenner personlig. Vi er med på turen, oversetter både språk og kultur, og sørger for at det skal føles trygt, varmt og litt eventyrlig."
+      "lead": "Vi kjenner Languedoc innenfra – og arrangerer reiser vi selv ville tatt.",
+      "body": "Siden 2007 viser vi gjester «ordentlig» Sør-Frankrike – steder og mennesker vi kjenner personlig, med oss hele veien.",
+      "since": "Siden 2007 · Languedoc, Frankrike"
     },
     "reviews": {
-      "eyebrow": "Stemmer",
+      "eyebrow": "Tilbakemeldinger",
       "title": "Det sier gjestene våre",
       "stats": {
         "recommend": "ville anbefalt reisen til en venn",
@@ -81,8 +85,8 @@
     },
     "newsletter": {
       "eyebrow": "Nyhetsbrev",
-      "title": "Få reisetips fra Languedoc",
-      "description": "Sesongens avganger, små anbefalinger og nyheter – noen få ganger i året, uten støy.",
+      "title": "Hold kontakten med Languedoc",
+      "description": "Avganger og nyheter – noen få ganger i året.",
       "placeholder": "Din e-postadresse",
       "submit": "Meld meg på",
       "success": "Takk! Vi sender deg en e-post for å bekrefte påmeldingen."
@@ -90,7 +94,7 @@
   },
   "trips": {
     "title": "Våre reiser",
-    "description": "Små grupper, personlig lederskap og ekte møter med Sør-Frankrike.",
+    "description": "Languedoc med noen som kjenner hver vinmark, hvert marked og hvert bord verdt å sitte ved.",
     "fromPrice": "fra {price}",
     "packagePricing": "Pakkepriser",
     "days": "{count} dager",
@@ -159,23 +163,44 @@
   },
   "privateTrips": {
     "title": "Privatreiser",
-    "description": "Vi lager reiser for familier, venner og små grupper som vil ha noe skreddersydd – med samme omsorg som våre faste avganger.",
-    "cta": "Fortell oss om drømmereisen",
+    "description": "For venner som vil reise ordentlig. Vinklubber som vil møte produsentene. Foreninger med felles lidenskap. Grupper som vil ha noe helt eget.",
+    "cta": "Snakk med oss om tilpasset reise",
     "tripsTitle": "Aktuelle privatreiser",
     "example": {
-      "intro": "Dette er hva en privatreise kan bli – når vi får frie tøyler og en gruppe med felles lidenskap.",
-      "title": "Eksempel på skreddersydd gruppereise",
       "link": "Les om reisen"
+    },
+    "examples": {
+      "wineClub": {
+        "title": "Vinklubb i Minervois",
+        "description": "Fem dager blant vinbøndene. Smaking, produsenter og kvelder som strekker seg."
+      },
+      "birthday": {
+        "title": "50-årsfeiring",
+        "description": "En markering verdt å huske. Vi ordner alt – dere er gjester fra første stund."
+      },
+      "corporate": {
+        "title": "Firmatur med mening",
+        "description": "Faglig påfyll, felles opplevelser og god mat. Languedoc som ramme."
+      }
     },
     "business": {
       "title": "Bedrift & team",
-      "description": "Vi skreddersyr opplegg for team, ledelse og bedrifter – fra incentives og belønning til strategisamlinger og ledergruppe-reiser. Dere bestemmer tempo, innhold og gruppestørrelse; vi tar oss av logistikk, lokalkunnskap og opplevelser dere ikke finner på egen hånd.",
+      "description": "Samlinger som sitter. Vi setter sammen et program der Languedoc gjør jobben – vinmarker, kultur og god mat skaper samtaler ingen møterom klarer.",
+      "exampleLabel": "Eksempel på lukket gruppereise",
       "cta": "Snakk med oss om bedriftsreise"
     }
   },
   "about": {
     "title": "Om oss",
-    "description": "Smaken av Frankrike – reiser i Languedoc med Elisabeth og Morten."
+    "tagline": "To franskmenn gjemt i norsk kropp.",
+    "intro": "I løpet av til sammen 18 år i Languedoc fikk vi stadig det samme spørsmålet fra venner og kjente: «Hvorfor arrangerer dere ikke turer for andre?» Vi lo litt og svarte «ikke helt tiden for det». Men tanken festet seg – og lysten til å dele dette stedet vokste seg sterkere enn vi klarte å ignorere.",
+    "elisabeth": "Elisabeth er pedagog av bakgrunn, reiseleder og kokk i praksis. Hun husker hva alle vil ha i glasset uten å spørre to ganger, og har en naturlig evne til å samle folk rundt et bord på en måte som får dem til å slappe av, le og kjenne at de er akkurat der de skal være. Med Elisabeth er ingen gjest overlatt til seg selv.",
+    "morten": "Morten jobber også med vin og har lært regionen å kjenne slik bare de gjør som virkelig har latt seg oppsluke av et sted. Med Languedoc som hjemmebane kjenner han produsentene med navn, vet hvilken kjeller som gjemmer årgangene ingen vet om, og hvilken restaurant i hvilken landsby som serverer det beste måltidet på en tirsdag i mai. Den kunnskapen tar han med seg – og deler den gjerne.",
+    "together": "Sammen bringer vi noe få reisearrangører kan tilby: ekte tilgang. Ikke guidede omvisninger bak et tau, men samtaler rundt produsentenes egne bord og opplevelser som oppstår fordi vi kjenner menneskene bak.",
+    "closing": "De beste reisene handler ikke om å se mest mulig. De handler om å komme hjem med en følelse av at man virkelig var et sted.",
+    "signoff": "Bo som en lokal. Lev som en gjest.",
+    "mortenPhotoAlt": "Morten",
+    "elisabethPhotoAlt": "Elisabeth"
   },
   "faq": {
     "title": "Ofte stilte spørsmål",
@@ -193,7 +218,8 @@
     "success": "Takk for henvendelsen. Vi tar kontakt så snart vi kan."
   },
   "footer": {
-    "tagline": "Smaken av Frankrike – autentiske reiser i Languedoc siden 2007.",
+    "tagline": "Smaken av Frankrike – autentiske reiser i Sør-Frankrike.",
+    "copyright": "© 2026 Smaken av Frankrike",
     "rights": "Alle rettigheter reservert."
   },
   "common": {

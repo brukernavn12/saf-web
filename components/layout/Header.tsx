@@ -32,7 +32,7 @@ export function Header() {
             alt="Smaken av Frankrike"
             width={1024}
             height={1024}
-            className="h-14 w-auto md:h-16"
+            className="h-20 w-auto md:h-24"
             priority
           />
         </Link>

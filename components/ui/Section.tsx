@@ -12,7 +12,7 @@ export function Section({ children, className, id, narrow }: SectionProps) {
     <section id={id} className={cn("py-16 md:py-24", className)}>
       <div
         className={cn(
-          "mx-auto px-6",
+          "mx-auto px-8 md:px-10 lg:px-12",
           narrow ? "max-w-3xl" : "max-w-6xl"
         )}
       >

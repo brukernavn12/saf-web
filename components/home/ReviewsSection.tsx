@@ -15,59 +15,57 @@ export function ReviewsSection() {
   const t = useTranslations("home.reviews");
 
   return (
-    <Section className="border-t border-primary/10 bg-cream py-20 md:py-28 lg:py-32">
-      <SectionHeading eyebrow={t("eyebrow")} title={t("title")} />
-
-      <div className="grid gap-8 sm:grid-cols-2 lg:gap-12">
-        <div className="bg-white px-10 py-12 text-center shadow-sm md:px-12 md:py-16">
-          <p className="font-serif text-6xl leading-none text-accent md:text-7xl">
-            100%
-          </p>
-          <p className="mx-auto mt-5 max-w-xs text-sm leading-relaxed text-text/70 md:text-base">
-            {t("stats.recommend")}
+    <>
+      <section className="bg-primary py-28 md:py-40 lg:py-48">
+        <div className="mx-auto max-w-6xl px-8 md:px-10 lg:px-12">
+          <blockquote className="max-w-4xl font-serif text-2xl leading-relaxed text-cream md:text-4xl md:leading-snug lg:text-[2.75rem] lg:leading-[1.18]">
+            &ldquo;{t("featured.quote")}&rdquo;
+          </blockquote>
+          <p className="mt-12 text-sm tracking-[0.16em] text-cream/55 md:mt-16 md:text-base">
+            — {t("featured.attribution")}
           </p>
         </div>
-        <div className="bg-white px-10 py-12 text-center shadow-sm md:px-12 md:py-16">
-          <p className="font-serif text-6xl leading-none text-accent md:text-7xl">
-            100%
-          </p>
-          <p className="mx-auto mt-5 max-w-xs text-sm leading-relaxed text-text/70 md:text-base">
-            {t("stats.balance")}
-          </p>
+      </section>
+
+      <Section className="bg-cream py-32 md:py-44 lg:py-52">
+        <SectionHeading
+          number="03"
+          eyebrow={t("eyebrow")}
+          title={t("title")}
+        />
+
+        <div className="grid gap-16 md:grid-cols-2 md:gap-x-20 lg:gap-x-28">
+          <div>
+            <p className="font-serif text-7xl leading-none text-accent md:text-8xl lg:text-9xl">
+              100<span className="text-5xl md:text-6xl lg:text-7xl">%</span>
+            </p>
+            <p className="mt-8 max-w-xs text-sm leading-relaxed text-text/60 md:mt-10 md:text-base">
+              {t("stats.recommend")}
+            </p>
+          </div>
+          <div>
+            <p className="font-serif text-7xl leading-none text-accent md:text-8xl lg:text-9xl">
+              100<span className="text-5xl md:text-6xl lg:text-7xl">%</span>
+            </p>
+            <p className="mt-8 max-w-xs text-sm leading-relaxed text-text/60 md:mt-10 md:text-base">
+              {t("stats.balance")}
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div className="mt-16 grid gap-8 md:mt-20 md:grid-cols-2 md:gap-10 lg:grid-cols-3 lg:gap-12">
-        {reviewKeys.map((key) => {
-          const author = t(`${key}.author`);
-          const hasAuthor = author.length > 0;
-
-          return (
+        <div className="mt-24 grid gap-x-16 gap-y-20 md:mt-32 md:grid-cols-2 md:gap-x-20 md:gap-y-24 lg:mt-40 lg:gap-x-28 lg:gap-y-28">
+          {reviewKeys.map((key) => (
             <blockquote
               key={key}
-              className="flex flex-col bg-white p-9 shadow-sm md:p-10"
+              className="m-0 border-l-2 border-accent pl-6 md:pl-8"
             >
-              <p className="flex-1 font-serif text-lg leading-relaxed text-text/85 md:text-xl md:leading-relaxed">
+              <p className="font-serif text-base italic leading-[1.65] text-text/85 md:text-[1.08rem] md:leading-[1.7]">
                 &ldquo;{t(`${key}.quote`)}&rdquo;
               </p>
-              {hasAuthor && (
-                <footer className="mt-8 text-[11px] uppercase tracking-[0.2em] text-accent">
-                  {author}
-                </footer>
-              )}
             </blockquote>
-          );
-        })}
-      </div>
-
-      <figure className="relative mt-20 bg-primary px-10 py-14 md:mt-28 md:px-16 md:py-20 lg:px-20 lg:py-24">
-        <blockquote className="max-w-4xl font-serif text-2xl leading-relaxed text-cream md:text-3xl md:leading-snug lg:text-4xl lg:leading-snug">
-          &ldquo;{t("featured.quote")}&rdquo;
-        </blockquote>
-        <figcaption className="mt-8 text-sm tracking-[0.12em] text-cream/65 md:mt-10">
-          {t("featured.attribution")}
-        </figcaption>
-      </figure>
-    </Section>
+          ))}
+        </div>
+      </Section>
+    </>
   );
 }

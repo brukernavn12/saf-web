@@ -2,12 +2,18 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getPrivateTripsWithDepartures, getTripBySlug } from "@/lib/trips";
 import { isSupabaseConfigured } from "@/lib/supabase";
+import {
+  getLocalizedTripField,
+  getTripImage,
+} from "@/lib/utils";
 import { Section } from "@/components/ui/Section";
-import { PrivateTripExample } from "@/components/privatreiser/PrivateTripExample";
+import { PrivateExampleCard } from "@/components/privatreiser/PrivateExampleCard";
 import { TripCard } from "@/components/reiser/TripCard";
 import type { Locale } from "@/types";
 
 const FEATURED_EXAMPLE_SLUG = "krim-og-languedoc-2027";
+
+const STATIC_EXAMPLE_KEYS = ["wineClub", "birthday", "corporate"] as const;
 
 export const dynamic = "force-dynamic";
 
@@ -30,6 +36,14 @@ export default async function PrivateTripsPage({
     ({ trip }) => trip.slug !== FEATURED_EXAMPLE_SLUG
   );
 
+  const featuredTitle = featuredExample
+    ? getLocalizedTripField(featuredExample, "title", locale) ??
+      featuredExample.title_no
+    : "";
+  const featuredDescription = featuredExample
+    ? getLocalizedTripField(featuredExample, "tagline", locale) ?? ""
+    : "";
+
   return (
     <Section>
       <div className="mb-12 max-w-2xl">
@@ -47,15 +61,25 @@ export default async function PrivateTripsPage({
         </Link>
       </div>
 
-      {featuredExample && (
-        <PrivateTripExample
-          trip={featuredExample}
-          locale={locale}
-          intro={t("example.intro")}
-          sectionTitle={t("example.title")}
-          linkLabel={t("example.link")}
-        />
-      )}
+      <div className="mb-20 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        {featuredExample && (
+          <PrivateExampleCard
+            title={featuredTitle}
+            description={featuredDescription}
+            href={`/reiser/${featuredExample.slug}`}
+            linkLabel={t("example.link")}
+            imageSrc={getTripImage(featuredExample) ?? undefined}
+            imageAlt={featuredTitle}
+          />
+        )}
+        {STATIC_EXAMPLE_KEYS.map((key) => (
+          <PrivateExampleCard
+            key={key}
+            title={t(`examples.${key}.title`)}
+            description={t(`examples.${key}.description`)}
+          />
+        ))}
+      </div>
 
       {otherTrips.length > 0 && (
         <div className="mb-20">
@@ -85,6 +109,21 @@ export default async function PrivateTripsPage({
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-text/75">
           {t("business.description")}
         </p>
+        {featuredExample && (
+          <div className="mt-10 max-w-xs">
+            <p className="mb-4 text-[11px] uppercase tracking-[0.28em] text-accent">
+              {t("business.exampleLabel")}
+            </p>
+            <PrivateExampleCard
+              title={featuredTitle}
+              description={featuredDescription}
+              href={`/reiser/${featuredExample.slug}`}
+              linkLabel={t("example.link")}
+              imageSrc={getTripImage(featuredExample) ?? undefined}
+              imageAlt={featuredTitle}
+            />
+          </div>
+        )}
         <Link
           href="/kontakt"
           className="mt-8 inline-block border border-primary px-6 py-3 text-sm font-medium text-primary transition-colors hover:border-accent hover:text-accent"

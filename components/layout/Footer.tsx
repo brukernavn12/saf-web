@@ -13,7 +13,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-3">
         <div>
           <Link href="/" className="font-serif text-xl hover:text-cream/90">
-            Languedoc
+            Smaken av Frankrike
           </Link>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-cream/75">
             {t("tagline")}
@@ -27,9 +27,8 @@ export function Footer() {
           ))}
         </div>
         <div className="text-sm text-cream/60">
-          <p>Smaken av Frankrike</p>
-          <p className="mt-2">© {new Date().getFullYear()} Languedoc</p>
-          <p>{t("rights")}</p>
+          <p>{t("copyright")}</p>
+          <p className="mt-2">{t("rights")}</p>
         </div>
       </div>
     </footer>

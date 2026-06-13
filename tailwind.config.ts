@@ -11,6 +11,7 @@ const config: Config = {
         primary: "#2C4A1E",
         accent: "#8B6914",
         cream: "#F5F0E8",
+        "cream-dark": "#EDE8DC",
         text: "#1A1A1A",
       },
       fontFamily: {
