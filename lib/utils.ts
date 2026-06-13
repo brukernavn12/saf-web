@@ -4,6 +4,7 @@ import {
   convertEurToDisplayNok,
   extractFirstPriceToken,
   formatLocalizedPriceInfoLines,
+  normalizeEurPrice,
   resolveEurToNokRate,
 } from "@/lib/pricing";
 import type { Departure, Trip } from "@/types";
@@ -36,7 +37,7 @@ export function formatPriceEur(eur: number, locale: Locale = "no"): string {
     style: "currency",
     currency: "EUR",
     maximumFractionDigits: 0,
-  }).format(eur);
+  }).format(normalizeEurPrice(eur));
 }
 
 export function usesNokPricing(

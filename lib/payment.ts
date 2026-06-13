@@ -1,3 +1,5 @@
+import { normalizeEurPrice } from "@/lib/pricing";
+
 const DEPOSIT_PCT = 25;
 export const MIN_BOOKING_PERSONS = 1;
 
@@ -22,9 +24,10 @@ export function calculateBookingAmountsEur(
 ): BookingPriceBreakdown {
   const doubleRooms = Math.floor(persons / 2);
   const singleRooms = persons % 2;
-  const supplement = Number(singleRoomSupplementEur ?? 0);
+  const supplement = normalizeEurPrice(Number(singleRoomSupplementEur ?? 0));
+  const pricePerPerson = normalizeEurPrice(pricePerPersonEur);
   const singleSupplementEur = singleRooms > 0 ? supplement : 0;
-  const baseTotal = pricePerPersonEur * persons;
+  const baseTotal = pricePerPerson * persons;
   const totalEur = baseTotal + singleSupplementEur;
   const depositEur = Math.round(totalEur * (DEPOSIT_PCT / 100));
   const remainderEur = totalEur - depositEur;

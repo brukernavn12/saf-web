@@ -3,7 +3,7 @@
 --
 -- Pris: 19 200 NOK lagres i price_nok.
 -- base_price_eur / departure price_eur er omregnet med ECB-kurs 10,9520 (2026-06-10):
---   19 200 / 10,9520 ≈ 1 753 EUR (avrundet heltall for eksisterende betalingsflyt).
+--   19 200 / 10,9520 ≈ 1 760 EUR (avrundet opp til nærmeste 10 for visning og betaling).
 
 alter table trips
   add column if not exists price_nok numeric;
@@ -46,7 +46,7 @@ $desc$,
   difficulty_level = 'lett',
   meeting_point = 'Toulouse',
   price_nok = 19200,
-  base_price_eur = round(19200 / 10.9520),
+  base_price_eur = ceil(round(19200 / 10.9520) / 10) * 10,
   updated_at = now()
 where slug = 'vin-vingarder-minervois';
 
@@ -71,7 +71,7 @@ values (
   '2026-05-11',
   8,
   2,
-  round(19200 / 10.9520),
+  ceil(round(19200 / 10.9520) / 10) * 10,
   'Anne Fredrikstad og Morten',
   '7.–11. mai 2026 · 5 dager / 4 netter · Oppmøte Toulouse',
   'open'

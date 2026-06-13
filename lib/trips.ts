@@ -1,3 +1,4 @@
+import { normalizeEurPrice } from "@/lib/pricing";
 import { createSupabaseClient } from "@/lib/supabase";
 import {
   isUpcomingDeparture,
@@ -12,7 +13,7 @@ function mapTrip(row: Record<string, unknown>): Trip {
     ...trip,
     is_private: trip.is_private ?? false,
     featured: trip.featured ?? false,
-    base_price_eur: Number(row.base_price_eur),
+    base_price_eur: normalizeEurPrice(Number(row.base_price_eur)),
     min_persons_per_booking: Number(
       row.min_persons_per_booking ?? row.min_persons ?? 1
     ),
@@ -35,11 +36,11 @@ function mapTrip(row: Record<string, unknown>): Trip {
       typeof row.group_size_en === "string" ? row.group_size_en : null,
     interest_only: Boolean(row.interest_only),
     single_room_supplement_eur: row.single_room_supplement_eur
-      ? Number(row.single_room_supplement_eur)
+      ? normalizeEurPrice(Number(row.single_room_supplement_eur))
       : null,
     deposit_pct: row.deposit_pct ? Number(row.deposit_pct) : null,
     agent_price_eur: row.agent_price_eur
-      ? Number(row.agent_price_eur)
+      ? normalizeEurPrice(Number(row.agent_price_eur))
       : null,
   };
 }
@@ -50,7 +51,9 @@ function mapDeparture(row: Record<string, unknown>): Departure {
     ...departure,
     start_date: normalizeIsoDate(row.start_date) ?? String(row.start_date),
     end_date: normalizeIsoDate(row.end_date) ?? String(row.end_date),
-    price_eur: row.price_eur ? Number(row.price_eur) : null,
+    price_eur: row.price_eur
+      ? normalizeEurPrice(Number(row.price_eur))
+      : null,
   };
 }
 

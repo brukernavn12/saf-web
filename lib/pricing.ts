@@ -4,13 +4,25 @@ export function roundUpToNearest100(nok: number): number {
   return Math.ceil(nok / 100) * 100;
 }
 
+export function roundUpToNearest10(eur: number): number {
+  if (!Number.isFinite(eur) || eur <= 0) {
+    return 0;
+  }
+  return Math.ceil(eur / 10) * 10;
+}
+
+/** Commercial EUR quote – always whole tens, rounded up. */
+export function normalizeEurPrice(eur: number): number {
+  return roundUpToNearest10(eur);
+}
+
 /** Display NOK from EUR using live rate, rounded up to nearest 100 kr. */
 export function convertEurToDisplayNok(eur: number, rate: number): number {
   return roundUpToNearest100(eur * rate);
 }
 
 export function convertNokToDisplayEur(nok: number, rate: number): number {
-  return Math.max(1, Math.round(nok / rate));
+  return Math.max(1, roundUpToNearest10(nok / rate));
 }
 
 function formatEur(eur: number, locale: Locale): string {
@@ -18,7 +30,7 @@ function formatEur(eur: number, locale: Locale): string {
     style: "currency",
     currency: "EUR",
     maximumFractionDigits: 0,
-  }).format(eur);
+  }).format(normalizeEurPrice(eur));
 }
 
 function formatNok(nok: number, locale: Locale): string {
@@ -71,9 +83,9 @@ export function localizePriceInfoLine(
       return match;
     }
     if (locale === "en") {
-      return formatEur(eur, locale);
+      return formatEur(normalizeEurPrice(eur), locale);
     }
-    return formatNok(convertEurToDisplayNok(eur, eurToNokRate), locale);
+    return formatNok(convertEurToDisplayNok(normalizeEurPrice(eur), eurToNokRate), locale);
   });
 
   return result;
