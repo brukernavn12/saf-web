@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/home/SectionHeading";
 import { images } from "@/lib/image-registry";
@@ -9,7 +10,10 @@ export function AboutSection() {
 
   return (
     <Section className="overflow-hidden bg-white py-32 md:py-44 lg:py-52">
-      <div className="grid gap-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-28 xl:gap-32">
+      <Link
+        href="/om-oss"
+        className="group grid gap-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-28 xl:gap-32"
+      >
         <div className="relative lg:-ml-6 lg:pt-12 xl:-ml-12">
           <div className="grid grid-cols-2 gap-3 md:gap-4">
             <div className="relative aspect-[4/5] overflow-hidden bg-primary/10">
@@ -50,15 +54,11 @@ export function AboutSection() {
             </p>
           </blockquote>
 
-          <p className="mt-14 max-w-md text-base leading-[1.9] text-text/60 md:mt-16 md:text-lg md:leading-[1.85]">
-            {t("body")}
-          </p>
-
-          <p className="mt-12 text-[11px] uppercase tracking-[0.24em] text-accent md:mt-14">
-            {t("since")}
-          </p>
+          <span className="mt-12 inline-block text-[11px] uppercase tracking-[0.24em] text-accent transition-colors group-hover:text-primary md:mt-14">
+            {t("cta")} →
+          </span>
         </div>
-      </div>
+      </Link>
     </Section>
   );
 }

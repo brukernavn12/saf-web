@@ -45,12 +45,11 @@
       "eyebrow": "Vertskap",
       "title": "Elisabeth og Morten",
       "lead": "Vi kjenner Languedoc innenfra – og arrangerer reiser vi selv ville tatt.",
-      "body": "Siden 2007 viser vi gjester «ordentlig» Sør-Frankrike – steder og mennesker vi kjenner personlig, med oss hele veien.",
-      "since": "Siden 2007 · Languedoc, Frankrike"
+      "cta": "Om oss"
     },
     "reviews": {
       "eyebrow": "Tilbakemeldinger",
-      "title": "Det sier gjestene våre",
+      "title": "Dette sier gjestene",
       "stats": {
         "recommend": "ville anbefalt reisen til en venn",
         "balance": "syntes balansen mellom program og egentid var perfekt"
@@ -86,11 +85,15 @@
     },
     "newsletter": {
       "eyebrow": "Nyhetsbrev",
-      "title": "Hold kontakten med Languedoc",
-      "description": "Avganger og nyheter – noen få ganger i året.",
+      "title": "Bli med til Sør-Frankrike",
+      "description": "Meld deg på nyhetsbrevet og få inspirasjon fra Languedoc og Sør-Frankrike. Reiser, lokale opplevelser, steder og folk vi er glade i og samarbeider med.",
       "placeholder": "Din e-postadresse",
-      "submit": "Meld meg på",
-      "success": "Takk! Vi sender deg en e-post for å bekrefte påmeldingen."
+      "submit": "Ta meg til Frankrike",
+      "submitting": "Sender …",
+      "consent": "Ja takk, jeg vil motta nyhetsbrev fra Smaken av Frankrike.",
+      "unsubscribe": "Jeg kan melde meg av når som helst.",
+      "success": "Velkommen! Du er nå påmeldt nyhetsbrevet vårt.",
+      "error": "Vi klarte ikke å lagre påmeldingen. Prøv igjen."
     }
   },
   "trips": {
@@ -192,8 +195,7 @@
     }
   },
   "about": {
-    "title": "Om oss",
-    "tagline": "To franskmenn gjemt i norsk kropp.",
+    "title": "To franskmenn gjemt i norsk kropp",
     "intro": "I løpet av til sammen 18 år i Languedoc fikk vi stadig det samme spørsmålet fra venner og kjente: «Hvorfor arrangerer dere ikke turer for andre?» Vi lo litt og svarte «ikke helt tiden for det». Men tanken festet seg – og lysten til å dele dette stedet vokste seg sterkere enn vi klarte å ignorere.",
     "elisabeth": "Elisabeth er pedagog av bakgrunn, reiseleder og kokk i praksis. Hun husker hva alle vil ha i glasset uten å spørre to ganger, og har en naturlig evne til å samle folk rundt et bord på en måte som får dem til å slappe av, le og kjenne at de er akkurat der de skal være. Med Elisabeth er ingen gjest overlatt til seg selv.",
     "morten": "Morten jobber også med vin og har lært regionen å kjenne slik bare de gjør som virkelig har latt seg oppsluke av et sted. Med Languedoc som hjemmebane kjenner han produsentene med navn, vet hvilken kjeller som gjemmer årgangene ingen vet om, og hvilken restaurant i hvilken landsby som serverer det beste måltidet på en tirsdag i mai. Den kunnskapen tar han med seg – og deler den gjerne.",

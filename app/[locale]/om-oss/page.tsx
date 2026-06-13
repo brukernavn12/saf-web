@@ -22,12 +22,9 @@ export default async function AboutPage({
 
   return (
     <Section narrow>
-      <h1 className="font-serif text-4xl text-primary md:text-5xl">
+      <h1 className="font-serif text-4xl text-primary md:text-5xl lg:text-6xl">
         {t("title")}
       </h1>
-      <p className="mt-6 font-serif text-xl leading-snug text-primary md:text-2xl">
-        {t("tagline")}
-      </p>
 
       <div className="mt-10 grid gap-8 md:grid-cols-2 md:gap-10">
         <div className="relative aspect-[4/5] overflow-hidden bg-primary/10">
