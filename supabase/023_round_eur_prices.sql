@@ -18,7 +18,5 @@ set
 where base_price_eur > 0;
 
 update departures
-set
-  price_eur = ceil(price_eur / 10) * 10,
-  updated_at = now()
+set price_eur = ceil(price_eur / 10) * 10
 where price_eur is not null and price_eur > 0;
