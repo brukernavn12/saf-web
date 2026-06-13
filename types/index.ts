@@ -1,4 +1,6 @@
-export type Locale = "no" | "sv" | "en";
+import type { Locale } from "@/lib/locales";
+
+export type { Locale };
 
 export type TripStatus = "active" | "draft" | "archived";
 export type DepartureStatus = "open" | "confirmed" | "full" | "cancelled";
@@ -26,8 +28,11 @@ export interface Trip {
   district: string | null;
   tags: string[] | null;
   includes_no: string[] | null;
+  includes_en: string[] | null;
   excludes_no: string[] | null;
+  excludes_en: string[] | null;
   itinerary: string[] | null;
+  itinerary_en: string[] | null;
   min_persons: number;
   min_persons_per_booking: number;
   min_persons_to_confirm: number;
@@ -35,6 +40,7 @@ export interface Trip {
   base_price_eur: number;
   price_nok: number | null;
   price_info: string | null;
+  price_info_en: string | null;
   interest_only: boolean;
   duration_days: number | null;
   duration_nights: number | null;

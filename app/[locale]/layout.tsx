@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Inter, Playfair_Display } from "next/font/google";
 import { routing } from "@/i18n/routing";
+import { loadLocaleMessages } from "@/lib/i18n-messages";
+import { isLocale, type Locale } from "@/lib/locales";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
@@ -44,17 +46,17 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  if (!routing.locales.includes(locale as "no" | "sv" | "en")) {
+  if (!isLocale(locale)) {
     notFound();
   }
 
   setRequestLocale(locale);
-  const messages = await getMessages();
+  const messages = await loadLocaleMessages(locale);
 
   return (
     <html lang={locale} className={`${inter.variable} ${playfair.variable}`}>
       <body className="min-h-screen bg-cream font-sans text-text antialiased">
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
           <main>{children}</main>
           <Footer />

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { subscribeToBrevoNewsletter } from "@/lib/brevo";
-import type { Locale } from "@/types";
+import { locales, type Locale } from "@/lib/locales";
 
 interface NewsletterBody {
   email?: string;
@@ -8,7 +8,7 @@ interface NewsletterBody {
   locale?: Locale;
 }
 
-const LOCALES: Locale[] = ["no", "sv", "en"];
+const LOCALES = [...locales] as Locale[];
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

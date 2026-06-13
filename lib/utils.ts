@@ -1,5 +1,6 @@
 import { getTripImageUrls } from "@/lib/image-registry";
-import type { Departure, Locale, Trip } from "@/types";
+import { locales, type Locale } from "@/lib/locales";
+import type { Departure, Trip } from "@/types";
 
 function normalizeLocalImagePath(path: string): string {
   const segments = path.split("/");
@@ -50,7 +51,7 @@ export function formatPriceNok(nok: number, locale: Locale = "no"): string {
     }).format(rounded);
   }
 
-  const grouped = rounded.toLocaleString(locale === "sv" ? "sv-SE" : "nb-NO", {
+  const grouped = rounded.toLocaleString("nb-NO", {
     maximumFractionDigits: 0,
   });
   return `kr ${grouped.replace(/\u00A0|\s/g, ".")}`;
@@ -228,7 +229,14 @@ export function formatDepartureCardRange(
   return `${formatPart(startDate, false)} – ${formatPart(endDate, true)}`;
 }
 
-const LOCALIZED_TRIP_FIELD_LOCALES: Locale[] = ["no", "sv", "en"];
+const LOCALIZED_TRIP_FIELD_LOCALES: Locale[] = [...locales];
+
+function localizedFieldChain(locale: Locale): Locale[] {
+  return [
+    locale,
+    ...LOCALIZED_TRIP_FIELD_LOCALES.filter((loc) => loc !== locale),
+  ];
+}
 
 function readNonEmptyTripString(
   trip: Trip,
@@ -247,10 +255,7 @@ export function getLocalizedTripField(
   field: "title" | "tagline" | "description",
   locale: Locale
 ): string | null {
-  const chain = [
-    locale,
-    ...LOCALIZED_TRIP_FIELD_LOCALES.filter((loc) => loc !== locale),
-  ] as Locale[];
+  const chain = localizedFieldChain(locale);
 
   for (const loc of chain) {
     const value = readNonEmptyTripString(trip, `${field}_${loc}` as keyof Trip);
@@ -262,17 +267,57 @@ export function getLocalizedTripField(
   return null;
 }
 
-/** Localized string arrays with Norwegian fallback (includes/excludes are no-only in DB). */
+/** Localized string arrays with Norwegian fallback. */
 export function getLocalizedTripStringArray(
   trip: Trip,
-  field: "includes" | "excludes"
+  field: "includes" | "excludes",
+  locale: Locale
 ): string[] | null {
-  const key = `${field}_no` as keyof Trip;
-  const value = trip[key];
-  if (Array.isArray(value) && value.length > 0) {
-    return value;
+  for (const loc of localizedFieldChain(locale)) {
+    const key = `${field}_${loc}` as keyof Trip;
+    const value = trip[key];
+    if (Array.isArray(value) && value.length > 0) {
+      return value;
+    }
   }
+
   return null;
+}
+
+export function getLocalizedItinerary(
+  trip: Trip,
+  locale: Locale
+): string[] | null {
+  if (locale === "en") {
+    const en = normalizeTripItinerary(trip.itinerary_en);
+    if (en?.length) {
+      return en;
+    }
+  }
+
+  return normalizeTripItinerary(trip.itinerary);
+}
+
+export function getLocalizedPriceInfo(
+  trip: Trip,
+  locale: Locale
+): string | null {
+  if (locale === "en" && trip.price_info_en?.trim()) {
+    return trip.price_info_en.trim();
+  }
+
+  return trip.price_info?.trim() ?? null;
+}
+
+/** Localized title and tagline for trip cards and listings. */
+export function getLocalizedTripCardCopy(
+  trip: Trip,
+  locale: Locale
+): { title: string; tagline: string | null } {
+  return {
+    title: getLocalizedTripField(trip, "title", locale) ?? trip.title_no,
+    tagline: getLocalizedTripField(trip, "tagline", locale),
+  };
 }
 
 export function getSiteUrl(): string {
@@ -325,12 +370,16 @@ export function normalizeTripItinerary(value: unknown): string[] | null {
 /** Split "Dag 1: Beskrivelse" into label and body for itinerary rows. */
 export function parseItineraryDay(
   entry: string,
-  index: number
+  index: number,
+  locale: Locale = "no"
 ): { day: string; description: string } {
   const trimmed = entry.trim();
   const match = trimmed.match(/^Dag\s+(\d+)\s*:\s*(.+)$/i);
   if (match) {
-    return { day: `Dag ${match[1]}`, description: match[2].trim() };
+    return {
+      day: locale === "en" ? `Day ${match[1]}` : `Dag ${match[1]}`,
+      description: match[2].trim(),
+    };
   }
 
   const enMatch = trimmed.match(/^Day\s+(\d+)\s*:\s*(.+)$/i);
@@ -338,5 +387,8 @@ export function parseItineraryDay(
     return { day: `Day ${enMatch[1]}`, description: enMatch[2].trim() };
   }
 
-  return { day: `Dag ${index + 1}`, description: trimmed };
+  return {
+    day: locale === "en" ? `Day ${index + 1}` : `Dag ${index + 1}`,
+    description: trimmed,
+  };
 }

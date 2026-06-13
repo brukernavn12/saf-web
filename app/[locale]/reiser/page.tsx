@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getActiveTripsWithDepartures } from "@/lib/trips";
 import { isSupabaseConfigured } from "@/lib/supabase";
+import { getLocalizedTripCardCopy } from "@/lib/utils";
 import { Section } from "@/components/ui/Section";
 import { TripCard } from "@/components/reiser/TripCard";
 import type { Locale } from "@/types";
@@ -29,15 +29,22 @@ export default async function TripsPage({
         </p>
       </div>
       {tripItems.length > 0 ? (
-        <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {tripItems.map(({ trip, departures }) => (
-            <TripCard
-              key={trip.id}
-              trip={trip}
-              departures={departures}
-              locale={locale}
-            />
-          ))}
+        <div className="space-y-12 md:space-y-16 lg:space-y-20">
+          {tripItems.map(({ trip, departures }, index) => {
+            const { title, tagline } = getLocalizedTripCardCopy(trip, locale);
+
+            return (
+              <TripCard
+                key={trip.id}
+                trip={trip}
+                departures={departures}
+                locale={locale}
+                title={title}
+                tagline={tagline}
+                reverse={index % 2 === 1}
+              />
+            );
+          })}
         </div>
       ) : (
         <p className="border border-primary/10 bg-white p-8 text-text/70">

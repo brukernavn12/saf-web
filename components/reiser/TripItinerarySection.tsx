@@ -1,13 +1,16 @@
 import { parseItineraryDay } from "@/lib/utils";
+import type { Locale } from "@/lib/locales";
 
 interface TripItinerarySectionProps {
   itinerary: string[];
   title: string;
+  locale: Locale;
 }
 
 export function TripItinerarySection({
   itinerary,
   title,
+  locale,
 }: TripItinerarySectionProps) {
   if (itinerary.length === 0) {
     return null;
@@ -18,7 +21,7 @@ export function TripItinerarySection({
       <h2 className="font-serif text-2xl text-primary md:text-3xl">{title}</h2>
       <ol className="mt-6 divide-y divide-primary/10 border-y border-primary/10">
         {itinerary.map((entry, index) => {
-          const { day, description } = parseItineraryDay(entry, index);
+          const { day, description } = parseItineraryDay(entry, index, locale);
 
           return (
             <li

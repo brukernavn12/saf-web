@@ -9,15 +9,41 @@ import type { Locale } from "@/types";
 import {
   formatTripListPrice,
   formatTripPriceInfoLines,
+  getLocalizedItinerary,
+  getLocalizedPriceInfo,
   getLocalizedTripField,
   getLocalizedTripStringArray,
-  getTripCardPriceLabel,
   getTripImage,
-  hasPackagePricing,
   showTripStandardPrice,
 } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
+
+const TRIP_CATEGORY_KEYS = [
+  "vin-gastronomi",
+  "Vin & gastronomi",
+  "aktiv-natur",
+  "Aktiv natur",
+  "kultur",
+  "vindrueplukking",
+] as const;
+
+type TripCategoryKey = (typeof TRIP_CATEGORY_KEYS)[number];
+
+function getTripCategoryLabel(
+  category: string | null | undefined,
+  t: Awaited<ReturnType<typeof getTranslations<"tripDetail">>>
+): string | null {
+  if (!category) {
+    return null;
+  }
+
+  if ((TRIP_CATEGORY_KEYS as readonly string[]).includes(category)) {
+    return t(`categories.${category as TripCategoryKey}`);
+  }
+
+  return category;
+}
 
 export default async function TripDetailPage({
   params: { locale, slug },
@@ -37,9 +63,17 @@ export default async function TripDetailPage({
   const title = getLocalizedTripField(trip, "title", locale) ?? trip.title_no;
   const tagline = getLocalizedTripField(trip, "tagline", locale);
   const description = getLocalizedTripField(trip, "description", locale);
-  const includes = getLocalizedTripStringArray(trip, "includes");
-  const excludes = getLocalizedTripStringArray(trip, "excludes");
+  const includes = getLocalizedTripStringArray(trip, "includes", locale);
+  const excludes = getLocalizedTripStringArray(trip, "excludes", locale);
+  const itinerary = getLocalizedItinerary(trip, locale);
+  const priceInfo = getLocalizedPriceInfo(trip, locale);
   const heroImage = getTripImage(trip);
+  const difficultyKey = trip.difficulty_level?.toLowerCase();
+  const difficultyLabel =
+    difficultyKey === "lett" || difficultyKey === "middels"
+      ? t(`difficultyLevels.${difficultyKey}`)
+      : trip.difficulty_level;
+  const categoryLabel = getTripCategoryLabel(trip.category, t);
 
   return (
     <>
@@ -63,7 +97,7 @@ export default async function TripDetailPage({
       <Section className={heroImage ? "pt-12" : undefined}>
         <div className="max-w-3xl">
           <p className="text-xs uppercase tracking-[0.2em] text-accent">
-            {trip.category}
+            {categoryLabel}
             {trip.district && ` · ${trip.district}`}
           </p>
           <h1 className="mt-3 font-serif text-4xl text-primary md:text-5xl">
@@ -89,14 +123,14 @@ export default async function TripDetailPage({
               </p>
             </div>
           )}
-          {(trip.price_info || showTripStandardPrice(trip)) && (
-            <div className={trip.price_info ? "min-w-full sm:min-w-[280px] flex-1" : undefined}>
+          {(priceInfo || showTripStandardPrice(trip)) && (
+            <div className={priceInfo ? "min-w-full sm:min-w-[280px] flex-1" : undefined}>
               <p className="text-xs uppercase tracking-wider text-text/50">
                 {t("price")}
               </p>
-              {trip.price_info ? (
+              {priceInfo ? (
                 <ul className="mt-2 space-y-1.5 font-medium text-primary">
-                  {formatTripPriceInfoLines(trip.price_info).map((line) => (
+                  {formatTripPriceInfoLines(priceInfo).map((line) => (
                     <li key={line} className="leading-snug">
                       {line}
                     </li>
@@ -109,13 +143,13 @@ export default async function TripDetailPage({
               )}
             </div>
           )}
-          {trip.difficulty_level && (
+          {difficultyLabel && (
             <div>
               <p className="text-xs uppercase tracking-wider text-text/50">
                 {t("difficulty")}
               </p>
               <p className="mt-1 font-medium capitalize text-primary">
-                {trip.difficulty_level}
+                {difficultyLabel}
               </p>
             </div>
           )}
@@ -151,10 +185,11 @@ export default async function TripDetailPage({
           </div>
         )}
 
-        {trip.itinerary && trip.itinerary.length > 0 && (
+        {itinerary && itinerary.length > 0 && (
           <TripItinerarySection
-            itinerary={trip.itinerary}
+            itinerary={itinerary}
             title={t("itinerary")}
+            locale={locale}
           />
         )}
 

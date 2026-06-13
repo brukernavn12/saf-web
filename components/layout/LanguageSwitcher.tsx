@@ -3,11 +3,10 @@
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
-import type { Locale } from "@/types";
+import type { Locale } from "@/lib/locales";
 
 const locales: { code: Locale; label: string }[] = [
   { code: "no", label: "NO" },
-  { code: "sv", label: "SV" },
   { code: "en", label: "EN" },
 ];
 

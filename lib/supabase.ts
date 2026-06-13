@@ -1,13 +1,17 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-let browserClient: SupabaseClient | null = null;
-
 function getSupabaseConfig() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
 
   return { url, key };
 }
+
+const noStoreFetch: typeof fetch = (input, init) =>
+  fetch(input, {
+    ...init,
+    cache: "no-store",
+  });
 
 export function isSupabaseConfigured(): boolean {
   const { url, key } = getSupabaseConfig();
@@ -24,16 +28,15 @@ export function createSupabaseClient(): SupabaseClient | null {
     return null;
   }
 
-  if (!browserClient) {
-    browserClient = createClient(url, key, {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false,
-      },
-    });
-  }
-
-  return browserClient;
+  return createClient(url, key, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+    global: {
+      fetch: noStoreFetch,
+    },
+  });
 }
 
 export function createSupabaseAdmin() {
@@ -48,6 +51,9 @@ export function createSupabaseAdmin() {
     auth: {
       persistSession: false,
       autoRefreshToken: false,
+    },
+    global: {
+      fetch: noStoreFetch,
     },
   });
 }

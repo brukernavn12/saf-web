@@ -23,7 +23,10 @@ function mapTrip(row: Record<string, unknown>): Trip {
     price_nok: row.price_nok ? Number(row.price_nok) : null,
     price_info:
       typeof row.price_info === "string" ? row.price_info : null,
+    price_info_en:
+      typeof row.price_info_en === "string" ? row.price_info_en : null,
     itinerary: normalizeTripItinerary(row.itinerary),
+    itinerary_en: normalizeTripItinerary(row.itinerary_en),
     interest_only: Boolean(row.interest_only),
     single_room_supplement_eur: row.single_room_supplement_eur
       ? Number(row.single_room_supplement_eur)
@@ -121,7 +124,11 @@ async function attachDeparturesToTrips(
     const allDepartures = departuresByTrip.get(trip.id) ?? [];
     const upcomingDepartures = allDepartures.filter(isUpcomingDeparture);
 
-    if (allDepartures.length > 0 && upcomingDepartures.length === 0) {
+    if (trip.interest_only || allDepartures.length === 0) {
+      return [{ trip, departures: upcomingDepartures }];
+    }
+
+    if (upcomingDepartures.length === 0) {
       return [];
     }
 

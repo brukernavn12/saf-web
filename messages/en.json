@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Languedoc – The Taste of France",
-    "description": "Authentic journeys in southern France since 2007. Wine, gastronomy and nature with Elisabeth and Morten."
+    "description": "Authentic journeys in southern France. Wine, gastronomy and nature with Elisabeth and Morten."
   },
   "nav": {
     "trips": "Trips",
@@ -133,6 +133,18 @@
     "nights": "{count} nights",
     "price": "Price",
     "difficulty": "Level",
+    "difficultyLevels": {
+      "lett": "Easy",
+      "middels": "Moderate"
+    },
+    "categories": {
+      "vin-gastronomi": "Wine & gastronomy",
+      "Vin & gastronomi": "Wine & gastronomy",
+      "aktiv-natur": "Active nature",
+      "Aktiv natur": "Active nature",
+      "kultur": "Culture",
+      "vindrueplukking": "Grape harvest"
+    },
     "meetingPoint": "Meeting point",
     "guide": "Guide",
     "expressInterest": "Express interest",
@@ -195,7 +207,7 @@
     }
   },
   "about": {
-    "title": "Two French souls in Norwegian bodies",
+    "title": "Two Frenchmen hidden in Norwegian bodies",
     "intro": "Over a combined 18 years in Languedoc, friends and acquaintances kept asking us the same question: «Why don't you organise trips for others?» We laughed a little and replied «not quite the right time for that». But the idea stuck – and the desire to share this place grew stronger than we could ignore.",
     "elisabeth": "Elisabeth is a teacher by background, a tour leader and a cook in practice. She remembers what everyone wants in their glass without asking twice, and has a natural gift for gathering people around a table in a way that helps them relax, laugh and feel they are exactly where they should be. With Elisabeth, no guest is left to fend for themselves.",
     "morten": "Morten also works with wine and has come to know the region the way only those who have truly let themselves be absorbed by a place can. With Languedoc as his home ground, he knows the producers by name, which cellar hides the vintages nobody knows about, and which restaurant in which village serves the best meal on a Tuesday in May. He brings that knowledge with him – and shares it gladly.",
@@ -220,7 +232,7 @@
     },
     "stay": {
       "title": "Where you stay",
-      "body": "We are a small company that places great emphasis on personal follow-up and quality. Our trips are run in small groups, where closeness makes room for genuine experiences. We have two authentic stone houses from the 1800s – carefully restored to combine historic charm with modern comfort. Original tile floors and hand-forged hinges alongside comfortable beds. When we say you live like a local, it is almost an understatement – here you stay both more spaciously and more comfortably than is usual in the area.",
+      "body": "We are a company that places great emphasis on personal follow-up and quality. Our trips are run in small groups, where closeness makes room for genuine experiences. We have two authentic stone houses from the 1800s – carefully restored to combine historic charm with modern comfort. Original tile floors and hand-forged hinges alongside comfortable beds. When we say you live like a local, it is almost an understatement – here you stay both more spaciously and more comfortably than is usual in the area.",
       "hirondelle": {
         "title": "L'Hirondelle",
         "body": "A classic maison maître from 1820, with high ceilings and an elegance that lives in the walls."

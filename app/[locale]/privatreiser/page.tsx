@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { getPrivateTripsWithDepartures, getTripBySlug } from "@/lib/trips";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import {
+  getLocalizedTripCardCopy,
   getLocalizedTripField,
   getTripImage,
 } from "@/lib/utils";
@@ -86,15 +87,22 @@ export default async function PrivateTripsPage({
           <h2 className="font-serif text-2xl text-primary md:text-3xl">
             {t("tripsTitle")}
           </h2>
-          <div className="mt-8 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {otherTrips.map(({ trip, departures }) => (
-              <TripCard
-                key={trip.id}
-                trip={trip}
-                departures={departures}
-                locale={locale}
-              />
-            ))}
+          <div className="mt-8 space-y-12 md:space-y-16">
+            {otherTrips.map(({ trip, departures }, index) => {
+              const { title, tagline } = getLocalizedTripCardCopy(trip, locale);
+
+              return (
+                <TripCard
+                  key={trip.id}
+                  trip={trip}
+                  departures={departures}
+                  locale={locale}
+                  title={title}
+                  tagline={tagline}
+                  reverse={index % 2 === 1}
+                />
+              );
+            })}
           </div>
         </div>
       )}

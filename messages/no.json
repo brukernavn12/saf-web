@@ -133,6 +133,18 @@
     "nights": "{count} netter",
     "price": "Pris",
     "difficulty": "Nivå",
+    "difficultyLevels": {
+      "lett": "Lett",
+      "middels": "Middels"
+    },
+    "categories": {
+      "vin-gastronomi": "Vin & gastronomi",
+      "Vin & gastronomi": "Vin & gastronomi",
+      "aktiv-natur": "Aktiv natur",
+      "Aktiv natur": "Aktiv natur",
+      "kultur": "Kultur",
+      "vindrueplukking": "Vindrueplukking"
+    },
     "meetingPoint": "Oppmøtested",
     "guide": "Guide",
     "expressInterest": "Meld din interesse",
@@ -220,7 +232,7 @@
     },
     "stay": {
       "title": "Hvor du bor",
-      "body": "Vi er et lite selskap som legger stor vekt på personlig oppfølging og kvalitet. Våre reiser gjennomføres i små grupper, der nærheten gir rom for ekte opplevelser. Vi disponerer to autentiske steinhus fra 1800-tallet – nøye restaurert for å kombinere historisk sjarm med moderne komfort. Originale flisegulv og håndsmidde hengsler side om side med komfortable senger. Når vi sier at du bor som en lokal, er det nesten en underdrivelse – her bor du både mer romslig og mer komfortabelt enn det som er vanlig i området.",
+      "body": "Vi er et selskap som legger stor vekt på personlig oppfølging og kvalitet. Våre reiser gjennomføres i små grupper, der nærheten gir rom for ekte opplevelser. Vi disponerer to autentiske steinhus fra 1800-tallet – nøye restaurert for å kombinere historisk sjarm med moderne komfort. Originale flisegulv og håndsmidde hengsler side om side med komfortable senger. Når vi sier at du bor som en lokal, er det nesten en underdrivelse – her bor du både mer romslig og mer komfortabelt enn det som er vanlig i området.",
       "hirondelle": {
         "title": "L'Hirondelle",
         "body": "En klassisk maison maître fra 1820, med høye rom og en eleganse som sitter i veggene."
