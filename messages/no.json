@@ -21,7 +21,9 @@
       "ctaContact": "Kontakt oss"
     },
     "categories": {
+      "eyebrow": "Utvalg",
       "title": "Tre måter å oppleve Sør-Frankrike",
+      "explore": "Utforsk",
       "trips": {
         "title": "Reiser",
         "description": "Faste reiser med avgangsdatoer – vin, mat, natur og kultur i små grupper med norske reiseledere."
@@ -36,11 +38,13 @@
       }
     },
     "about": {
+      "eyebrow": "Vertskap",
       "title": "Elisabeth og Morten",
       "lead": "Vi bor i Languedoc og arrangerer reiser vi selv ville tatt.",
       "body": "Siden 2007 har vi vist nordmenn, svensker og andre gjester det vi kaller «ordentlig» Sør-Frankrike – ikke det polerte reisebyrå-bildet, men steder og mennesker vi kjenner personlig. Vi er med på turen, oversetter både språk og kultur, og sørger for at det skal føles trygt, varmt og litt eventyrlig."
     },
     "reviews": {
+      "eyebrow": "Stemmer",
       "title": "Det sier gjestene våre",
       "stats": {
         "recommend": "ville anbefalt reisen til en venn",
@@ -76,6 +80,7 @@
       }
     },
     "newsletter": {
+      "eyebrow": "Nyhetsbrev",
       "title": "Få reisetips fra Languedoc",
       "description": "Sesongens avganger, små anbefalinger og nyheter – noen få ganger i året, uten støy.",
       "placeholder": "Din e-postadresse",
@@ -157,6 +162,11 @@
     "description": "Vi lager reiser for familier, venner og små grupper som vil ha noe skreddersydd – med samme omsorg som våre faste avganger.",
     "cta": "Fortell oss om drømmereisen",
     "tripsTitle": "Aktuelle privatreiser",
+    "example": {
+      "intro": "Dette er hva en privatreise kan bli – når vi får frie tøyler og en gruppe med felles lidenskap.",
+      "title": "Eksempel på skreddersydd gruppereise",
+      "link": "Les om reisen"
+    },
     "business": {
       "title": "Bedrift & team",
       "description": "Vi skreddersyr opplegg for team, ledelse og bedrifter – fra incentives og belønning til strategisamlinger og ledergruppe-reiser. Dere bestemmer tempo, innhold og gruppestørrelse; vi tar oss av logistikk, lokalkunnskap og opplevelser dere ikke finner på egen hånd.",

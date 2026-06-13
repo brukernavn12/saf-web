@@ -16,7 +16,7 @@ export function Header() {
     <header
       className={cn(
         "inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
-        isFixed ? "fixed" : "absolute",
+        isFixed ? "fixed" : isOverlay ? "absolute" : "sticky",
         isOverlay
           ? "border-b border-transparent bg-transparent"
           : "border-b border-primary/10 bg-cream/95 backdrop-blur-sm"
@@ -32,7 +32,7 @@ export function Header() {
             alt="Smaken av Frankrike"
             width={1024}
             height={1024}
-            className="h-auto w-[7.5rem] md:w-36"
+            className="h-14 w-auto md:h-16"
             priority
           />
         </Link>

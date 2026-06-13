@@ -14,7 +14,7 @@ export default async function AboutPage({
   const home = await getTranslations({ locale, namespace: "home.about" });
 
   return (
-    <Section className="pt-32" narrow>
+    <Section narrow>
       <div className="relative mb-10 aspect-[21/9] overflow-hidden">
         <Image
           src={images.omOss.teamBackground}

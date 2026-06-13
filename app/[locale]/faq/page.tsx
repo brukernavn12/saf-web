@@ -11,7 +11,7 @@ export default async function FaqPage({
   const t = await getTranslations({ locale, namespace: "faq" });
 
   return (
-    <Section className="pt-32" narrow>
+    <Section narrow>
       <h1 className="font-serif text-4xl text-primary md:text-5xl">
         {t("title")}
       </h1>

@@ -21,7 +21,9 @@
       "ctaContact": "Contact us"
     },
     "categories": {
+      "eyebrow": "Explore",
       "title": "Three ways to experience southern France",
+      "explore": "Explore",
       "trips": {
         "title": "Trips",
         "description": "Scheduled departures – wine, food, nature and culture in small groups with Norwegian hosts."
@@ -36,11 +38,13 @@
       }
     },
     "about": {
+      "eyebrow": "Hosts",
       "title": "Elisabeth and Morten",
       "lead": "We live in Languedoc and design trips we would take ourselves.",
       "body": "Since 2007 we have shown guests from Scandinavia and beyond what we call «proper» southern France – not the polished travel-brochure version, but places and people we know personally. We travel with you, bridging language and culture, and make sure it feels safe, warm and a little adventurous."
     },
     "reviews": {
+      "eyebrow": "Voices",
       "title": "What our guests say",
       "stats": {
         "recommend": "would recommend the trip to a friend",
@@ -76,6 +80,7 @@
       }
     },
     "newsletter": {
+      "eyebrow": "Newsletter",
       "title": "Travel tips from Languedoc",
       "description": "Season departures, small recommendations and news – a few times a year, no noise.",
       "placeholder": "Your email address",
@@ -157,6 +162,11 @@
     "description": "We create journeys for families, friends and small groups who want something bespoke – with the same care as our scheduled departures.",
     "cta": "Tell us about your dream trip",
     "tripsTitle": "Current private trips",
+    "example": {
+      "intro": "This is what a private trip can become – when we have free rein and a group with a shared passion.",
+      "title": "Example of a tailored group trip",
+      "link": "Read about the trip"
+    },
     "business": {
       "title": "Business & teams",
       "description": "We tailor programmes for teams, leadership groups and companies – from incentives and rewards to strategy retreats and executive travel. You set the pace, content and group size; we handle logistics, local knowledge and experiences you will not find on your own.",

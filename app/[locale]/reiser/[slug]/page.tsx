@@ -60,7 +60,7 @@ export default async function TripDetailPage({
         </div>
       )}
 
-      <Section className={heroImage ? "pt-12" : "pt-32"}>
+      <Section className={heroImage ? "pt-12" : undefined}>
         <div className="max-w-3xl">
           <p className="text-xs uppercase tracking-[0.2em] text-accent">
             {trip.category}

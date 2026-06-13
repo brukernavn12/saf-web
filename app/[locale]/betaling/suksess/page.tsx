@@ -12,7 +12,7 @@ export default async function PaymentSuccessPage({
   const t = await getTranslations({ locale, namespace: "payment" });
 
   return (
-    <Section className="pt-32" narrow>
+    <Section narrow>
       <h1 className="font-serif text-3xl text-primary">{t("successTitle")}</h1>
       <p className="mt-4 leading-relaxed text-text/75">{t("successDescription")}</p>
       <Link

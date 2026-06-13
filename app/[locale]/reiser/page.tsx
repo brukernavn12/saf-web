@@ -19,7 +19,7 @@ export default async function TripsPage({
   const tripItems = configured ? await getActiveTripsWithDepartures() : [];
 
   return (
-    <Section className="pt-32">
+    <Section>
       <div className="mb-12 max-w-2xl">
         <h1 className="font-serif text-4xl text-primary md:text-5xl">
           {t("title")}

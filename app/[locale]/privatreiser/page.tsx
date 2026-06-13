@@ -1,10 +1,13 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { getPrivateTripsWithDepartures } from "@/lib/trips";
+import { getPrivateTripsWithDepartures, getTripBySlug } from "@/lib/trips";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import { Section } from "@/components/ui/Section";
+import { PrivateTripExample } from "@/components/privatreiser/PrivateTripExample";
 import { TripCard } from "@/components/reiser/TripCard";
 import type { Locale } from "@/types";
+
+const FEATURED_EXAMPLE_SLUG = "krim-og-languedoc-2027";
 
 export const dynamic = "force-dynamic";
 
@@ -16,10 +19,19 @@ export default async function PrivateTripsPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "privateTrips" });
   const configured = isSupabaseConfigured();
-  const tripItems = configured ? await getPrivateTripsWithDepartures() : [];
+  const [tripItems, featuredExample] = configured
+    ? await Promise.all([
+        getPrivateTripsWithDepartures(),
+        getTripBySlug(FEATURED_EXAMPLE_SLUG),
+      ])
+    : [[], null];
+
+  const otherTrips = tripItems.filter(
+    ({ trip }) => trip.slug !== FEATURED_EXAMPLE_SLUG
+  );
 
   return (
-    <Section className="pt-32">
+    <Section>
       <div className="mb-12 max-w-2xl">
         <h1 className="font-serif text-4xl text-primary md:text-5xl">
           {t("title")}
@@ -35,13 +47,23 @@ export default async function PrivateTripsPage({
         </Link>
       </div>
 
-      {tripItems.length > 0 && (
+      {featuredExample && (
+        <PrivateTripExample
+          trip={featuredExample}
+          locale={locale}
+          intro={t("example.intro")}
+          sectionTitle={t("example.title")}
+          linkLabel={t("example.link")}
+        />
+      )}
+
+      {otherTrips.length > 0 && (
         <div className="mb-20">
           <h2 className="font-serif text-2xl text-primary md:text-3xl">
             {t("tripsTitle")}
           </h2>
           <div className="mt-8 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {tripItems.map(({ trip, departures }) => (
+            {otherTrips.map(({ trip, departures }) => (
               <TripCard
                 key={trip.id}
                 trip={trip}
