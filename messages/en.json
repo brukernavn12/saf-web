@@ -6,6 +6,7 @@
   "nav": {
     "trips": "Trips",
     "privateTrips": "Private trips",
+    "languedoc": "Languedoc",
     "about": "About us",
     "faq": "FAQ",
     "contact": "Contact",
@@ -207,9 +208,36 @@
     "description": "Practical information about trips, booking and your stay.",
     "comingSoon": "FAQ content coming soon."
   },
+  "languedoc": {
+    "title": "Languedoc",
+    "subtitle": "Authentic, warm and a little less polished.",
+    "intro": "Languedoc is something distinct – a region that has spent the last fifty years not preparing for tourists, but cultivating the land and living well. Here you find villages, vineyards, market halls, coast, mountains and architecture with strong stories – without everything feeling packaged like a tourist brochure.",
+    "where": {
+      "title": "Where we are",
+      "body": "Our base is in Minervois – one of Languedoc's most exciting wine regions, between the Mediterranean and the Montagne Noire mountain range. The Pyrenees lie to the south. In Minervois, everything is within reach."
+    },
+    "stay": {
+      "title": "Where you stay",
+      "body": "We are a small company that places great emphasis on personal follow-up and quality. Our trips are run in small groups, where closeness makes room for genuine experiences. We have two authentic stone houses from the 1800s – carefully restored to combine historic charm with modern comfort. Original tile floors and hand-forged hinges alongside comfortable beds. When we say you live like a local, it is almost an understatement – here you stay both more spaciously and more comfortably than is usual in the area.",
+      "hirondelle": {
+        "title": "L'Hirondelle",
+        "body": "A classic maison maître from 1820, with high ceilings and an elegance that lives in the walls."
+      },
+      "villaBelle": {
+        "title": "Villa Belle",
+        "body": "A solid stone house from 1850 with thick stone walls, generous shared spaces and a garden that invites long evenings."
+      },
+      "closing": "Both properties have a pool, garden and patio – and both sit right in the everyday life we want you to experience."
+    },
+    "statement": "Languedoc is where France is still not finished surprising you."
+  },
   "contact": {
     "title": "Contact us",
-    "description": "We're happy to answer questions about trips, dates and private arrangements.",
+    "description": "We're happy to answer your questions.",
+    "greeting": "We look forward to hearing from you!",
+    "elisabeth": "Elisabeth",
+    "morten": "Morten",
+    "emailLabel": "Email",
     "name": "Name",
     "email": "Email",
     "phone": "Phone",

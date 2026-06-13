@@ -6,6 +6,7 @@
   "nav": {
     "trips": "Resor",
     "privateTrips": "Privata resor",
+    "languedoc": "Languedoc",
     "about": "Om oss",
     "faq": "FAQ",
     "contact": "Kontakt",
@@ -207,9 +208,36 @@
     "description": "Praktisk information om resor, bokning och vistelse.",
     "comingSoon": "FAQ-innehåll kommer snart."
   },
+  "languedoc": {
+    "title": "Languedoc",
+    "subtitle": "Äkta, varmt och lite mindre polerat.",
+    "intro": "Languedoc är något eget – en region som inte har lagt de senaste femtio åren på att göra sig redo för turister, utan på att bruka jorden och leva gott. Här hittar du byar, vinmarker, marknadshallar, kust, berg och arkitektur med starka historier – utan att allt känns inslaget som en turistbroschyr.",
+    "where": {
+      "title": "Var vi är",
+      "body": "Vår bas ligger i Minervois – en av Languedocs mest spännande vinregioner, mellan Medelhavet och bergskedjan Montagne Noire. Söder om oss ligger Pyrenéerna. I Minervois är allt inom räckhåll."
+    },
+    "stay": {
+      "title": "Var du bor",
+      "body": "Vi är ett litet företag som lägger stor vikt vid personlig uppföljning och kvalitet. Våra resor genomförs i små grupper, där närheten ger utrymme för äkta upplevelser. Vi disponerar två autentiska stenhus från 1800-talet – noggrant restaurerade för att kombinera historisk charm med modern komfort. Original klinkergolv och handsmidda gångjärn sida vid sida med bekväma sängar. När vi säger att du bor som en lokal är det nästan en underdrift – här bor du både rymligare och bekvämare än vad som är vanligt i området.",
+      "hirondelle": {
+        "title": "L'Hirondelle",
+        "body": "Ett klassiskt maison maître från 1820, med höga rum och en elegans som sitter i väggarna."
+      },
+      "villaBelle": {
+        "title": "Villa Belle",
+        "body": "Ett solidt stenhus från 1850 med tjocka stenväggar, rymliga gemensamma ytor och en trädgård som inbjuder till långa kvällar."
+      },
+      "closing": "Båda fastigheterna har pool, trädgård och patio – och båda ligger mitt i vardagslivet vi vill att du ska uppleva."
+    },
+    "statement": "Languedoc är där Frankrike ännu inte är färdigt med att överraska dig."
+  },
   "contact": {
     "title": "Kontakta oss",
-    "description": "Vi svarar gärna på frågor om resor, datum och privata lösningar.",
+    "description": "Vi svarar gärna på frågor.",
+    "greeting": "Vi ser fram emot att höra från dig!",
+    "elisabeth": "Elisabeth",
+    "morten": "Morten",
+    "emailLabel": "E-post",
     "name": "Namn",
     "email": "E-post",
     "phone": "Telefon",

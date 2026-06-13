@@ -22,6 +22,12 @@ export type ImageContextKey =
   | "page.om-oss"
   | "page.om-oss.morten"
   | "page.om-oss.elisabeth"
+  | "page.languedoc.intro"
+  | "page.languedoc.where"
+  | "page.languedoc.stay"
+  | "page.languedoc.hirondelle"
+  | "page.languedoc.villaBelle"
+  | "page.languedoc.propertiesClosing"
   | "logo.mark"
   | "logo.withTagline"
   | `trip.${string}`
@@ -140,6 +146,48 @@ export const IMAGE_CATALOG: Record<string, ImageAsset> = {
   ),
   "reiser.ina": asset("reiser.ina", "om-oss", "Ina.webp", ["food", "team"]),
   "reiser.anne": asset("reiser.anne", "om-oss", "Anne.jpg", ["team", "vineyard"]),
+  "reiser.canalDuMidi": asset(
+    "reiser.canalDuMidi",
+    "reiser",
+    "canal du midi.jpg",
+    ["nature", "culture"]
+  ),
+  "reiser.minervoisLandscape": asset(
+    "reiser.minervoisLandscape",
+    "reiser",
+    "IMG_6215.jpeg",
+    ["vineyard", "nature"]
+  ),
+  "reiser.stoneDetail": asset(
+    "reiser.stoneDetail",
+    "reiser",
+    "detaljbilder-IMG_1663.jpeg",
+    ["culture"]
+  ),
+  "reiser.hirondelleHouse": asset(
+    "reiser.hirondelleHouse",
+    "reiser",
+    "IMG_7055.jpg",
+    ["culture"]
+  ),
+  "reiser.villaBelleHouse": asset(
+    "reiser.villaBelleHouse",
+    "reiser",
+    "IMG_7034.jpg",
+    ["culture"]
+  ),
+  "reiser.poolGarden": asset(
+    "reiser.poolGarden",
+    "reiser",
+    "basseng ende.jpg",
+    ["nature"]
+  ),
+  "reiser.wineCheese": asset(
+    "reiser.wineCheese",
+    "reiser",
+    "ost og musserende.jpg",
+    ["food", "vineyard"]
+  ),
 };
 
 /** Explicit context → image id assignments (each image id appears at most once). */
@@ -169,6 +217,13 @@ export const IMAGE_ASSIGNMENTS: Record<string, string> = {
   "trip.vindrueplukking-minervois.gallery.0": "reiser.harvest2",
 
   "trip.matreise-med-ina": "reiser.ina",
+
+  "page.languedoc.intro": "reiser.canalDuMidi",
+  "page.languedoc.where": "reiser.minervoisLandscape",
+  "page.languedoc.stay": "reiser.stoneDetail",
+  "page.languedoc.hirondelle": "reiser.hirondelleHouse",
+  "page.languedoc.villaBelle": "reiser.villaBelleHouse",
+  "page.languedoc.propertiesClosing": "reiser.poolGarden",
 };
 
 const TRIP_SLUGS = [
@@ -305,6 +360,14 @@ export const images = {
     trips: getImagePathForContext("home.category.trips"),
     private: getImagePathForContext("home.category.private"),
     business: getImagePathForContext("home.category.business"),
+  },
+  languedoc: {
+    intro: getImagePathForContext("page.languedoc.intro"),
+    where: getImagePathForContext("page.languedoc.where"),
+    stay: getImagePathForContext("page.languedoc.stay"),
+    hirondelle: getImagePathForContext("page.languedoc.hirondelle"),
+    villaBelle: getImagePathForContext("page.languedoc.villaBelle"),
+    propertiesClosing: getImagePathForContext("page.languedoc.propertiesClosing"),
   },
   reiser: {
     laLiviniere: pathForAssetId("reiser.laLiviniere"),

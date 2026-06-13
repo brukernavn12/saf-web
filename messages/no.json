@@ -6,6 +6,7 @@
   "nav": {
     "trips": "Reiser",
     "privateTrips": "Privatreiser",
+    "languedoc": "Languedoc",
     "about": "Om oss",
     "faq": "FAQ",
     "contact": "Kontakt",
@@ -207,9 +208,36 @@
     "description": "Praktisk informasjon om reiser, booking og opphold.",
     "comingSoon": "FAQ-innhold kommer snart."
   },
+  "languedoc": {
+    "title": "Languedoc",
+    "subtitle": "Ekte, varmt og litt mindre polert.",
+    "intro": "Languedoc er noe eget – en region som ikke har brukt de siste femti årene på å gjøre seg klar for turister, men på å dyrke jord og leve godt. Her finner du landsbyer, vinmarker, markedshaller, kyst, fjell og arkitektur med sterke historier – uten at alt føles pakket inn som en turistbrosjyre.",
+    "where": {
+      "title": "Hvor vi er",
+      "body": "Basen vår er i Minervois – en av Languedocs mest spennende vinregioner, mellom Middelhavet og fjellkjeden Montagne Noire. Sør for oss ligger Pyreneene. I Minervois er alt innen rekkevidde."
+    },
+    "stay": {
+      "title": "Hvor du bor",
+      "body": "Vi er et lite selskap som legger stor vekt på personlig oppfølging og kvalitet. Våre reiser gjennomføres i små grupper, der nærheten gir rom for ekte opplevelser. Vi disponerer to autentiske steinhus fra 1800-tallet – nøye restaurert for å kombinere historisk sjarm med moderne komfort. Originale flisegulv og håndsmidde hengsler side om side med komfortable senger. Når vi sier at du bor som en lokal, er det nesten en underdrivelse – her bor du både mer romslig og mer komfortabelt enn det som er vanlig i området.",
+      "hirondelle": {
+        "title": "L'Hirondelle",
+        "body": "En klassisk maison maître fra 1820, med høye rom og en eleganse som sitter i veggene."
+      },
+      "villaBelle": {
+        "title": "Villa Belle",
+        "body": "Et solid stenhus fra 1850 med tykke steinvegger, romslige fellesarealer og en hage som inviterer til lange kvelder."
+      },
+      "closing": "Begge eiendommene har basseng, hage og patio – og begge ligger midt i det hverdagslivet vi vil at du skal oppleve."
+    },
+    "statement": "Languedoc er der Frankrike ennå ikke er ferdig med å overraske deg."
+  },
   "contact": {
     "title": "Kontakt oss",
-    "description": "Vi svarer gjerne på spørsmål om reiser, datoer og privatløsninger.",
+    "description": "Vi svarer gjerne på spørsmål.",
+    "greeting": "Vi gleder oss til å høre fra deg!",
+    "elisabeth": "Elisabeth",
+    "morten": "Morten",
+    "emailLabel": "E-post",
     "name": "Navn",
     "email": "E-post",
     "phone": "Telefon",
