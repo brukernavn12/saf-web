@@ -139,6 +139,7 @@ export const IMAGE_CATALOG: Record<string, ImageAsset> = {
     ["vineyard", "harvest"]
   ),
   "reiser.ina": asset("reiser.ina", "om-oss", "Ina.webp", ["food", "team"]),
+  "reiser.anne": asset("reiser.anne", "om-oss", "Anne.jpg", ["team", "vineyard"]),
 };
 
 /** Explicit context → image id assignments (each image id appears at most once). */
@@ -154,8 +155,9 @@ export const IMAGE_ASSIGNMENTS: Record<string, string> = {
   "logo.mark": "logo.mark",
   "logo.withTagline": "logo.withTagline",
 
-  "trip.vin-vingarder-minervois": "reiser.laLiviniere",
-  "trip.vin-vingarder-minervois.gallery.0": "reiser.fontfroide",
+  "trip.vin-vingarder-minervois": "reiser.anne",
+  "trip.vin-vingarder-minervois.gallery.0": "reiser.laLiviniere",
+  "trip.vin-vingarder-minervois.gallery.1": "reiser.fontfroide",
 
   "trip.smak-languedoc": "reiser.mat",
   "trip.smak-languedoc.gallery.0": "reiser.halles",
