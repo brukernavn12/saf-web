@@ -1,10 +1,16 @@
 import type { Locale } from "@/types";
 
-type MessageNode = string | MessageTree;
+type MessageNode = string | string[] | MessageTree;
 type MessageTree = { [key: string]: MessageNode };
 
 function isMessageTree(value: unknown): value is MessageTree {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return (
+    Array.isArray(value) && value.every((item) => typeof item === "string")
+  );
 }
 
 function hasMessageValue(value: unknown): value is string {
@@ -26,6 +32,11 @@ export function mergeMessagesWithFallback(
       result[key] = isMessageTree(overrideValue)
         ? mergeMessagesWithFallback(baseValue, overrideValue)
         : baseValue;
+      continue;
+    }
+
+    if (isStringArray(baseValue)) {
+      result[key] = isStringArray(overrideValue) ? overrideValue : baseValue;
       continue;
     }
 
@@ -78,6 +89,16 @@ function syncNode(
         addedKeys.push(path);
       }
       result[key] = syncedChild;
+      continue;
+    }
+
+    if (isStringArray(noValue)) {
+      if (!(key in localeNode) || !isStringArray(localeValue)) {
+        result[key] = noValue;
+        if (!(key in localeNode)) {
+          addedKeys.push(path);
+        }
+      }
       continue;
     }
 

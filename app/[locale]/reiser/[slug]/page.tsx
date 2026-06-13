@@ -2,18 +2,21 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getTripWithDepartures } from "@/lib/trips";
+import { formatLocalizedPriceInfoLines, resolveEurToNokRate } from "@/lib/pricing";
 import { Section } from "@/components/ui/Section";
 import { TripBookingSection } from "@/components/reiser/TripBookingSection";
 import { TripItinerarySection } from "@/components/reiser/TripItinerarySection";
+import { TripParticipationSection } from "@/components/reiser/TripParticipationSection";
 import type { Locale } from "@/types";
 import {
   formatTripListPrice,
   formatTripPriceInfoLines,
-  getLocalizedItinerary,
+  getLocalizedGroupSize,
   getLocalizedPriceInfo,
   getLocalizedTripField,
   getLocalizedTripStringArray,
   getTripImage,
+  getTripProgramEntries,
   showTripStandardPrice,
 } from "@/lib/utils";
 
@@ -60,19 +63,23 @@ export default async function TripDetailPage({
   }
 
   const { trip, departures } = result;
+  const eurToNokRate = resolveEurToNokRate(null, trip);
   const title = getLocalizedTripField(trip, "title", locale) ?? trip.title_no;
   const tagline = getLocalizedTripField(trip, "tagline", locale);
   const description = getLocalizedTripField(trip, "description", locale);
   const includes = getLocalizedTripStringArray(trip, "includes", locale);
   const excludes = getLocalizedTripStringArray(trip, "excludes", locale);
-  const itinerary = getLocalizedItinerary(trip, locale);
+  const program = getTripProgramEntries(trip, locale);
   const priceInfo = getLocalizedPriceInfo(trip, locale);
+  const priceInfoLines = priceInfo
+    ? locale === "no"
+      ? formatTripPriceInfoLines(priceInfo)
+      : eurToNokRate != null
+        ? formatLocalizedPriceInfoLines(priceInfo, locale, eurToNokRate)
+        : formatTripPriceInfoLines(priceInfo)
+    : null;
   const heroImage = getTripImage(trip);
-  const difficultyKey = trip.difficulty_level?.toLowerCase();
-  const difficultyLabel =
-    difficultyKey === "lett" || difficultyKey === "middels"
-      ? t(`difficultyLevels.${difficultyKey}`)
-      : trip.difficulty_level;
+  const groupSize = getLocalizedGroupSize(trip, locale);
   const categoryLabel = getTripCategoryLabel(trip.category, t);
 
   return (
@@ -123,14 +130,14 @@ export default async function TripDetailPage({
               </p>
             </div>
           )}
-          {(priceInfo || showTripStandardPrice(trip)) && (
-            <div className={priceInfo ? "min-w-full sm:min-w-[280px] flex-1" : undefined}>
+          {(priceInfoLines || showTripStandardPrice(trip)) && (
+            <div className={priceInfoLines ? "min-w-full sm:min-w-[280px] flex-1" : undefined}>
               <p className="text-xs uppercase tracking-wider text-text/50">
                 {t("price")}
               </p>
-              {priceInfo ? (
+              {priceInfoLines ? (
                 <ul className="mt-2 space-y-1.5 font-medium text-primary">
-                  {formatTripPriceInfoLines(priceInfo).map((line) => (
+                  {priceInfoLines.map((line) => (
                     <li key={line} className="leading-snug">
                       {line}
                     </li>
@@ -138,19 +145,9 @@ export default async function TripDetailPage({
                 </ul>
               ) : (
                 <p className="mt-1 font-medium text-primary">
-                  {formatTripListPrice(trip, locale)}
+                  {formatTripListPrice(trip, locale, eurToNokRate)}
                 </p>
               )}
-            </div>
-          )}
-          {difficultyLabel && (
-            <div>
-              <p className="text-xs uppercase tracking-wider text-text/50">
-                {t("difficulty")}
-              </p>
-              <p className="mt-1 font-medium capitalize text-primary">
-                {difficultyLabel}
-              </p>
             </div>
           )}
           {trip.meeting_point && (
@@ -163,14 +160,12 @@ export default async function TripDetailPage({
               </p>
             </div>
           )}
-          {trip.min_persons_to_confirm > 0 && (
-            <div className="min-w-full sm:min-w-[240px]">
+          {groupSize && (
+            <div>
               <p className="text-xs uppercase tracking-wider text-text/50">
-                {t("confirmation")}
+                {t("groupSize")}
               </p>
-              <p className="mt-1 font-medium text-primary">
-                {t("confirmMinimum", { count: trip.min_persons_to_confirm })}
-              </p>
+              <p className="mt-1 font-medium text-primary">{groupSize}</p>
             </div>
           )}
         </div>
@@ -185,10 +180,19 @@ export default async function TripDetailPage({
           </div>
         )}
 
-        {itinerary && itinerary.length > 0 && (
+        <div className={description ? "mt-14" : "mt-10"}>
+          <TripBookingSection
+            trip={trip}
+            departures={departures}
+            locale={locale}
+            eurToNokRate={eurToNokRate}
+          />
+        </div>
+
+        {program && program.length > 0 && (
           <TripItinerarySection
-            itinerary={itinerary}
-            title={t("itinerary")}
+            itinerary={program}
+            title={t("program")}
             locale={locale}
           />
         )}
@@ -232,13 +236,7 @@ export default async function TripDetailPage({
           )}
         </div>
 
-        <div className="mt-16">
-          <TripBookingSection
-            trip={trip}
-            departures={departures}
-            locale={locale}
-          />
-        </div>
+        <TripParticipationSection locale={locale} />
       </Section>
     </>
   );

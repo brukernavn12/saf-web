@@ -1,5 +1,11 @@
 import { getTripImageUrls } from "@/lib/image-registry";
 import { locales, type Locale } from "@/lib/locales";
+import {
+  convertEurToDisplayNok,
+  extractFirstPriceToken,
+  formatLocalizedPriceInfoLines,
+  resolveEurToNokRate,
+} from "@/lib/pricing";
 import type { Departure, Trip } from "@/types";
 
 function normalizeLocalImagePath(path: string): string {
@@ -81,26 +87,65 @@ export function formatTripPriceInfoLines(priceInfo: string): string[] {
     .filter(Boolean);
 }
 
-/** Short label for trip cards, e.g. "fra kr 4.500". */
-export function getTripCardPriceLabel(trip: Trip): string | null {
+/** Short label for trip cards, e.g. "fra kr 19.200" / "from €1,753". */
+export function getTripCardPriceLabel(
+  trip: Trip,
+  locale: Locale = "no",
+  eurToNokRate?: number | null
+): string | null {
   if (!hasPackagePricing(trip)) {
     return null;
   }
-  const match = trip.price_info!.match(/kr\s*[\d.]+/i);
-  return match ? `fra ${match[0].trim()}` : null;
+
+  const priceInfo =
+    locale === "en" && trip.price_info_en?.trim()
+      ? trip.price_info_en
+      : trip.price_info!;
+  const rate = resolveEurToNokRate(eurToNokRate, trip);
+
+  if (rate == null) {
+    const match = priceInfo.match(/(?:kr\s*[\d.]+|€[\d.,\s]+|NOK\s*[\d,]+)/i);
+    return match ? `fra ${match[0].trim()}` : null;
+  }
+
+  const lines = formatLocalizedPriceInfoLines(priceInfo, locale, rate);
+  const token = lines[0] ? extractFirstPriceToken(lines[0]) : null;
+  if (!token) {
+    return null;
+  }
+
+  const prefix = locale === "en" ? "from" : "fra";
+  return `${prefix} ${token}`;
 }
 
-export function formatTripListPrice(trip: Trip, locale: Locale = "no"): string {
+export function formatTripListPrice(
+  trip: Trip,
+  locale: Locale = "no",
+  eurToNokRate?: number | null
+): string {
   if (hasPackagePricing(trip)) {
-    return getTripCardPriceLabel(trip) ?? trip.price_info!;
+    return (
+      getTripCardPriceLabel(trip, locale, eurToNokRate) ?? trip.price_info!
+    );
   }
+
+  if (locale === "en") {
+    return formatPriceEur(trip.base_price_eur, locale);
+  }
+
   if (usesNokPricing(trip)) {
     return formatPriceNok(trip.price_nok, locale);
   }
-  if (trip.base_price_eur > 0) {
-    return formatPriceEur(trip.base_price_eur, locale);
+
+  const rate = resolveEurToNokRate(null, trip);
+  if (rate != null && trip.base_price_eur > 0) {
+    return formatPriceNok(
+      convertEurToDisplayNok(trip.base_price_eur, rate),
+      locale
+    );
   }
-  return formatPriceEur(0, locale);
+
+  return formatPriceEur(trip.base_price_eur, locale);
 }
 
 export function showTripStandardPrice(trip: Trip): boolean {
@@ -110,26 +155,49 @@ export function showTripStandardPrice(trip: Trip): boolean {
 export function formatDeparturePrice(
   trip: Trip,
   priceEur: number | null | undefined,
-  locale: Locale = "no"
+  locale: Locale = "no",
+  eurToNokRate?: number | null
 ): string | null {
   if (priceEur == null) {
     return null;
   }
-  if (usesNokPricing(trip)) {
+
+  if (locale === "en") {
+    return formatPriceEur(priceEur, locale);
+  }
+
+  if (usesNokPricing(trip) && trip.base_price_eur > 0) {
     return formatPriceNok(eurToDisplayNok(priceEur, trip), locale);
   }
+
+  const rate = resolveEurToNokRate(null, trip);
+  if (rate != null) {
+    return formatPriceNok(convertEurToDisplayNok(priceEur, rate), locale);
+  }
+
   return formatPriceEur(priceEur, locale);
 }
 
-/** Format a EUR-based booking amount for display (scales to NOK when trip uses price_nok). */
+/** Format a EUR-based booking amount for display. */
 export function formatTripAmount(
   eur: number,
   trip: Pick<Trip, "price_nok" | "base_price_eur">,
-  locale: Locale = "no"
+  locale: Locale = "no",
+  eurToNokRate?: number | null
 ): string {
+  if (locale === "en") {
+    return formatPriceEur(eur, locale);
+  }
+
   if (usesNokPricing(trip)) {
     return formatPriceNok(eurToDisplayNok(eur, trip), locale);
   }
+
+  const rate = resolveEurToNokRate(null, trip);
+  if (rate != null) {
+    return formatPriceNok(convertEurToDisplayNok(eur, rate), locale);
+  }
+
   return formatPriceEur(eur, locale);
 }
 
@@ -288,14 +356,66 @@ export function getLocalizedItinerary(
   trip: Trip,
   locale: Locale
 ): string[] | null {
-  if (locale === "en") {
-    const en = normalizeTripItinerary(trip.itinerary_en);
-    if (en?.length) {
-      return en;
+  for (const loc of localizedFieldChain(locale)) {
+    const key = loc === "en" ? "itinerary_en" : "itinerary";
+    const value = normalizeTripItinerary(trip[key as keyof Trip]);
+    if (value?.length) {
+      return value;
     }
   }
 
-  return normalizeTripItinerary(trip.itinerary);
+  return null;
+}
+
+function readLocalizedProgramText(trip: Trip, locale: Locale): string | null {
+  for (const loc of localizedFieldChain(locale)) {
+    const key = loc === "en" ? "program_en" : "program_no";
+    const value = trip[key as keyof Trip];
+    if (typeof value === "string" && value.trim() !== "") {
+      return value.trim();
+    }
+  }
+
+  return null;
+}
+
+/** Split full program text into day blocks ("Dag 1: …" per block, body may span lines). */
+export function parseProgramTextToEntries(text: string): string[] {
+  return text
+    .split(/\n(?=(?:Dag|Day)\s+\d+\s*:)/i)
+    .map((block) => block.trim())
+    .filter(Boolean);
+}
+
+/** Single source for trip program: program_no/en text, else itinerary array. */
+export function getTripProgramEntries(
+  trip: Trip,
+  locale: Locale
+): string[] | null {
+  const programText = readLocalizedProgramText(trip, locale);
+  if (programText) {
+    const entries = parseProgramTextToEntries(programText);
+    if (entries.length > 0) {
+      return entries;
+    }
+  }
+
+  return getLocalizedItinerary(trip, locale);
+}
+
+export function getLocalizedGroupSize(
+  trip: Trip,
+  locale: Locale
+): string | null {
+  for (const loc of localizedFieldChain(locale)) {
+    const key = loc === "en" ? "group_size_en" : "group_size_no";
+    const value = trip[key as keyof Trip];
+    if (typeof value === "string" && value.trim() !== "") {
+      return value.trim();
+    }
+  }
+
+  return null;
 }
 
 export function getLocalizedPriceInfo(
@@ -373,18 +493,33 @@ export function parseItineraryDay(
   index: number,
   locale: Locale = "no"
 ): { day: string; description: string } {
-  const trimmed = entry.trim();
-  const match = trimmed.match(/^Dag\s+(\d+)\s*:\s*(.+)$/i);
+  const lines = entry
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const trimmed = lines.join("\n").trim();
+  const firstLine = lines[0] ?? trimmed;
+  const match = firstLine.match(/^Dag\s+(\d+)\s*:\s*(.*)$/i);
   if (match) {
+    const bodyLines = [
+      match[2].trim(),
+      ...lines.slice(1).map((line) => line.trim()).filter(Boolean),
+    ].filter(Boolean);
+
     return {
       day: locale === "en" ? `Day ${match[1]}` : `Dag ${match[1]}`,
-      description: match[2].trim(),
+      description: bodyLines.join("\n"),
     };
   }
 
-  const enMatch = trimmed.match(/^Day\s+(\d+)\s*:\s*(.+)$/i);
+  const enMatch = firstLine.match(/^Day\s+(\d+)\s*:\s*(.*)$/i);
   if (enMatch) {
-    return { day: `Day ${enMatch[1]}`, description: enMatch[2].trim() };
+    const bodyLines = [
+      enMatch[2].trim(),
+      ...lines.slice(1).map((line) => line.trim()).filter(Boolean),
+    ].filter(Boolean);
+
+    return { day: `Day ${enMatch[1]}`, description: bodyLines.join("\n") };
   }
 
   return {

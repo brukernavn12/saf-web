@@ -17,7 +17,7 @@ export function TripItinerarySection({
   }
 
   return (
-    <section className="mt-14 max-w-3xl">
+    <section id="program" className="mt-14 max-w-3xl scroll-mt-32">
       <h2 className="font-serif text-2xl text-primary md:text-3xl">{title}</h2>
       <ol className="mt-6 divide-y divide-primary/10 border-y border-primary/10">
         {itinerary.map((entry, index) => {
@@ -31,7 +31,16 @@ export function TripItinerarySection({
               <span className="shrink-0 font-serif text-sm font-medium tracking-wide text-accent">
                 {day}
               </span>
-              <p className="text-sm leading-relaxed text-text/80">{description}</p>
+              <div className="text-sm leading-relaxed text-text/80">
+                {description.split("\n").map((paragraph, paragraphIndex) => (
+                  <p
+                    key={paragraphIndex}
+                    className={paragraphIndex > 0 ? "mt-3" : undefined}
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </li>
           );
         })}

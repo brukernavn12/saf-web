@@ -27,6 +27,12 @@ function mapTrip(row: Record<string, unknown>): Trip {
       typeof row.price_info_en === "string" ? row.price_info_en : null,
     itinerary: normalizeTripItinerary(row.itinerary),
     itinerary_en: normalizeTripItinerary(row.itinerary_en),
+    program_no: typeof row.program_no === "string" ? row.program_no : null,
+    program_en: typeof row.program_en === "string" ? row.program_en : null,
+    group_size_no:
+      typeof row.group_size_no === "string" ? row.group_size_no : null,
+    group_size_en:
+      typeof row.group_size_en === "string" ? row.group_size_en : null,
     interest_only: Boolean(row.interest_only),
     single_room_supplement_eur: row.single_room_supplement_eur
       ? Number(row.single_room_supplement_eur)
@@ -87,6 +93,30 @@ async function getActiveTripsByVisibility(isPrivate: boolean): Promise<Trip[]> {
   return sortTrips((data ?? []).map(mapTrip));
 }
 
+function sortTripsByDeparture(
+  items: { trip: Trip; departures: Departure[] }[]
+): { trip: Trip; departures: Departure[] }[] {
+  return [...items].sort((a, b) => {
+    const aStart = a.departures[0]?.start_date;
+    const bStart = b.departures[0]?.start_date;
+    const aHasDate = Boolean(aStart);
+    const bHasDate = Boolean(bStart);
+
+    if (aHasDate !== bHasDate) {
+      return aHasDate ? 1 : -1;
+    }
+
+    if (aStart && bStart && aStart !== bStart) {
+      return aStart.localeCompare(bStart);
+    }
+
+    return (
+      new Date(a.trip.created_at).getTime() -
+      new Date(b.trip.created_at).getTime()
+    );
+  });
+}
+
 async function attachDeparturesToTrips(
   trips: Trip[]
 ): Promise<{ trip: Trip; departures: Departure[] }[]> {
@@ -109,7 +139,9 @@ async function attachDeparturesToTrips(
 
   if (error) {
     console.error("Failed to fetch departures:", error.message, error.details);
-    return trips.map((trip) => ({ trip, departures: [] }));
+    return sortTripsByDeparture(
+      trips.map((trip) => ({ trip, departures: [] }))
+    );
   }
 
   const departuresByTrip = new Map<string, Departure[]>();
@@ -120,20 +152,22 @@ async function attachDeparturesToTrips(
     departuresByTrip.set(departure.trip_id, list);
   }
 
-  return trips.flatMap((trip) => {
-    const allDepartures = departuresByTrip.get(trip.id) ?? [];
-    const upcomingDepartures = allDepartures.filter(isUpcomingDeparture);
+  return sortTripsByDeparture(
+    trips.flatMap((trip) => {
+      const allDepartures = departuresByTrip.get(trip.id) ?? [];
+      const upcomingDepartures = allDepartures.filter(isUpcomingDeparture);
 
-    if (trip.interest_only || allDepartures.length === 0) {
+      if (trip.interest_only || allDepartures.length === 0) {
+        return [{ trip, departures: upcomingDepartures }];
+      }
+
+      if (upcomingDepartures.length === 0) {
+        return [];
+      }
+
       return [{ trip, departures: upcomingDepartures }];
-    }
-
-    if (upcomingDepartures.length === 0) {
-      return [];
-    }
-
-    return [{ trip, departures: upcomingDepartures }];
-  });
+    })
+  );
 }
 
 export async function getActiveTripsWithDepartures(): Promise<

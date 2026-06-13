@@ -7,11 +7,7 @@ import type { Departure, Locale, Trip } from "@/types";
 import { cn } from "@/lib/utils";
 import {
   formatDepartureCardRange,
-  formatTripListPrice,
-  getTripCardPriceLabel,
   getTripImage,
-  hasPackagePricing,
-  showTripStandardPrice,
 } from "@/lib/utils";
 
 interface TripCardProps {
@@ -20,21 +16,8 @@ interface TripCardProps {
   locale: Locale;
   title: string;
   tagline: string | null;
+  priceLabel?: string | null;
   reverse?: boolean;
-}
-
-function getCardPriceLabel(
-  trip: Trip,
-  locale: Locale,
-  t: ReturnType<typeof useTranslations<"trips">>
-): string | null {
-  if (hasPackagePricing(trip)) {
-    return getTripCardPriceLabel(trip) ?? t("packagePricing");
-  }
-  if (showTripStandardPrice(trip)) {
-    return t("fromPrice", { price: formatTripListPrice(trip, locale) });
-  }
-  return null;
 }
 
 export function TripCard({
@@ -43,12 +26,12 @@ export function TripCard({
   locale,
   title,
   tagline,
+  priceLabel = null,
   reverse = false,
 }: TripCardProps) {
   const t = useTranslations("trips");
   const image = getTripImage(trip);
   const nearestDeparture = departures[0];
-  const priceLabel = getCardPriceLabel(trip, locale, t);
 
   return (
     <article className="group">

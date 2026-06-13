@@ -9,7 +9,7 @@ import {
   convertEurToNok,
   MIN_BOOKING_PERSONS,
 } from "@/lib/payment";
-import { formatTripAmount, usesNokPricing } from "@/lib/utils";
+import { formatTripAmount } from "@/lib/utils";
 import type { Departure, Locale, Trip } from "@/types";
 
 interface BookingFormProps {
@@ -24,6 +24,7 @@ interface BookingFormProps {
   departureId?: string;
   departures: Departure[];
   locale: Locale;
+  eurToNokRate?: number | null;
 }
 
 export function BookingForm({
@@ -32,6 +33,7 @@ export function BookingForm({
   departureId,
   departures,
   locale,
+  eurToNokRate = null,
 }: BookingFormProps) {
   const t = useTranslations("tripDetail");
   const contact = useTranslations("contact");
@@ -41,16 +43,22 @@ export function BookingForm({
   const [roomPreference, setRoomPreference] = useState<
     "share_with_named" | "open_to_share"
   >("open_to_share");
-  const [eurToNokRate, setEurToNokRate] = useState<number | null>(null);
+  const [eurToNokRateLive, setEurToNokRateLive] = useState<number | null>(null);
 
   useEffect(() => {
+    if (eurToNokRate != null) {
+      return;
+    }
+
     fetch("/api/exchange-rate")
       .then((res) => res.json())
       .then((data: { rate: number | null }) => {
-        setEurToNokRate(data.rate ?? null);
+        setEurToNokRateLive(data.rate ?? null);
       })
-      .catch(() => setEurToNokRate(null));
-  }, []);
+      .catch(() => setEurToNokRateLive(null));
+  }, [eurToNokRate]);
+
+  const displayRate = eurToNokRate ?? eurToNokRateLive;
 
   const selectedDeparture = departures.find((d) => d.id === departureId);
   const minPersons = Math.max(
@@ -59,7 +67,6 @@ export function BookingForm({
   );
   const pricePerPerson = selectedDeparture?.price_eur ?? trip.base_price_eur;
   const singleRoomSupplementEur = trip.single_room_supplement_eur;
-  const pricedInNok = usesNokPricing(trip);
   const {
     totalEur,
     depositEur,
@@ -74,7 +81,7 @@ export function BookingForm({
   );
   const depositPerPerson = Math.round(depositEur / persons);
   const depositNok =
-    eurToNokRate != null ? convertEurToNok(depositEur, eurToNokRate) : null;
+    displayRate != null ? convertEurToNok(depositEur, displayRate) : null;
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -197,7 +204,7 @@ export function BookingForm({
         {includesSingleSupplement && (
           <p className="text-text/70">
             {t("includesSingleSupplement", {
-              amount: formatTripAmount(singleSupplementEur, trip, locale),
+              amount: formatTripAmount(singleSupplementEur, trip, locale, displayRate),
             })}
           </p>
         )}
@@ -205,17 +212,17 @@ export function BookingForm({
         <p className="font-medium text-primary">
           {t("depositForPersons", {
             count: persons,
-            deposit: formatTripAmount(depositEur, trip, locale),
-            perPerson: formatTripAmount(depositPerPerson, trip, locale),
+            deposit: formatTripAmount(depositEur, trip, locale, displayRate),
+            perPerson: formatTripAmount(depositPerPerson, trip, locale, displayRate),
           })}
         </p>
         <p className="font-medium text-primary">
           {t("totalTripPrice", {
             count: persons,
-            total: formatTripAmount(totalEur, trip, locale),
+            total: formatTripAmount(totalEur, trip, locale, displayRate),
           })}
         </p>
-        {!pricedInNok && depositNok != null && (
+        {locale === "en" && depositNok != null && (
           <p className="text-text/60">
             {t("approxNok", {
               amount: depositNok.toLocaleString(

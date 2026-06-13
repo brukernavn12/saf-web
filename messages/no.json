@@ -113,7 +113,11 @@
     "includes": "Dette er inkludert",
     "excludes": "Ikke inkludert",
     "itinerary": "Program dag for dag",
+    "program": "Program",
     "departures": "Kommende avganger",
+    "tripDates": "Reisedatoer",
+    "bookTrip": "Bestill reise",
+    "bookingIntro": "Velg avgang og fyll ut skjemaet.",
     "noDepartures": "Ingen avganger er satt opp ennå.",
     "spotsLeft": "{count} plasser igjen",
     "bookNow": "Send forespørsel",
@@ -123,6 +127,7 @@
     "minPersonsBooking": "Minimum {count} personer per bestilling",
     "confirmMinimum": "Reisen bekreftes ved minimum {count} deltakere.",
     "confirmation": "Bekreftelse",
+    "groupSize": "Antall deltagere",
     "roomPreference": "Romønsker",
     "roomShareWithNamed": "Jeg reiser med [navn] og ønsker å dele rom",
     "roomMateName": "Navn på reisefølge",
@@ -132,10 +137,27 @@
     "days": "{count} dager",
     "nights": "{count} netter",
     "price": "Pris",
-    "difficulty": "Nivå",
-    "difficultyLevels": {
-      "lett": "Lett",
-      "middels": "Middels"
+    "participation": {
+      "fitness": {
+        "title": "Fysisk form, mobilitet og helse",
+        "intro": "Turen har normalt et behagelig tempo, men underveis kan det forekomme:",
+        "considerations": [
+          "brostein og ujevnt underlag",
+          "trapper og stigninger",
+          "mye gåing og ståing"
+        ],
+        "recommendation": "Arrangøren anbefaler at du har normal bevegelighet og god balanse for å delta.",
+        "disclosure": "Dersom du har redusert bevegelighet, funksjonsnedsettelse eller helsemessige forhold som kan påvirke din deltakelse, skal dette opplyses til arrangøren før bestilling eller senest umiddelbart etter bestilling.",
+        "accommodation": "Arrangøren vil så langt det er praktisk og sikkerhetsmessig forsvarlig forsøke å tilrettelegge, men kan ikke garantere at alle aktiviteter er tilgjengelige for alle.",
+        "safety": "Arrangøren kan av sikkerhetshensyn nekte eller begrense din deltakelse i enkelte aktiviteter dersom din fysiske form eller helsetilstand gjør det uforsvarlig for deg selv, øvrige deltakere eller leverandører. I slike tilfeller gis det normalt ikke refusjon for den aktuelle aktiviteten.",
+        "contact": "Er du usikker på om turen passer for deg, oppfordres du til å kontakte arrangøren i forkant – målet er at alle gjester skal føle seg trygge og godt ivaretatt."
+      },
+      "age": {
+        "title": "Aldersgrense",
+        "intro": "Reisene er særlig rettet mot voksne livsnytere som setter pris på god mat, vin og kultur. De fleste reiser er tilpasset deltakere over 40 år, men også deltakere over 30 år som har interesse for konseptet er velkomne.",
+        "minimum": "Det er 18-års aldersgrense for å delta på reisene, med mindre annet er uttrykkelig angitt i programmet. Barn (personer under 18 år) kan derfor som hovedregel ikke delta på arrangørens standardreiser.",
+        "exceptions": "Enkelte reiser kan ha egne aldersgrenser eller anbefalinger; dette vil i så fall fremgå av reisebeskrivelsen."
+      }
     },
     "categories": {
       "vin-gastronomi": "Vin & gastronomi",

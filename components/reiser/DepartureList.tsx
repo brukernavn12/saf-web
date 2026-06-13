@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import type { Departure, Locale, Trip } from "@/types";
-import { formatDate, formatDeparturePrice } from "@/lib/utils";
+import { cn, formatDate, formatDeparturePrice } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 
 export type DepartureFormType = "booking" | "interest";
@@ -11,26 +11,30 @@ interface DepartureListProps {
   trip: Trip;
   departures: Departure[];
   locale: Locale;
+  eurToNokRate?: number | null;
   activeDepartureId?: string;
   activeForm: DepartureFormType | null;
   onShowBooking: (departureId: string) => void;
   onShowInterest: (departureId: string) => void;
+  hideTitle?: boolean;
 }
 
 export function DepartureList({
   trip,
   departures,
   locale,
+  eurToNokRate = null,
   activeDepartureId,
   activeForm,
   onShowBooking,
   onShowInterest,
+  hideTitle = false,
 }: DepartureListProps) {
   const t = useTranslations("tripDetail");
 
   if (departures.length === 0) {
     return (
-      <p className="border border-primary/10 bg-white p-6 text-text/70">
+      <p className="bg-cream-dark px-8 py-10 text-sm leading-relaxed text-text/70">
         {t("noDepartures")}
       </p>
     );
@@ -38,65 +42,84 @@ export function DepartureList({
 
   return (
     <div>
-      <h3 className="font-serif text-2xl text-primary">{t("departures")}</h3>
-      <ul className="mt-6 divide-y divide-primary/10 border border-primary/10">
+      {!hideTitle && (
+        <h3 className="font-serif text-xl text-primary">{t("departures")}</h3>
+      )}
+      <ul className={cn("space-y-4", !hideTitle && "mt-6")}>
         {departures.map((departure) => {
           const isActive = activeDepartureId === departure.id;
           const price = formatDeparturePrice(
             trip,
             departure.price_eur ?? trip.base_price_eur,
-            locale
+            locale,
+            eurToNokRate
           );
 
           return (
             <li
               key={departure.id}
-              className={`flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between ${
-                isActive ? "bg-primary/5" : "bg-white"
-              }`}
+              className={cn(
+                "bg-cream-dark px-8 py-8 transition-colors md:px-10 md:py-9",
+                isActive && "ring-1 ring-primary/15"
+              )}
             >
-              <div>
-                <p className="font-medium text-primary">
-                  {formatDate(departure.start_date, locale)} –{" "}
-                  {formatDate(departure.end_date, locale)}
-                </p>
-                {departure.guide_name && (
-                  <p className="mt-1 text-sm text-text/60">
-                    {t("guide")}: {departure.guide_name}
+              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                <div className="min-w-0 flex-1">
+                  <p className="font-serif text-xl leading-snug text-primary md:text-2xl">
+                    {formatDate(departure.start_date, locale, {
+                      day: "numeric",
+                      month: "long",
+                    })}{" "}
+                    –{" "}
+                    {formatDate(departure.end_date, locale, {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
                   </p>
-                )}
-                {departure.notes && (
-                  <p className="mt-1 text-sm text-text/60">{departure.notes}</p>
-                )}
-              </div>
-              <div className="flex flex-col items-start gap-3 sm:items-end">
-                {price != null && (
-                  <p className="font-medium text-primary">{price}</p>
-                )}
-                <p className="text-sm text-accent">
-                  {t("spotsLeft", { count: departure.available_spots })}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Button
-                    type="button"
-                    variant={
-                      isActive && activeForm === "booking" ? "primary" : "ghost"
-                    }
-                    className="text-xs"
-                    onClick={() => onShowBooking(departure.id)}
-                  >
-                    {t("secureSpot")}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant={
-                      isActive && activeForm === "interest" ? "primary" : "ghost"
-                    }
-                    className="text-xs"
-                    onClick={() => onShowInterest(departure.id)}
-                  >
-                    {t("expressInterest")}
-                  </Button>
+                  {(departure.guide_name || departure.notes) && (
+                    <div className="mt-3 space-y-1 text-sm leading-relaxed text-text/60">
+                      {departure.guide_name && (
+                        <p>
+                          {t("guide")}: {departure.guide_name}
+                        </p>
+                      )}
+                      {departure.notes && <p>{departure.notes}</p>}
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex shrink-0 flex-col gap-5 lg:items-end lg:text-right">
+                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 lg:justify-end">
+                    {price != null && (
+                      <p className="font-medium text-primary">{price}</p>
+                    )}
+                    <p className="text-sm text-text/50">
+                      {t("spotsLeft", { count: departure.available_spots })}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    <Button
+                      type="button"
+                      variant={
+                        isActive && activeForm === "booking" ? "primary" : "ghost"
+                      }
+                      className="px-5 py-2.5 text-xs"
+                      onClick={() => onShowBooking(departure.id)}
+                    >
+                      {t("secureSpot")}
+                    </Button>
+                    <Button
+                      type="button"
+                      variant={
+                        isActive && activeForm === "interest" ? "primary" : "ghost"
+                      }
+                      className="px-5 py-2.5 text-xs"
+                      onClick={() => onShowInterest(departure.id)}
+                    >
+                      {t("expressInterest")}
+                    </Button>
+                  </div>
                 </div>
               </div>
             </li>

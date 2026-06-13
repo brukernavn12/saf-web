@@ -113,7 +113,11 @@
     "includes": "What's included",
     "excludes": "Not included",
     "itinerary": "Day-by-day programme",
+    "program": "Programme",
     "departures": "Upcoming departures",
+    "tripDates": "Trip dates",
+    "bookTrip": "Book this trip",
+    "bookingIntro": "Choose a departure and complete the form.",
     "noDepartures": "No departures scheduled yet.",
     "spotsLeft": "{count} spots left",
     "bookNow": "Send enquiry",
@@ -123,6 +127,7 @@
     "minPersonsBooking": "Minimum {count} people per booking",
     "confirmMinimum": "The trip is confirmed with a minimum of {count} participants.",
     "confirmation": "Confirmation",
+    "groupSize": "Group size",
     "roomPreference": "Room preference",
     "roomShareWithNamed": "I am travelling with [name] and would like to share a room",
     "roomMateName": "Travel companion's name",
@@ -132,10 +137,27 @@
     "days": "{count} days",
     "nights": "{count} nights",
     "price": "Price",
-    "difficulty": "Level",
-    "difficultyLevels": {
-      "lett": "Easy",
-      "middels": "Moderate"
+    "participation": {
+      "fitness": {
+        "title": "Physical fitness, mobility and health",
+        "intro": "The trip normally has a comfortable pace, but along the way you may encounter:",
+        "considerations": [
+          "cobblestones and uneven surfaces",
+          "stairs and inclines",
+          "a lot of walking and standing"
+        ],
+        "recommendation": "The organiser recommends that you have normal mobility and good balance to participate.",
+        "disclosure": "If you have reduced mobility, a disability or health conditions that may affect your participation, this must be disclosed to the organiser before booking or at the latest immediately after booking.",
+        "accommodation": "The organiser will, as far as is practical and safe, seek to make reasonable adjustments, but cannot guarantee that all activities are accessible to everyone.",
+        "safety": "For safety reasons, the organiser may refuse or limit your participation in certain activities if your physical condition or state of health makes it unsafe for yourself, other participants or suppliers. In such cases, a refund is normally not given for the activity in question.",
+        "contact": "If you are unsure whether the trip is right for you, we encourage you to contact the organiser in advance – the aim is for all guests to feel safe and well looked after."
+      },
+      "age": {
+        "title": "Age requirement",
+        "intro": "The trips are especially aimed at adult travellers who appreciate good food, wine and culture. Most trips are designed for participants over 40, but those over 30 with an interest in the concept are also welcome.",
+        "minimum": "There is an age limit of 18 to participate in the trips, unless otherwise explicitly stated in the programme. Children (persons under 18) cannot as a rule take part in the organiser's standard trips.",
+        "exceptions": "Some trips may have their own age limits or recommendations; where applicable, this will be stated in the trip description."
+      }
     },
     "categories": {
       "vin-gastronomi": "Wine & gastronomy",

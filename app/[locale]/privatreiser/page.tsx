@@ -2,6 +2,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getPrivateTripsWithDepartures, getTripBySlug } from "@/lib/trips";
 import { isSupabaseConfigured } from "@/lib/supabase";
+import { resolveEurToNokRate } from "@/lib/pricing";
+import { getTripCardDisplayPrice } from "@/lib/trip-display-price";
 import {
   getLocalizedTripCardCopy,
   getLocalizedTripField,
@@ -25,6 +27,7 @@ export default async function PrivateTripsPage({
 }) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "privateTrips" });
+  const tripPriceT = await getTranslations({ locale, namespace: "trips" });
   const configured = isSupabaseConfigured();
   const [tripItems, featuredExample] = configured
     ? await Promise.all([
@@ -90,6 +93,16 @@ export default async function PrivateTripsPage({
           <div className="mt-8 space-y-12 md:space-y-16">
             {otherTrips.map(({ trip, departures }, index) => {
               const { title, tagline } = getLocalizedTripCardCopy(trip, locale);
+              const eurToNokRate = resolveEurToNokRate(null, trip);
+              const priceLabel = getTripCardDisplayPrice(
+                trip,
+                locale,
+                eurToNokRate,
+                {
+                  fromPrice: (values) => tripPriceT("fromPrice", values),
+                  packagePricing: tripPriceT("packagePricing"),
+                }
+              );
 
               return (
                 <TripCard
@@ -99,6 +112,7 @@ export default async function PrivateTripsPage({
                   locale={locale}
                   title={title}
                   tagline={tagline}
+                  priceLabel={priceLabel}
                   reverse={index % 2 === 1}
                 />
               );

@@ -33,6 +33,10 @@ export interface Trip {
   excludes_en: string[] | null;
   itinerary: string[] | null;
   itinerary_en: string[] | null;
+  program_no: string | null;
+  program_en: string | null;
+  group_size_no: string | null;
+  group_size_en: string | null;
   min_persons: number;
   min_persons_per_booking: number;
   min_persons_to_confirm: number;

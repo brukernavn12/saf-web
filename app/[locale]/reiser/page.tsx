@@ -1,6 +1,8 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getActiveTripsWithDepartures } from "@/lib/trips";
 import { isSupabaseConfigured } from "@/lib/supabase";
+import { resolveEurToNokRate } from "@/lib/pricing";
+import { getTripCardDisplayPrice } from "@/lib/trip-display-price";
 import { getLocalizedTripCardCopy } from "@/lib/utils";
 import { Section } from "@/components/ui/Section";
 import { TripCard } from "@/components/reiser/TripCard";
@@ -32,6 +34,11 @@ export default async function TripsPage({
         <div className="space-y-12 md:space-y-16 lg:space-y-20">
           {tripItems.map(({ trip, departures }, index) => {
             const { title, tagline } = getLocalizedTripCardCopy(trip, locale);
+            const eurToNokRate = resolveEurToNokRate(null, trip);
+            const priceLabel = getTripCardDisplayPrice(trip, locale, eurToNokRate, {
+              fromPrice: (values) => t("fromPrice", values),
+              packagePricing: t("packagePricing"),
+            });
 
             return (
               <TripCard
@@ -41,6 +48,7 @@ export default async function TripsPage({
                 locale={locale}
                 title={title}
                 tagline={tagline}
+                priceLabel={priceLabel}
                 reverse={index % 2 === 1}
               />
             );

@@ -113,7 +113,11 @@
     "includes": "Detta ingår",
     "excludes": "Ingår inte",
     "itinerary": "Program dag för dag",
+    "program": "Program",
     "departures": "Kommande avgångar",
+    "tripDates": "Resedatum",
+    "bookTrip": "Boka resa",
+    "bookingIntro": "Välj avgång och fyll i formuläret.",
     "noDepartures": "Inga avgångar är uppsatta ännu.",
     "spotsLeft": "{count} platser kvar",
     "bookNow": "Skicka förfrågan",
@@ -123,6 +127,7 @@
     "minPersonsBooking": "Minst {count} personer per bokning",
     "confirmMinimum": "Resan bekräftas vid minst {count} deltagare.",
     "confirmation": "Bekräftelse",
+    "groupSize": "Antal deltagare",
     "roomPreference": "Rumsönskemål",
     "roomShareWithNamed": "Jag reser med [namn] och önskar dela rum",
     "roomMateName": "Namn på ressällskap",
@@ -132,7 +137,28 @@
     "days": "{count} dagar",
     "nights": "{count} nätter",
     "price": "Pris",
-    "difficulty": "Nivå",
+    "participation": {
+      "fitness": {
+        "title": "Fysisk form, rörlighet och hälsa",
+        "intro": "Resan har normalt ett behagligt tempo, men längs vägen kan det förekomma:",
+        "considerations": [
+          "kullersten och ojämn mark",
+          "trappor och stigningar",
+          "mycket gång och stående"
+        ],
+        "recommendation": "Arrangören rekommenderar att du har normal rörlighet och god balans för att delta.",
+        "disclosure": "Om du har nedsatt rörlighet, funktionsnedsättning eller hälsotillstånd som kan påverka ditt deltagande ska detta meddelas arrangören före bokning eller senast omedelbart efter bokning.",
+        "accommodation": "Arrangören kommer så långt det är praktiskt och säkerhetsmässigt rimligt att försöka anpassa, men kan inte garantera att alla aktiviteter är tillgängliga för alla.",
+        "safety": "Arrangören kan av säkerhetsskäl neka eller begränsa ditt deltagande i vissa aktiviteter om din fysiska form eller hälsotillstånd gör det olämpligt för dig själv, övriga deltagare eller leverantörer. I sådana fall ges normalt ingen återbetalning för den aktuella aktiviteten.",
+        "contact": "Om du är osäker på om resan passar dig uppmuntras du att kontakta arrangören i förväg – målet är att alla gäster ska känna sig trygga och väl omhändertagna."
+      },
+      "age": {
+        "title": "Åldersgräns",
+        "intro": "Resorna riktar sig särskilt till vuxna livsnjutare som uppskattar god mat, vin och kultur. De flesta resor är anpassade för deltagare över 40 år, men även deltagare över 30 år med intresse för konceptet är välkomna.",
+        "minimum": "Det är 18-års gräns för att delta i resorna, om inte annat uttryckligen anges i programmet. Barn (personer under 18 år) kan därför som huvudregel inte delta i arrangörens standardresor.",
+        "exceptions": "Vissa resor kan ha egna åldersgränser eller rekommendationer; i så fall framgår det av resebeskrivningen."
+      }
+    },
     "meetingPoint": "Mötesplats",
     "guide": "Guide",
     "expressInterest": "Anmäl intresse",
