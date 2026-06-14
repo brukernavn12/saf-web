@@ -1,7 +1,33 @@
 {
   "metadata": {
-    "title": "Languedoc – The Taste of France",
-    "description": "Authentic journeys in southern France. Wine, gastronomy and nature with Elisabeth and Morten."
+    "siteName": "The Taste of France",
+    "home": {
+      "title": "Languedoc. Properly. – The Taste of France",
+      "description": "Authentic journeys in southern France with Norwegian hosts. Small groups, everything included, real experiences."
+    },
+    "trips": {
+      "title": "Our trips – The Taste of France",
+      "description": "Explore our trips to Languedoc. Wine, gastronomy, nature and culture in small groups with Norwegian hosts."
+    },
+    "tripDetail": {
+      "titleSuffix": " – The Taste of France"
+    },
+    "languedoc": {
+      "title": "Languedoc – Real, warm and a little less polished | The Taste of France",
+      "description": "Languedoc is something of its own – a region that has spent the last fifty years tending the land and living well, not polishing itself for tourists."
+    },
+    "about": {
+      "title": "Elisabeth and Morten – The Taste of France",
+      "description": "We know Languedoc from the inside – and design trips we would take ourselves. Meet Elisabeth and Morten behind The Taste of France."
+    },
+    "contact": {
+      "title": "Contact us – The Taste of France",
+      "description": "Questions about trips, private travel or Languedoc? Get in touch with Elisabeth and Morten – we are happy to help."
+    },
+    "privateTrips": {
+      "title": "Private trips – The Taste of France",
+      "description": "Tailor-made journeys for friends, wine clubs, associations and companies in Languedoc. Contact us for a bespoke itinerary."
+    }
   },
   "nav": {
     "trips": "Trips",
@@ -94,6 +120,31 @@
       "unsubscribe": "I can unsubscribe at any time.",
       "success": "Welcome! You're now subscribed to our newsletter.",
       "error": "We couldn't save your subscription. Please try again."
+    }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": {
+      "flights": {
+        "question": "Do you sell flights?",
+        "answer": "No – flights are booked by each guest. We recommend flying to Toulouse, Montpellier or Barcelona."
+      },
+      "included": {
+        "question": "What is included in the price?",
+        "answer": "Accommodation, all meals including drinks, local transport and a Norwegian host. See each trip for the full list."
+      },
+      "privateGroup": {
+        "question": "Can I book a trip for my group alone?",
+        "answer": "Yes – we offer tailor-made private trips for friends, wine clubs, associations and companies. Contact us for a quote."
+      },
+      "payment": {
+        "question": "What are the payment terms?",
+        "answer": "25% deposit when booking. The balance is due 30 days before departure."
+      },
+      "age": {
+        "question": "Are the trips suited to older travellers?",
+        "answer": "Yes – the pace is relaxed and suits active adults from 50 and up."
+      }
     }
   },
   "trips": {

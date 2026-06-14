@@ -1,8 +1,27 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
 import { images } from "@/lib/image-registry";
+import { getPageMetadataCopy } from "@/lib/seo-messages";
+import { buildPageMetadata } from "@/lib/seo";
 import type { Locale } from "@/types";
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const { title, description } = await getPageMetadataCopy(locale, "about");
+
+  return buildPageMetadata({
+    locale,
+    pathname: "/om-oss",
+    title,
+    description,
+    ogImage: images.omOss.elisabeth,
+  });
+}
 
 export default async function AboutPage({
   params: { locale },

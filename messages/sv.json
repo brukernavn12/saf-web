@@ -1,7 +1,33 @@
 {
   "metadata": {
-    "title": "Languedoc – Smaken av Frankrike",
-    "description": "Autentiska resor i Sydfrankrike sedan 2007. Vin, gastronomi och natur med Elisabeth och Morten."
+    "siteName": "Smaken av Frankrike",
+    "home": {
+      "title": "Languedoc. På riktigt. – Smaken av Frankrike",
+      "description": "Autentiska resor i Sydfrankrike med norska reseledare. Små grupper, allt inkluderat, äkta upplevelser."
+    },
+    "trips": {
+      "title": "Våra resor – Smaken av Frankrike",
+      "description": "Utforska våra resor till Languedoc. Vin, gastronomi, natur och kultur i små grupper med norska reseledare."
+    },
+    "tripDetail": {
+      "titleSuffix": " – Smaken av Frankrike"
+    },
+    "languedoc": {
+      "title": "Languedoc – Äkta, varmt och lite mindre polerat | Smaken av Frankrike",
+      "description": "Languedoc är något för sig – en region som inte lagt de senaste femtio åren på att göra sig redo för turister, utan på att bruka jord och leva gott."
+    },
+    "about": {
+      "title": "Elisabeth och Morten – Smaken av Frankrike",
+      "description": "Vi känner Languedoc inifrån – och arrangerar resor vi själva skulle göra. Möt Elisabeth och Morten bakom Smaken av Frankrike."
+    },
+    "contact": {
+      "title": "Kontakta oss – Smaken av Frankrike",
+      "description": "Frågor om resor, privata resor eller Languedoc? Kontakta Elisabeth och Morten – vi svarar gärna."
+    },
+    "privateTrips": {
+      "title": "Privata resor – Smaken av Frankrike",
+      "description": "Skräddarsydda resor för vänner, vinklubbar, föreningar och företag i Languedoc. Kontakta oss för ett anpassat upplägg."
+    }
   },
   "nav": {
     "trips": "Resor",
@@ -233,8 +259,28 @@
   },
   "faq": {
     "title": "Vanliga frågor",
-    "description": "Praktisk information om resor, bokning och vistelse.",
-    "comingSoon": "FAQ-innehåll kommer snart."
+    "items": {
+      "flights": {
+        "question": "Säljer ni flygbiljetter?",
+        "answer": "Nej – flyg bokas av varje gäst. Vi rekommenderar flyg till Toulouse, Montpellier eller Barcelona."
+      },
+      "included": {
+        "question": "Vad ingår i priset?",
+        "answer": "Boende, alla måltider inklusive dryck, lokal transport och norsk reseledare. Se resan för fullständig lista."
+      },
+      "privateGroup": {
+        "question": "Kan jag boka en resa för min grupp ensam?",
+        "answer": "Ja – vi erbjuder skräddarsydda privata resor för vänner, vinklubbar, föreningar och företag. Kontakta oss för offert."
+      },
+      "payment": {
+        "question": "Vad gäller för betalningsvillkor?",
+        "answer": "25 % deposition vid bokning. Restbelopp förfaller 30 dagar före avresa."
+      },
+      "age": {
+        "question": "Är resorna anpassade för äldre deltagare?",
+        "answer": "Ja – resorna har ett behagligt tempo och passar aktiva vuxna från 50 år och uppåt."
+      }
+    }
   },
   "languedoc": {
     "title": "Languedoc",

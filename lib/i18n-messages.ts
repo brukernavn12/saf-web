@@ -127,8 +127,13 @@ export async function loadLocaleMessages(locale: Locale): Promise<MessageTree> {
   }
 
   // English merges onto Norwegian: missing keys fall back to no at runtime.
-  const localeMessages = (await import(`@/messages/${locale}.json`))
-    .default as MessageTree;
+  if (locale === "en") {
+    const localeMessages = (await import("@/messages/en.json"))
+      .default as MessageTree;
+    return mergeMessagesWithFallback(noMessages, localeMessages);
+  }
 
+  const localeMessages = (await import("@/messages/sv.json"))
+    .default as MessageTree;
   return mergeMessagesWithFallback(noMessages, localeMessages);
 }

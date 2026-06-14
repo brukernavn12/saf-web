@@ -1,7 +1,7 @@
 -- Mat og vin i Languedoc med Ina (matreise-med-ina)
 -- Kjør i Supabase SQL Editor.
 --
--- Pris: EUR 1 490 per person (price_nok ikke satt).
+-- Pris: EUR 1 490 / NOK 17 500 per person.
 -- Avgang 19.–23. mai 2027 = 5 dager / 4 netter (siste dag avreise 23.).
 
 insert into trips (
@@ -63,7 +63,7 @@ $desc$,
   2,
   8,
   1490,
-  null,
+  17500,
   5,
   4,
   'lett',

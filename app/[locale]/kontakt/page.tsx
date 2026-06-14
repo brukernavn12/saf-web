@@ -1,11 +1,10 @@
-"use client";
-
-import { useState } from "react";
-import { useTranslations } from "next-intl";
+import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { ContactForm } from "@/components/kontakt/ContactForm";
 import { Section } from "@/components/ui/Section";
-import { Input } from "@/components/ui/Input";
-import { Textarea } from "@/components/ui/Textarea";
-import { Button } from "@/components/ui/Button";
+import type { Locale } from "@/lib/locales";
+import { getPageMetadataCopy } from "@/lib/seo-messages";
+import { buildPageMetadata } from "@/lib/seo";
 
 const CONTACT = {
   elisabeth: { display: "+47 90 11 74 35", tel: "+4790117435" },
@@ -14,14 +13,28 @@ const CONTACT = {
   email: "info@smakenavfrankrike.no",
 } as const;
 
-export default function ContactPage() {
-  const t = useTranslations("contact");
-  const [submitted, setSubmitted] = useState(false);
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const { title, description } = await getPageMetadataCopy(locale, "contact");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSubmitted(true);
-  }
+  return buildPageMetadata({
+    locale,
+    pathname: "/kontakt",
+    title,
+    description,
+  });
+}
+
+export default async function ContactPage({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}) {
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "contact" });
 
   return (
     <Section>
@@ -80,21 +93,7 @@ export default function ContactPage() {
           </aside>
 
           <div>
-            {submitted ? (
-              <p className="rounded border border-primary/10 bg-primary/5 p-6 text-primary">
-                {t("success")}
-              </p>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <Input label={t("name")} name="name" required />
-                <Input label={t("email")} name="email" type="email" required />
-                <Input label={t("phone")} name="phone" type="tel" />
-                <Textarea label={t("message")} name="message" required />
-                <Button type="submit" variant="ghost">
-                  {t("submit")}
-                </Button>
-              </form>
-            )}
+            <ContactForm />
           </div>
         </div>
       </div>

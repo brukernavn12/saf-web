@@ -72,6 +72,23 @@ export async function getActiveTrips(): Promise<Trip[]> {
   return getActiveTripsByVisibility(false);
 }
 
+export async function getActiveTripSlugs(): Promise<string[]> {
+  const supabase = createSupabaseClient();
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("trips")
+    .select("slug")
+    .eq("status", "active");
+
+  if (error) {
+    console.error("Failed to fetch trip slugs:", error.message, error.details);
+    return [];
+  }
+
+  return (data ?? []).map((row) => row.slug as string);
+}
+
 export async function getPrivateTrips(): Promise<Trip[]> {
   return getActiveTripsByVisibility(true);
 }

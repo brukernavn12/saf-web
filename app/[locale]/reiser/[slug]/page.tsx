@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -7,6 +8,14 @@ import { Section } from "@/components/ui/Section";
 import { TripBookingSection } from "@/components/reiser/TripBookingSection";
 import { TripItinerarySection } from "@/components/reiser/TripItinerarySection";
 import { TripParticipationSection } from "@/components/reiser/TripParticipationSection";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  buildPageMetadata,
+  buildTouristTripSchema,
+  getStrictTripMetaField,
+  tripOgImage,
+} from "@/lib/seo";
+import { getTripDetailTitleSuffix } from "@/lib/seo-messages";
 import type { Locale } from "@/types";
 import {
   formatTripListPrice,
@@ -48,6 +57,32 @@ function getTripCategoryLabel(
   return category;
 }
 
+export async function generateMetadata({
+  params: { locale, slug },
+}: {
+  params: { locale: Locale; slug: string };
+}): Promise<Metadata> {
+  const result = await getTripWithDepartures(slug);
+
+  if (!result) {
+    return {};
+  }
+
+  const { trip } = result;
+  const tripTitle = getStrictTripMetaField(trip, "title", locale);
+  const description = getStrictTripMetaField(trip, "tagline", locale);
+  const suffix = await getTripDetailTitleSuffix(locale);
+  const title = tripTitle ? `${tripTitle}${suffix}` : "";
+
+  return buildPageMetadata({
+    locale,
+    pathname: `/reiser/${slug}`,
+    title,
+    description,
+    ogImage: tripOgImage(trip),
+  });
+}
+
 export default async function TripDetailPage({
   params: { locale, slug },
 }: {
@@ -84,6 +119,7 @@ export default async function TripDetailPage({
 
   return (
     <>
+      <JsonLd data={buildTouristTripSchema(trip, locale)} />
       {heroImage && (
         <div
           id="trip-hero"

@@ -8,6 +8,7 @@ import type { Locale } from "@/lib/locales";
 const locales: { code: Locale; label: string }[] = [
   { code: "no", label: "NO" },
   { code: "en", label: "EN" },
+  { code: "sv", label: "SV" },
 ];
 
 interface LanguageSwitcherProps {

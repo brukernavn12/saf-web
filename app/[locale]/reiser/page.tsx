@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getActiveTripsWithDepartures } from "@/lib/trips";
 import { isSupabaseConfigured } from "@/lib/supabase";
@@ -6,9 +7,26 @@ import { getTripCardDisplayPrice } from "@/lib/trip-display-price";
 import { getLocalizedTripCardCopy } from "@/lib/utils";
 import { Section } from "@/components/ui/Section";
 import { TripCard } from "@/components/reiser/TripCard";
+import { getPageMetadataCopy } from "@/lib/seo-messages";
+import { buildPageMetadata } from "@/lib/seo";
 import type { Locale } from "@/types";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const { title, description } = await getPageMetadataCopy(locale, "trips");
+
+  return buildPageMetadata({
+    locale,
+    pathname: "/reiser",
+    title,
+    description,
+  });
+}
 
 export default async function TripsPage({
   params: { locale },

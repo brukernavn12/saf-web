@@ -1,7 +1,7 @@
 -- Krim & Languedoc – en uke for forfattere (mai 2027)
 -- Kjør i Supabase SQL Editor.
 --
--- Ingen avganger – interessebasert reise med fast pris i NOK.
+-- Ingen avganger – interessebasert reise. Pris: 16 000 NOK / 1 500 EUR.
 -- Frontend: vis pris og interesseskjema (ingen Vipps/booking).
 
 alter table trips
@@ -66,7 +66,7 @@ $desc$,
   1,
   0,
   12,
-  0,
+  1500,
   16000,
   5,
   4,

@@ -1,5 +1,15 @@
 import { createResendClient } from "@/lib/resend";
 
+const DEFAULT_ORGANIZER_EMAIL = "info@smakenavfrankrike.no";
+
+function getOrganizerEmail(): string {
+  return process.env.ORGANIZER_EMAIL?.trim() || DEFAULT_ORGANIZER_EMAIL;
+}
+
+function getFromEmail(): string {
+  return process.env.RESEND_FROM?.trim() || "Languedoc <onboarding@resend.dev>";
+}
+
 interface InquiryNotificationParams {
   name: string;
   email: string;
@@ -14,15 +24,6 @@ interface InquiryNotificationParams {
 export async function sendInquiryNotification(
   params: InquiryNotificationParams
 ): Promise<void> {
-  const organizerEmail = process.env.ORGANIZER_EMAIL?.trim();
-  const fromEmail =
-    process.env.RESEND_FROM?.trim() || "Languedoc <onboarding@resend.dev>";
-
-  if (!organizerEmail) {
-    console.warn("[email] ORGANIZER_EMAIL not set – skipping notification");
-    return;
-  }
-
   const resend = createResendClient();
 
   const lines = [
@@ -43,10 +44,44 @@ export async function sendInquiryNotification(
   if (params.message) lines.push("", "Melding:", params.message);
 
   await resend.emails.send({
-    from: fromEmail,
-    to: organizerEmail,
+    from: getFromEmail(),
+    to: getOrganizerEmail(),
     replyTo: params.email,
     subject: `Interesse: ${params.tripTitle}`,
+    text: lines.join("\n"),
+  });
+}
+
+interface ContactNotificationParams {
+  name: string;
+  email: string;
+  phone?: string | null;
+  message: string;
+}
+
+export async function sendContactNotification(
+  params: ContactNotificationParams
+): Promise<void> {
+  const resend = createResendClient();
+
+  const lines = [
+    "Ny henvendelse fra kontaktskjemaet på smakenavfrankrike.no",
+    "",
+    `Navn: ${params.name}`,
+    `E-post: ${params.email}`,
+  ];
+
+  if (params.phone) {
+    lines.push(`Telefon: ${params.phone}`);
+  }
+
+  lines.push("", "Melding:", params.message);
+
+  await resend.emails.send({
+    from: getFromEmail(),
+    to: getOrganizerEmail(),
+    replyTo: params.email,
+    subject: `Kontakt: ${params.name}`,
     text: lines.join("\n"),
   });
 }
@@ -62,8 +97,7 @@ interface DepositConfirmationParams {
 export async function sendDepositConfirmation(
   params: DepositConfirmationParams
 ): Promise<void> {
-  const fromEmail =
-    process.env.RESEND_FROM?.trim() || "Languedoc <onboarding@resend.dev>";
+  const fromEmail = getFromEmail();
 
   try {
     const resend = createResendClient();

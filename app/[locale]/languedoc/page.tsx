@@ -1,8 +1,27 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Section } from "@/components/ui/Section";
 import { LanguedocSection } from "@/components/languedoc/LanguedocSection";
 import { images } from "@/lib/image-registry";
+import { getPageMetadataCopy } from "@/lib/seo-messages";
+import { buildPageMetadata } from "@/lib/seo";
 import type { Locale } from "@/types";
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const { title, description } = await getPageMetadataCopy(locale, "languedoc");
+
+  return buildPageMetadata({
+    locale,
+    pathname: "/languedoc",
+    title,
+    description,
+    ogImage: images.languedoc.intro,
+  });
+}
 
 export default async function LanguedocPage({
   params: { locale },

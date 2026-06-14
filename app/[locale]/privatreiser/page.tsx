@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getPrivateTripsWithDepartures, getTripBySlug } from "@/lib/trips";
@@ -12,6 +13,8 @@ import {
 import { Section } from "@/components/ui/Section";
 import { PrivateExampleCard } from "@/components/privatreiser/PrivateExampleCard";
 import { TripCard } from "@/components/reiser/TripCard";
+import { getPageMetadataCopy } from "@/lib/seo-messages";
+import { buildPageMetadata } from "@/lib/seo";
 import type { Locale } from "@/types";
 
 const FEATURED_EXAMPLE_SLUG = "krim-og-languedoc-2027";
@@ -19,6 +22,24 @@ const FEATURED_EXAMPLE_SLUG = "krim-og-languedoc-2027";
 const STATIC_EXAMPLE_KEYS = ["wineClub", "birthday", "corporate"] as const;
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const { title, description } = await getPageMetadataCopy(
+    locale,
+    "privateTrips"
+  );
+
+  return buildPageMetadata({
+    locale,
+    pathname: "/privatreiser",
+    title,
+    description,
+  });
+}
 
 export default async function PrivateTripsPage({
   params: { locale },
