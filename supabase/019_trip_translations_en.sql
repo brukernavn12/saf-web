@@ -89,7 +89,7 @@ $desc$,
     'Day 2: Carcassonne (UNESCO World Heritage) and Cabrespine cave',
     'Day 3: Vineyard visit in Minervois and Cru La Livinière, lunch among the vines, prehistoric dolmen',
     'Day 4: Award-winning olive farm, lunch by the Canal du Midi, gentle canal boat trip',
-    'Day 5: Market in Olonzac, cooking course with local produce, shared meal',
+    'Day 5: Market in Olonzac, optional cooking session, dinner from the day''s haul',
     'Day 6: Narbonne (cathedral, Via Domitia, Les Halles), Fontfroide Abbey',
     'Day 7: Minerve, one of France''s most beautiful villages, farewell dinner',
     'Day 8: Departure after breakfast'
@@ -126,13 +126,12 @@ Now you can join a special trip where we take part in the harvest in the heart o
 
 Picking takes place from around 8 am to noon on weekdays – the day starts with coffee and croissant before we head into the vineyard. Lunch is social with time to talk, and along the way you can join us in the cellar to see what happens to the grapes after harvest.
 
-Outside picking there is time to relax, swim, read, go on excursions and taste wine. We work with selected producers, including Domaine de la Senche and Famille Antech.
+Outside picking there is time to relax, swim, read, go on excursions and taste wine.
 
 The harvest follows ripeness and weather – the grapes decide.
 $desc$,
   includes_en = array[
     'Accommodation in the heart of Minervois',
-    'Meals',
     'Access to producers and cellars',
     'Expert content',
     'Organisation and hosting'

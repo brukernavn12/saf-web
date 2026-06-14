@@ -106,7 +106,7 @@
       },
       "featured": {
         "quote": "To eat in the south of France is to understand that a meal can be the whole point of the day – and that life is meant to be tasted slowly.",
-        "attribution": "M. F. K. Fisher"
+        "attribution": ""
       }
     },
     "newsletter": {
@@ -148,12 +148,11 @@
     }
   },
   "trips": {
-    "title": "Our trips",
-    "description": "Languedoc with people who know every vineyard, every market and every table worth sitting at.",
+    "title": "Join the next departure",
+    "description": "",
     "fromPrice": "from {price}",
     "packagePricing": "Package pricing",
     "days": "{count} days",
-    "viewTrip": "View trip",
     "upcomingDepartures": "Upcoming departures",
     "expressInterest": "Express interest",
     "noTrips": "No trips available right now. Please get in touch – we're happy to help.",
@@ -167,6 +166,17 @@
     "program": "Programme",
     "departures": "Upcoming departures",
     "tripDates": "Trip dates",
+    "seasonBlock": {
+      "vindrueplukkeopplevelse": {
+        "block0": {
+          "period": "September 2026"
+        },
+        "block1": {
+          "period": "September 2027",
+          "promo": "Earlybird"
+        }
+      }
+    },
     "bookTrip": "Book this trip",
     "bookingIntro": "Choose a departure and complete the form.",
     "noDepartures": "No departures scheduled yet.",
@@ -188,6 +198,23 @@
     "days": "{count} days",
     "nights": "{count} nights",
     "price": "Price",
+    "packagePrice": {
+      "vindrueplukkeopplevelse": {
+        "sharedLabel": "Shared double room",
+        "shared": {
+          "3": "3 nights · NOK 4,500",
+          "4": "4 nights · NOK 5,450",
+          "5": "5 nights · NOK 6,400"
+        },
+        "singleLabel": "Single room",
+        "single": {
+          "3": "3 nights · NOK 6,750",
+          "4": "4 nights · NOK 8,450",
+          "5": "5 nights · NOK 10,150"
+        },
+        "moreNightsNote": "Longer stays available on request."
+      }
+    },
     "participation": {
       "fitness": {
         "title": "Physical fitness, mobility and health",
@@ -221,7 +248,9 @@
     "meetingPoint": "Meeting point",
     "guide": "Guide",
     "expressInterest": "Express interest",
-    "interestOnlyHint": "No fixed departure is scheduled. Tell us how many nights you want and when you plan to travel – we'll get in touch.",
+    "interestOnlyHint": "No fixed departure is scheduled. Tell us when you plan to travel – we'll get in touch.",
+    "interestOnlyHintExtended": "No fixed departure is scheduled. Tell us how many nights you want and when you plan to travel – we'll get in touch.",
+    "openInterestForm": "Open form",
     "preferredNights": "Preferred number of nights",
     "selectNights": "Select number of nights",
     "nightsOption": "{count} nights",
@@ -258,24 +287,25 @@
     "example": {
       "link": "Read about the trip"
     },
+    "exampleLabel": "Example of a private trip",
     "examples": {
       "wineClub": {
         "title": "Wine club in Minervois",
-        "description": "Five days among the wine growers. Tastings, producers and evenings that stretch on."
+        "description": "A tailor-made trip for your club – across the appellations Limoux, Corbières, Minervois, La Livinière and St-Chinian. Visits to producers we know personally: tastings in cellars and vineyards, lunch among the vines and long evenings with wines you'll remember. We arrange the programme, transport and accommodation – you choose group size, level and pace."
       },
       "birthday": {
-        "title": "50th birthday celebration",
-        "description": "A milestone worth remembering. We handle everything – you are guests from the first moment."
-      },
-      "corporate": {
-        "title": "Corporate trip with purpose",
-        "description": "Professional input, shared experiences and good food. Languedoc as the setting."
+        "title": "Celebration",
+        "description": "A 40th, 50th, 60th or 70th birthday – or another milestone that deserves more than cake in the office. We create a celebration in Languedoc where your guests can simply be guests: good food and wine, shared experiences and a pace that suits the person being celebrated. Family, friends or colleagues – we arrange accommodation, programme and details so you can be present for the celebration."
       }
     },
     "business": {
       "title": "Business & teams",
-      "description": "Gatherings that work. We build a programme where Languedoc does the heavy lifting – vineyards, culture and good food create conversations no meeting room can match.",
-      "exampleLabel": "Example of a closed group trip",
+      "description": "Gatherings that work – without flip charts and PowerPoint in a meeting room. We build a programme where Languedoc does the heavy lifting: shared experiences, good food and space for conversations that actually move things forward.",
+      "exampleLabel": "Example of a corporate trip",
+      "corporate": {
+        "title": "Corporate trip with purpose",
+        "description": "Languedoc as a setting away from the office – for the leadership team, the whole department or a tight startup core. Shared experiences that build trust, culture and direction: vineyard visits, food and local producers, guided conversations in small groups and time for strategy without interruption – plus evenings where hierarchy loosens its grip. We tailor the programme and logistics to what you want to achieve: stronger collaboration, celebrating a milestone, kick-off or re-start."
+      },
       "cta": "Talk to us about a corporate trip"
     }
   },
@@ -289,11 +319,6 @@
     "signoff": "Live like a local. Be treated like a guest.",
     "mortenPhotoAlt": "Morten",
     "elisabethPhotoAlt": "Elisabeth"
-  },
-  "faq": {
-    "title": "Frequently asked questions",
-    "description": "Practical information about trips, booking and your stay.",
-    "comingSoon": "FAQ content coming soon."
   },
   "languedoc": {
     "title": "Languedoc",

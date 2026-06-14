@@ -1,17 +1,6 @@
--- Fullt program i ett tekstfelt per reise (program_no / program_en).
--- Én dag per blokk, format "Dag 1: …". Flere avsnitt samme dag skilles med blank linje.
+-- Smaken av Languedoc – ukesprogram: utvidet program (program_no / program_en)
 -- Kjør i Supabase SQL Editor.
 
-alter table trips
-  add column if not exists program_no text,
-  add column if not exists program_en text;
-
-comment on column trips.program_no is
-  'Fullt dagsprogram på norsk. Én dag per blokk: "Dag 1: …". Flere linjer under samme dag tillates.';
-comment on column trips.program_en is
-  'Full programme in English. One day per block: "Day 1: …".';
-
--- Signaturuken: fullt program (se også 031_uksprogram_program.sql for utvidet tekst)
 update trips
 set
   program_no = $program_no$

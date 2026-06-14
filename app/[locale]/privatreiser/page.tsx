@@ -13,13 +13,21 @@ import {
 import { Section } from "@/components/ui/Section";
 import { PrivateExampleCard } from "@/components/privatreiser/PrivateExampleCard";
 import { TripCard } from "@/components/reiser/TripCard";
+import { images } from "@/lib/image-registry";
 import { getPageMetadataCopy } from "@/lib/seo-messages";
 import { buildPageMetadata } from "@/lib/seo";
 import type { Locale } from "@/types";
 
 const FEATURED_EXAMPLE_SLUG = "krim-og-languedoc-2027";
 
-const STATIC_EXAMPLE_KEYS = ["wineClub", "birthday", "corporate"] as const;
+const STATIC_EXAMPLE_KEYS = ["wineClub", "birthday"] as const;
+
+const EXAMPLE_IMAGES: Partial<
+  Record<(typeof STATIC_EXAMPLE_KEYS)[number], string>
+> = {
+  wineClub: images.reiser.laLiviniere,
+  birthday: images.reiser.wineCheese,
+};
 
 export const dynamic = "force-dynamic";
 
@@ -86,7 +94,11 @@ export default async function PrivateTripsPage({
         </Link>
       </div>
 
-      <div className="mb-20 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mb-20">
+        <p className="mb-4 text-[11px] uppercase tracking-[0.28em] text-accent">
+          {t("exampleLabel")}
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {featuredExample && (
           <PrivateExampleCard
             title={featuredTitle}
@@ -102,8 +114,11 @@ export default async function PrivateTripsPage({
             key={key}
             title={t(`examples.${key}.title`)}
             description={t(`examples.${key}.description`)}
+            imageSrc={EXAMPLE_IMAGES[key]}
+            imageAlt={t(`examples.${key}.title`)}
           />
         ))}
+        </div>
       </div>
 
       {otherTrips.length > 0 && (
@@ -152,21 +167,17 @@ export default async function PrivateTripsPage({
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-text/75">
           {t("business.description")}
         </p>
-        {featuredExample && (
-          <div className="mt-10 max-w-xs">
-            <p className="mb-4 text-[11px] uppercase tracking-[0.28em] text-accent">
-              {t("business.exampleLabel")}
-            </p>
-            <PrivateExampleCard
-              title={featuredTitle}
-              description={featuredDescription}
-              href={`/reiser/${featuredExample.slug}`}
-              linkLabel={t("example.link")}
-              imageSrc={getTripImage(featuredExample) ?? undefined}
-              imageAlt={featuredTitle}
-            />
-          </div>
-        )}
+        <div className="mt-10 max-w-md">
+          <p className="mb-4 text-[11px] uppercase tracking-[0.28em] text-accent">
+            {t("business.exampleLabel")}
+          </p>
+          <PrivateExampleCard
+            title={t("business.corporate.title")}
+            description={t("business.corporate.description")}
+            imageSrc={images.categories.business}
+            imageAlt={t("business.corporate.title")}
+          />
+        </div>
         <Link
           href="/kontakt"
           className="mt-8 inline-block border border-primary px-6 py-3 text-sm font-medium text-primary transition-colors hover:border-accent hover:text-accent"

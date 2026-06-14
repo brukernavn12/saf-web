@@ -285,7 +285,9 @@ export function formatDepartureCardRange(
   const localeTag = locale === "en" ? "en-GB" : `${locale}-NO`;
   const formatPart = (date: string, withYear: boolean) => {
     const d = new Date(date);
-    const day = new Intl.DateTimeFormat(localeTag, { day: "numeric" }).format(d);
+    const day = new Intl.DateTimeFormat(localeTag, { day: "numeric" })
+      .format(d)
+      .replace(/\.$/, "");
     const month = new Intl.DateTimeFormat(localeTag, { month: "short" })
       .format(d)
       .replace(/\.$/, "");
@@ -380,10 +382,12 @@ function readLocalizedProgramText(trip: Trip, locale: Locale): string | null {
   return null;
 }
 
-/** Split full program text into day blocks ("Dag 1: …" per block, body may span lines). */
+/** Split full program text into blocks (Dag/Day N, or section title on first line). */
 export function parseProgramTextToEntries(text: string): string[] {
   return text
-    .split(/\n(?=(?:Dag|Day)\s+\d+\s*:)/i)
+    .split(
+      /\n(?=(?:Dag|Day)\s+\d+\s*:|[A-ZÆØÅ][^\n:]{2,55}:\s*(?:\n|$))/u
+    )
     .map((block) => block.trim())
     .filter(Boolean);
 }
@@ -521,6 +525,19 @@ export function parseItineraryDay(
     ].filter(Boolean);
 
     return { day: `Day ${enMatch[1]}`, description: bodyLines.join("\n") };
+  }
+
+  const sectionMatch = firstLine.match(/^([A-ZÆØÅ][^:\n]{2,55}):\s*(.*)$/u);
+  if (sectionMatch) {
+    const bodyLines = [
+      sectionMatch[2].trim(),
+      ...lines.slice(1).map((line) => line.trim()).filter(Boolean),
+    ].filter(Boolean);
+
+    return {
+      day: sectionMatch[1].trim(),
+      description: bodyLines.join("\n"),
+    };
   }
 
   return {

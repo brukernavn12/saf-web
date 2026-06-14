@@ -148,12 +148,11 @@
     }
   },
   "trips": {
-    "title": "Våre reiser",
-    "description": "Languedoc med noen som kjenner hver vinmark, hvert marked og hvert bord verdt å sitte ved.",
+    "title": "Bli med på neste avgang",
+    "description": "",
     "fromPrice": "fra {price}",
     "packagePricing": "Pakkepriser",
     "days": "{count} dager",
-    "viewTrip": "Se reise",
     "upcomingDepartures": "Kommende avganger",
     "expressInterest": "Meld din interesse",
     "noTrips": "Ingen reiser tilgjengelig akkurat nå. Ta gjerne kontakt – vi hjelper deg gjerne.",
@@ -167,6 +166,17 @@
     "program": "Program",
     "departures": "Kommende avganger",
     "tripDates": "Reisedatoer",
+    "seasonBlock": {
+      "vindrueplukkeopplevelse": {
+        "block0": {
+          "period": "September 2026"
+        },
+        "block1": {
+          "period": "September 2027",
+          "promo": "Earlybird"
+        }
+      }
+    },
     "bookTrip": "Bestill reise",
     "bookingIntro": "Velg avgang og fyll ut skjemaet.",
     "noDepartures": "Ingen avganger er satt opp ennå.",
@@ -188,6 +198,23 @@
     "days": "{count} dager",
     "nights": "{count} netter",
     "price": "Pris",
+    "packagePrice": {
+      "vindrueplukkeopplevelse": {
+        "sharedLabel": "Delt dobbeltrom",
+        "shared": {
+          "3": "3 netter · kr 4.500",
+          "4": "4 netter · kr 5.450",
+          "5": "5 netter · kr 6.400"
+        },
+        "singleLabel": "Enkeltrom",
+        "single": {
+          "3": "3 netter · kr 6.750",
+          "4": "4 netter · kr 8.450",
+          "5": "5 netter · kr 10.150"
+        },
+        "moreNightsNote": "Flere netter mulig på forespørsel."
+      }
+    },
     "participation": {
       "fitness": {
         "title": "Fysisk form, mobilitet og helse",
@@ -221,7 +248,9 @@
     "meetingPoint": "Oppmøtested",
     "guide": "Guide",
     "expressInterest": "Meld din interesse",
-    "interestOnlyHint": "Ingen fast avgang er satt opp. Fortell oss hvor mange netter du ønsker og når du tenker å reise – så tar vi kontakt.",
+    "interestOnlyHint": "Ingen fast avgang er satt opp. Fortell oss når du tenker å reise – så tar vi kontakt.",
+    "interestOnlyHintExtended": "Ingen fast avgang er satt opp. Fortell oss hvor mange netter du ønsker og når du tenker å reise – så tar vi kontakt.",
+    "openInterestForm": "Åpne skjema",
     "preferredNights": "Ønsket antall netter",
     "selectNights": "Velg antall netter",
     "nightsOption": "{count} netter",
@@ -258,24 +287,25 @@
     "example": {
       "link": "Les om reisen"
     },
+    "exampleLabel": "Eksempel på privatreise",
     "examples": {
       "wineClub": {
         "title": "Vinklubb i Minervois",
-        "description": "Fem dager blant vinbøndene. Smaking, produsenter og kvelder som strekker seg."
+        "description": "En skreddersydd reise for klubben din – blant appellasjonene Limoux, Corbières, Minervois, La Livinière og St-Chinian. Besøk hos produsenter vi kjenner personlig: smaking i kjeller og vinmark, lunsj blant rankene og lange kvelder med viner dere husker. Vi ordner program, transport og overnatting – dere velger gruppestørrelse, nivå og tempo."
       },
       "birthday": {
-        "title": "50-årsfeiring",
-        "description": "En markering verdt å huske. Vi ordner alt – dere er gjester fra første stund."
-      },
-      "corporate": {
-        "title": "Firmatur med mening",
-        "description": "Faglig påfyll, felles opplevelser og god mat. Languedoc som ramme."
+        "title": "Feiring",
+        "description": "40-, 50-, 60- eller 70-årsdag – eller en annen milepæl som fortjener mer enn en kake på kontoret. Vi setter sammen en feiring i Languedoc der gjestene er gjester: god mat og vin, felles opplevelser og tempo som passer jubilanten. Familie, venner eller kollegaer – vi ordner overnatting, program og detaljer, slik at dere kan være til stede i feiringen."
       }
     },
     "business": {
       "title": "Bedrift & team",
-      "description": "Samlinger som sitter. Vi setter sammen et program der Languedoc gjør jobben – vinmarker, kultur og god mat skaper samtaler ingen møterom klarer.",
-      "exampleLabel": "Eksempel på lukket gruppereise",
+      "description": "Samlinger som sitter – uten flipover og PowerPoint i et møterom. Vi setter sammen et program der Languedoc gjør jobben: felles opplevelser, god mat og rom for samtaler som faktisk beveger noe.",
+      "exampleLabel": "Eksempel på firmatur",
+      "corporate": {
+        "title": "Firmatur med mening",
+        "description": "Languedoc som arena utenfor kontoret – for ledergruppa, hele teamet eller det tette startup-kjernen. Felles opplevelser som bygger tillit, kultur og retning: vingårdsbesøk, mat og lokale produsenter, guidede samtaler i små grupper og tid til strategi uten avbrudd – pluss kvelder der hierarkiet slipper taket. Vi skreddersyr program og logistikk etter hva dere vil oppnå: sterkere samarbeid, feiring av milepæl, kickoff eller re-start."
+      },
       "cta": "Snakk med oss om bedriftsreise"
     }
   },
@@ -289,11 +319,6 @@
     "signoff": "Bo som en lokal. Lev som en gjest.",
     "mortenPhotoAlt": "Morten",
     "elisabethPhotoAlt": "Elisabeth"
-  },
-  "faq": {
-    "title": "Ofte stilte spørsmål",
-    "description": "Praktisk informasjon om reiser, booking og opphold.",
-    "comingSoon": "FAQ-innhold kommer snart."
   },
   "languedoc": {
     "title": "Languedoc",

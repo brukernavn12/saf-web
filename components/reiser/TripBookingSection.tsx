@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import type { Departure, Locale, Trip } from "@/types";
 import {
@@ -9,6 +9,9 @@ import {
 } from "@/components/reiser/DepartureList";
 import { BookingForm } from "@/components/reiser/BookingForm";
 import { InterestForm } from "@/components/reiser/InterestForm";
+import { TripSeasonBlockList } from "@/components/reiser/TripSeasonBlockList";
+import { tripHasSeasonBlocks } from "@/lib/trip-season-blocks";
+import { Button } from "@/components/ui/Button";
 
 interface TripBookingSectionProps {
   trip: Trip;
@@ -25,8 +28,48 @@ export function TripBookingSection({
 }: TripBookingSectionProps) {
   const t = useTranslations("tripDetail");
   const formRef = useRef<HTMLDivElement>(null);
+  const interestFormRef = useRef<HTMLDivElement>(null);
   const [activeDepartureId, setActiveDepartureId] = useState<string>();
   const [activeForm, setActiveForm] = useState<DepartureFormType | null>(null);
+  const [interestFormOpen, setInterestFormOpen] = useState(false);
+
+  function openInterestForm() {
+    setInterestFormOpen(true);
+    requestAnimationFrame(() => {
+      interestFormRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      interestFormRef.current
+        ?.querySelector<HTMLElement>("input, select, textarea")
+        ?.focus();
+    });
+  }
+
+  useEffect(() => {
+    function openFromHash() {
+      if (window.location.hash === "#booking") {
+        setInterestFormOpen(true);
+      }
+    }
+
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, []);
+
+  useEffect(() => {
+    if (!interestFormOpen || window.location.hash !== "#booking") {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      interestFormRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }, [interestFormOpen]);
 
   function showForm(departureId: string, form: DepartureFormType) {
     setActiveDepartureId(departureId);
@@ -37,26 +80,60 @@ export function TripBookingSection({
   }
 
   if (trip.interest_only || departures.length === 0) {
+    const showSeasonBlocks = tripHasSeasonBlocks(trip.slug);
+
     return (
       <section
         ref={formRef}
         id="booking"
-        className="mt-14 max-w-3xl scroll-mt-32"
+        className="mt-14 max-w-3xl scroll-mt-32 space-y-6"
       >
+        {showSeasonBlocks && (
+          <div>
+            <h2 className="font-serif text-2xl text-primary md:text-3xl">
+              {t("tripDates")}
+            </h2>
+            <div className="mt-6">
+              <TripSeasonBlockList trip={trip} />
+            </div>
+          </div>
+        )}
+
         <div className="bg-cream-dark px-8 py-10 md:px-10 md:py-12">
           <h2 className="font-serif text-2xl text-primary md:text-3xl">
             {t("expressInterest")}
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-text/65">
-            {t("interestOnlyHint")}
+            {Boolean(trip.price_info)
+              ? t("interestOnlyHintExtended")
+              : t("interestOnlyHint")}
           </p>
-          <div className="mt-8 border-t border-primary/10 pt-8">
-            <InterestForm
-              tripId={trip.id}
-              locale={locale}
-              extended={Boolean(trip.price_info)}
-            />
-          </div>
+          {interestFormOpen ? (
+            <div
+              ref={interestFormRef}
+              id="interest-form"
+              className="mt-8 scroll-mt-32 border-t border-primary/10 pt-8"
+            >
+              <InterestForm
+                tripId={trip.id}
+                locale={locale}
+                extended={Boolean(trip.price_info)}
+              />
+            </div>
+          ) : (
+            <div className="mt-8">
+              <Button
+                type="button"
+                variant="ghost"
+                className="px-5 py-2.5 text-xs"
+                aria-expanded={false}
+                aria-controls="interest-form"
+                onClick={openInterestForm}
+              >
+                {t("openInterestForm")}
+              </Button>
+            </div>
+          )}
         </div>
       </section>
     );

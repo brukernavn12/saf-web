@@ -14,7 +14,7 @@ set
     'Dag 2: Carcassonne (UNESCO-verdensarv) og Cabrespine-grotten',
     'Dag 3: Vingårdsbesøk i Minervois og Cru La Livinière, lunsj blant vinrankene, forhistorisk dolmen',
     'Dag 4: Prisbelønt olivengård, lunsj ved Canal du Midi, rolig kanalbåttur',
-    'Dag 5: Markedet i Olonzac, matlagingskurs med lokale råvarer, fellesmåltid',
+    'Dag 5: Markedet i Olonzac, valgfritt matlagingskurs, middag av dagens fangst',
     'Dag 6: Narbonne (katedral, Via Domitia, Les Halles), Fontfroide-klosteret',
     'Dag 7: Minerve, en av Frankrikes vakreste landsbyer, avsluttningsmiddag',
     'Dag 8: Avreise etter frokost'

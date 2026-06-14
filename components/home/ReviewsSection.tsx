@@ -21,9 +21,11 @@ export function ReviewsSection() {
           <blockquote className="max-w-4xl font-serif text-2xl leading-relaxed text-cream md:text-4xl md:leading-snug lg:text-[2.75rem] lg:leading-[1.18]">
             &ldquo;{t("featured.quote")}&rdquo;
           </blockquote>
-          <p className="mt-12 text-sm tracking-[0.16em] text-cream/55 md:mt-16 md:text-base">
-            — {t("featured.attribution")}
-          </p>
+          {t("featured.attribution") && (
+            <p className="mt-12 text-sm tracking-[0.16em] text-cream/55 md:mt-16 md:text-base">
+              — {t("featured.attribution")}
+            </p>
+          )}
         </div>
       </section>
 

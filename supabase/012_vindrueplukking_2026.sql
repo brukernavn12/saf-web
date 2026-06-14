@@ -54,7 +54,7 @@ Nå kan du bli med på en spesiell reise der vi får være med på innhøstingen
 
 Plukkingen foregår fra ca. kl. 08 til 12 på ukedager – dagen starter med kaffe og croissant før vi går ut i vinmarken. Lunsjen er sosial med god tid til samtale, og underveis får du muligheten til å bli med inn i vinkjelleren og se hva som skjer med druene etter innhøstingen.
 
-Utenom plukkingen er det tid til avslapping, bading, lesing, utflukter og vinsmaking. Vi samarbeider med utvalgte produsenter, blant annet Domaine de la Senche og Famille Antech.
+Utenom plukkingen er det tid til avslapping, bading, lesing, utflukter og vinsmaking.
 
 Innhøstingen styres av modning og værforhold – druene bestemmer.
 $desc$,
@@ -63,7 +63,6 @@ $desc$,
   array['vindrueplukking', 'innhøsting', 'vin', 'Minervois', 'Olonzac'],
   array[
     'Overnatting midt i Minervois',
-    'Måltider',
     'Tilgang til produsenter og vinkjellere',
     'Faglig innhold',
     'Tilrettelegging og gjennomføring'

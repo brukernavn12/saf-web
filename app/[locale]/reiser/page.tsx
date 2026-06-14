@@ -44,9 +44,11 @@ export default async function TripsPage({
         <h1 className="font-serif text-4xl text-primary md:text-5xl">
           {t("title")}
         </h1>
-        <p className="mt-4 text-lg leading-relaxed text-text/75">
-          {t("description")}
-        </p>
+        {t("description") && (
+          <p className="mt-4 text-lg leading-relaxed text-text/75">
+            {t("description")}
+          </p>
+        )}
       </div>
       {tripItems.length > 0 ? (
         <div className="space-y-12 md:space-y-16 lg:space-y-20">

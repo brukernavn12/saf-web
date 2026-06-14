@@ -8,7 +8,9 @@ import { Section } from "@/components/ui/Section";
 import { TripBookingSection } from "@/components/reiser/TripBookingSection";
 import { TripItinerarySection } from "@/components/reiser/TripItinerarySection";
 import { TripParticipationSection } from "@/components/reiser/TripParticipationSection";
+import { TripPackagePriceList } from "@/components/reiser/TripPackagePriceList";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { tripHasStructuredPackagePrice } from "@/lib/trip-package-price";
 import {
   buildPageMetadata,
   buildTouristTripSchema,
@@ -116,6 +118,7 @@ export default async function TripDetailPage({
   const heroImage = getTripImage(trip);
   const groupSize = getLocalizedGroupSize(trip, locale);
   const categoryLabel = getTripCategoryLabel(trip.category, t);
+  const structuredPackagePrice = tripHasStructuredPackagePrice(trip.slug);
 
   return (
     <>
@@ -166,12 +169,22 @@ export default async function TripDetailPage({
               </p>
             </div>
           )}
-          {(priceInfoLines || showTripStandardPrice(trip)) && (
-            <div className={priceInfoLines ? "min-w-full sm:min-w-[280px] flex-1" : undefined}>
+          {(structuredPackagePrice || priceInfoLines || showTripStandardPrice(trip)) && (
+            <div
+              className={
+                structuredPackagePrice || priceInfoLines
+                  ? "min-w-full sm:min-w-[280px] flex-1"
+                  : undefined
+              }
+            >
               <p className="text-xs uppercase tracking-wider text-text/50">
                 {t("price")}
               </p>
-              {priceInfoLines ? (
+              {structuredPackagePrice ? (
+                <div className="mt-2">
+                  <TripPackagePriceList trip={trip} />
+                </div>
+              ) : priceInfoLines ? (
                 <ul className="mt-2 space-y-1.5 font-medium text-primary">
                   {priceInfoLines.map((line) => (
                     <li key={line} className="leading-snug">
@@ -272,7 +285,7 @@ export default async function TripDetailPage({
           )}
         </div>
 
-        <TripParticipationSection locale={locale} />
+        <TripParticipationSection locale={locale} tripSlug={trip.slug} />
       </Section>
     </>
   );

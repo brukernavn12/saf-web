@@ -9,6 +9,7 @@ import {
   formatDepartureCardRange,
   getTripImage,
 } from "@/lib/utils";
+import { getTripSeasonBlockKeys } from "@/lib/trip-season-blocks";
 
 interface TripCardProps {
   trip: Trip;
@@ -30,8 +31,27 @@ export function TripCard({
   reverse = false,
 }: TripCardProps) {
   const t = useTranslations("trips");
+  const tDetail = useTranslations("tripDetail");
   const image = getTripImage(trip);
-  const nearestDeparture = departures[0];
+  const seasonBlockKeys = getTripSeasonBlockKeys(trip.slug);
+  const cardDateLabel =
+    seasonBlockKeys.length > 0
+      ? seasonBlockKeys
+          .map((key) =>
+            tDetail(`seasonBlock.${trip.slug}.${key}.period`)
+          )
+          .join(" · ")
+      : departures.length > 0
+        ? departures
+            .map((departure) =>
+              formatDepartureCardRange(
+                departure.start_date,
+                departure.end_date,
+                locale
+              )
+            )
+            .join(" · ")
+        : null;
 
   return (
     <article className="group">
@@ -65,6 +85,16 @@ export function TripCard({
             {title}
           </h3>
 
+          {cardDateLabel ? (
+            <p className="mt-4 font-serif text-xl text-primary md:mt-5 md:text-2xl">
+              {cardDateLabel}
+            </p>
+          ) : (
+            <p className="mt-4 text-sm font-medium text-accent md:mt-5">
+              {t("expressInterest")}
+            </p>
+          )}
+
           {tagline && (
             <p className="mt-6 max-w-md text-base leading-[1.8] text-text/60 md:mt-8">
               {tagline}
@@ -78,22 +108,7 @@ export function TripCard({
             {priceLabel && (
               <span className="font-medium text-primary">{priceLabel}</span>
             )}
-            {nearestDeparture ? (
-              <span>
-                {formatDepartureCardRange(
-                  nearestDeparture.start_date,
-                  nearestDeparture.end_date,
-                  locale
-                )}
-              </span>
-            ) : (
-              <span className="text-accent">{t("expressInterest")}</span>
-            )}
           </div>
-
-          <span className="mt-10 text-[11px] uppercase tracking-[0.32em] text-accent transition-colors group-hover:text-primary md:mt-12">
-            {t("viewTrip")} →
-          </span>
         </div>
       </Link>
     </article>

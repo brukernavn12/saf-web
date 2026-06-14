@@ -105,7 +105,7 @@
         "author": "Aslaug"
       },
       "featured": {
-        "quote": "Jag tror att jag talar för väldigt många svenskar när jag säger att Frankrike är synonymt med det goda livet – människorna, måltiderna, naturen och kulturen.",
+        "quote": "Drottningen och jag sätter stort värde på den gästfrihet som kommer oss till del när vi vistas i ert land.",
         "attribution": "Kung Carl XVI Gustaf"
       }
     },
@@ -123,12 +123,11 @@
     }
   },
   "trips": {
-    "title": "Våra resor",
-    "description": "Languedoc med någon som känner varje vingård, varje marknad och varje bord värt att sitta vid.",
+    "title": "Följ med på nästa avgång",
+    "description": "",
     "fromPrice": "från {price}",
     "packagePricing": "Paketpriser",
     "days": "{count} dagar",
-    "viewTrip": "Se resa",
     "upcomingDepartures": "Kommande avgångar",
     "expressInterest": "Anmäl intresse",
     "noTrips": "Inga resor tillgängliga just nu. Kontakta oss gärna – vi hjälper dig.",
@@ -142,6 +141,17 @@
     "program": "Program",
     "departures": "Kommande avgångar",
     "tripDates": "Resedatum",
+    "seasonBlock": {
+      "vindrueplukkeopplevelse": {
+        "block0": {
+          "period": "September 2026"
+        },
+        "block1": {
+          "period": "September 2027",
+          "promo": "Earlybird"
+        }
+      }
+    },
     "bookTrip": "Boka resa",
     "bookingIntro": "Välj avgång och fyll i formuläret.",
     "noDepartures": "Inga avgångar är uppsatta ännu.",
@@ -163,6 +173,23 @@
     "days": "{count} dagar",
     "nights": "{count} nätter",
     "price": "Pris",
+    "packagePrice": {
+      "vindrueplukkeopplevelse": {
+        "sharedLabel": "Delat dubbelrum",
+        "shared": {
+          "3": "3 nätter · kr 4.500",
+          "4": "4 nätter · kr 5.450",
+          "5": "5 nätter · kr 6.400"
+        },
+        "singleLabel": "Enkelrum",
+        "single": {
+          "3": "3 nätter · kr 6.750",
+          "4": "4 nätter · kr 8.450",
+          "5": "5 nätter · kr 10.150"
+        },
+        "moreNightsNote": "Fler nätter möjliga på förfrågan."
+      }
+    },
     "participation": {
       "fitness": {
         "title": "Fysisk form, rörlighet och hälsa",
@@ -188,7 +215,9 @@
     "meetingPoint": "Mötesplats",
     "guide": "Guide",
     "expressInterest": "Anmäl intresse",
-    "interestOnlyHint": "Ingen fast avgång är satt. Berätta hur många nätter du önskar och när du planerar att resa – så hör vi av oss.",
+    "interestOnlyHint": "Ingen fast avgång är satt. Berätta när du planerar att resa – så hör vi av oss.",
+    "interestOnlyHintExtended": "Ingen fast avgång är satt. Berätta hur många nätter du önskar och när du planerar att resa – så hör vi av oss.",
+    "openInterestForm": "Öppna formulär",
     "preferredNights": "Önskat antal nätter",
     "selectNights": "Välj antal nätter",
     "nightsOption": "{count} nätter",
@@ -225,24 +254,25 @@
     "example": {
       "link": "Läs om resan"
     },
+    "exampleLabel": "Exempel på privat resa",
     "examples": {
       "wineClub": {
         "title": "Vinklubb i Minervois",
-        "description": "Fem dagar bland vinbönderna. Provningar, producenter och kvällar som drar ut på tiden."
+        "description": "En skräddarsydd resa för er klubb – bland appellationerna Limoux, Corbières, Minervois, La Livinière och St-Chinian. Besök hos producenter vi känner personligen: provningar i källare och vingårdar, lunch bland vinstockarna och långa kvällar med viner ni minns. Vi ordnar program, transport och boende – ni väljer gruppstorlek, nivå och tempo."
       },
       "birthday": {
-        "title": "50-årsfirande",
-        "description": "En milstolpe värd att minnas. Vi ordnar allt – ni är gäster från första stund."
-      },
-      "corporate": {
-        "title": "Företagsresa med mening",
-        "description": "Fackligt påfyll, gemensamma upplevelser och god mat. Languedoc som ram."
+        "title": "Firande",
+        "description": "40-, 50-, 60- eller 70-årsdag – eller en annan milstolpe som förtjänar mer än tårta på kontoret. Vi sätter ihop ett firande i Languedoc där gästerna bara är gäster: god mat och vin, gemensamma upplevelser och tempo som passar jubilaren. Familj, vänner eller kollegor – vi ordnar boende, program och detaljer så att ni kan vara närvarande i firandet."
       }
     },
     "business": {
       "title": "Företag & team",
-      "description": "Sammankomster som sitter. Vi sätter ihop ett program där Languedoc gör jobbet – vingårdar, kultur och god mat skapar samtal inget mötesrum klarar.",
-      "exampleLabel": "Exempel på sluten gruppresa",
+      "description": "Sammankomster som sitter – utan flipover och PowerPoint i ett mötesrum. Vi sätter ihop ett program där Languedoc gör jobbet: gemensamma upplevelser, god mat och utrymme för samtal som faktiskt flyttar något.",
+      "exampleLabel": "Exempel på företagsresa",
+      "corporate": {
+        "title": "Företagsresa med mening",
+        "description": "Languedoc som arena utanför kontoret – för ledningsgruppen, hela teamet eller den tighta startup-kärnan. Gemensamma upplevelser som bygger förtroende, kultur och riktning: vingårdsbesök, mat och lokala producenter, guidade samtal i små grupper och tid för strategi utan avbrott – plus kvällar där hierarkin släpper greppet. Vi skräddarsyr program och logistik efter vad ni vill uppnå: starkare samarbete, firande av milstolpe, kickoff eller omstart."
+      },
       "cta": "Prata med oss om företagsresa"
     }
   },

@@ -381,6 +381,7 @@ export const images = {
     pontdugard: pathForAssetId("reiser.pontdugard"),
     harvest1: pathForAssetId("reiser.harvest1"),
     harvest2: pathForAssetId("reiser.harvest2"),
+    wineCheese: pathForAssetId("reiser.wineCheese"),
   },
 } as const;
 
