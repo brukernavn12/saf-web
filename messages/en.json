@@ -3,11 +3,11 @@
     "siteName": "The Taste of France",
     "home": {
       "title": "Languedoc. Properly. – The Taste of France",
-      "description": "Authentic journeys in southern France with Norwegian hosts. Small groups, everything included, real experiences."
+      "description": "Authentic journeys in southern France with local hosts who know the region. Small groups, everything included, real experiences."
     },
     "trips": {
       "title": "Our trips – The Taste of France",
-      "description": "Explore our trips to Languedoc. Wine, gastronomy, nature and culture in small groups with Norwegian hosts."
+      "description": "Explore our trips to Languedoc. Wine, gastronomy, nature and culture in small groups with hosts who know the region inside out."
     },
     "tripDetail": {
       "titleSuffix": " – The Taste of France"
@@ -127,11 +127,11 @@
     "items": {
       "flights": {
         "question": "Do you sell flights?",
-        "answer": "No – flights are booked by each guest. We recommend flying to Toulouse, Montpellier or Barcelona."
+        "answer": "No – flights are booked by each guest. We recommend flying to Toulouse, Montpellier, Carcassonne, Béziers or Barcelona."
       },
       "included": {
         "question": "What is included in the price?",
-        "answer": "Accommodation, all meals including drinks, local transport and a Norwegian host. See each trip for the full list."
+        "answer": "Accommodation, all meals including drinks, local transport and your hosts throughout the trip. See each trip for the full list."
       },
       "privateGroup": {
         "question": "Can I book a trip for my group alone?",

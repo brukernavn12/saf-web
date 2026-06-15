@@ -292,7 +292,7 @@
     "items": {
       "flights": {
         "question": "Säljer ni flygbiljetter?",
-        "answer": "Nej – flyg bokas av varje gäst. Vi rekommenderar flyg till Toulouse, Montpellier eller Barcelona."
+        "answer": "Nej – flyg bokas av varje gäst. Vi rekommenderar flyg till Toulouse, Montpellier, Béziers eller Barcelona."
       },
       "included": {
         "question": "Vad ingår i priset?",

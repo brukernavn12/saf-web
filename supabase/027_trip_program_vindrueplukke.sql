@@ -71,7 +71,7 @@ The harvest follows ripeness and weather – the grapes decide. We cannot guaran
 Our work with producers is independent – we receive no payment or commission for visits or participation.
 
 Getting here:
-You arrange your own travel to the Olonzac area. From Norway we recommend flying to Toulouse, Montpellier or Barcelona. From there you can hire a car, take the train or arrange pick-up from the airport or station. We are happy to advise on practical details.
+You arrange your own travel to the Olonzac area. From Norway we recommend flying to Toulouse, Montpellier, Carcassonne, Béziers or Barcelona. From there you can hire a car, take the train or arrange pick-up from the airport or station. We are happy to advise on practical details.
 
 What to bring:
 Clothes that can get dirty. Shoes with good grip – trainers or light hiking shoes. Sun hat or cap, sunscreen, and gloves if you wish.

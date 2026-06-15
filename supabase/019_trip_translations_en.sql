@@ -24,7 +24,7 @@ $desc$,
     'Guided vineyard visits and tastings',
     'Local transport',
     'Transfer to/from Toulouse airport',
-    'Norwegian hosts with 18 years of local knowledge'
+    'Local hosts with 18 years of knowledge of the area'
   ],
   excludes_en = array[
     'Flights to/from France',
@@ -76,7 +76,7 @@ $desc$,
     'All meals including all drinks',
     'All excursions and activities in the programme',
     'Transport throughout your stay',
-    'Norwegian hosts with 18 years of local knowledge'
+    'Local hosts with 18 years of knowledge of the area'
   ],
   excludes_en = array[
     'Flights',
