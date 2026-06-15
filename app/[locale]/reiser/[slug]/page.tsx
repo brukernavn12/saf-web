@@ -22,7 +22,6 @@ import type { Locale } from "@/types";
 import {
   formatTripListPrice,
   formatTripPriceInfoLines,
-  getLocalizedGroupSize,
   getLocalizedPriceInfo,
   getLocalizedTripField,
   getLocalizedTripStringArray,
@@ -116,7 +115,6 @@ export default async function TripDetailPage({
         : formatTripPriceInfoLines(priceInfo)
     : null;
   const heroImage = getTripImage(trip);
-  const groupSize = getLocalizedGroupSize(trip, locale);
   const categoryLabel = getTripCategoryLabel(trip.category, t);
   const structuredPackagePrice = tripHasStructuredPackagePrice(trip.slug);
 
@@ -207,14 +205,6 @@ export default async function TripDetailPage({
               <p className="mt-1 font-medium text-primary">
                 {trip.meeting_point}
               </p>
-            </div>
-          )}
-          {groupSize && (
-            <div>
-              <p className="text-xs uppercase tracking-wider text-text/50">
-                {t("groupSize")}
-              </p>
-              <p className="mt-1 font-medium text-primary">{groupSize}</p>
             </div>
           )}
         </div>

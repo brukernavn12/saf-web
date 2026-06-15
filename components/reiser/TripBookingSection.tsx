@@ -116,6 +116,7 @@ export function TripBookingSection({
             >
               <InterestForm
                 tripId={trip.id}
+                tripSlug={trip.slug}
                 locale={locale}
                 extended={Boolean(trip.price_info)}
               />
@@ -185,6 +186,7 @@ export function TripBookingSection({
             ) : (
               <InterestForm
                 tripId={trip.id}
+                tripSlug={trip.slug}
                 departureId={activeDepartureId}
                 locale={locale}
               />

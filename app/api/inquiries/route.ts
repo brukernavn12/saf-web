@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createSupabaseAdmin } from "@/lib/supabase";
+import { createSupabaseAdmin, createSupabaseClient } from "@/lib/supabase";
 import { sendInquiryNotification } from "@/lib/email";
 import { formatDate } from "@/lib/utils";
 import type { Locale } from "@/types";
 
 interface InquiryBody {
-  tripId: string;
+  tripId?: string;
+  tripSlug?: string;
   departureId?: string;
   name: string;
   email: string;
@@ -21,6 +22,7 @@ export async function POST(req: NextRequest) {
     const body = (await req.json()) as InquiryBody;
     const {
       tripId,
+      tripSlug,
       departureId,
       name,
       email,
@@ -31,31 +33,65 @@ export async function POST(req: NextRequest) {
       locale = "no",
     } = body;
 
-    if (!tripId || !name?.trim() || !email?.trim()) {
+    if ((!tripId && !tripSlug) || !name?.trim() || !email?.trim()) {
       return NextResponse.json({ error: "Ugyldig forespørsel" }, { status: 400 });
     }
 
-    const db = createSupabaseAdmin();
+    const readDb = createSupabaseClient();
+    if (!readDb) {
+      console.error("[inquiries] Supabase is not configured");
+      return NextResponse.json(
+        { error: "Tjenesten er midlertidig utilgjengelig" },
+        { status: 503 }
+      );
+    }
 
-    const { data: trip } = await db
+    let tripQuery = readDb
       .from("trips")
       .select("id, title_no, status")
-      .eq("id", tripId)
-      .eq("status", "active")
-      .single();
+      .eq("status", "active");
+
+    if (tripSlug) {
+      tripQuery = tripQuery.eq("slug", tripSlug.trim());
+    } else {
+      tripQuery = tripQuery.eq("id", tripId!);
+    }
+
+    const { data: trip, error: tripError } = await tripQuery.maybeSingle();
+
+    if (tripError) {
+      console.error("[inquiries] trip lookup error:", tripError);
+      return NextResponse.json(
+        { error: "Kunne ikke hente reiseinformasjon" },
+        { status: 500 }
+      );
+    }
 
     if (!trip) {
       return NextResponse.json({ error: "Reise ikke funnet" }, { status: 404 });
     }
 
+    const resolvedTripId = trip.id;
+
+    let adminDb;
+    try {
+      adminDb = createSupabaseAdmin();
+    } catch (error) {
+      console.error("[inquiries] Missing Supabase admin credentials:", error);
+      return NextResponse.json(
+        { error: "Tjenesten er midlertidig utilgjengelig" },
+        { status: 503 }
+      );
+    }
+
     let departureDates: string | null = null;
 
     if (departureId) {
-      const { data: departure } = await db
+      const { data: departure } = await readDb
         .from("departures")
         .select("start_date, end_date, trip_id")
         .eq("id", departureId)
-        .eq("trip_id", tripId)
+        .eq("trip_id", resolvedTripId)
         .single();
 
       if (departure) {
@@ -63,8 +99,8 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const { error: insertError } = await db.from("inquiries").insert({
-      trip_id: tripId,
+    const { error: insertError } = await adminDb.from("inquiries").insert({
+      trip_id: resolvedTripId,
       departure_id: departureId ?? null,
       name: name.trim(),
       email: email.trim(),

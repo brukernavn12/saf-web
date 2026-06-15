@@ -38,8 +38,12 @@ update trips
 set min_persons_per_booking = 1, min_persons_to_confirm = 2
 where slug in (
   'vin-vingarder-minervois',
-  'matreise-med-ina',
   'smak-languedoc',
   'aktiv-gorges-herault',
   'vindrueplukking-minervois'
 );
+
+-- Matreise med Ina: book fra 1, bekreftes ved 6+
+update trips
+set min_persons_per_booking = 1, min_persons_to_confirm = 6
+where slug = 'matreise-med-ina';

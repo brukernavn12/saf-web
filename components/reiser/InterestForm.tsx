@@ -9,6 +9,7 @@ import type { Locale } from "@/types";
 
 interface InterestFormProps {
   tripId: string;
+  tripSlug: string;
   departureId?: string;
   locale: Locale;
   /** Extra fields for harvest / package trips (nights + period). */
@@ -17,6 +18,7 @@ interface InterestFormProps {
 
 export function InterestForm({
   tripId,
+  tripSlug,
   departureId,
   locale,
   extended = false,
@@ -48,6 +50,7 @@ export function InterestForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           tripId,
+          tripSlug,
           departureId: departureId || undefined,
           name: formData.get("name"),
           email: formData.get("email"),
