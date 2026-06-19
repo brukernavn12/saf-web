@@ -13,11 +13,7 @@ function isStringArray(value: unknown): value is string[] {
   );
 }
 
-function hasMessageValue(value: unknown): value is string {
-  return typeof value === "string" && value.trim() !== "";
-}
-
-/** Deep-merge locale messages onto Norwegian base; missing or empty values use Norwegian. */
+/** Deep-merge locale messages onto Norwegian base; missing keys use Norwegian. */
 export function mergeMessagesWithFallback(
   base: MessageTree,
   override: MessageTree
@@ -40,7 +36,8 @@ export function mergeMessagesWithFallback(
       continue;
     }
 
-    if (hasMessageValue(overrideValue)) {
+    // Explicit empty string in locale file must win (e.g. hidden attribution on EN).
+    if (typeof overrideValue === "string") {
       result[key] = overrideValue;
     } else if (typeof baseValue === "string") {
       result[key] = baseValue;
@@ -103,14 +100,6 @@ function syncNode(
     }
 
     if (!(key in localeNode)) {
-      result[key] = noValue;
-      addedKeys.push(path);
-    } else if (
-      typeof noValue === "string" &&
-      typeof localeValue === "string" &&
-      localeValue.trim() === "" &&
-      noValue.trim() !== ""
-    ) {
       result[key] = noValue;
       addedKeys.push(path);
     }
