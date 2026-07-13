@@ -138,6 +138,7 @@ $desc$,
   ],
   excludes_en = array[
     'Flights to/from France',
+    'Meals',
     'Transport to Olonzac',
     'Travel insurance',
     'Personal expenses'

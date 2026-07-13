@@ -69,6 +69,7 @@ $desc$,
   ],
   array[
     'Flyreise til/fra Frankrike',
+    'Måltider',
     'Transport til Olonzac',
     'Reiseforsikring',
     'Personlige utgifter'

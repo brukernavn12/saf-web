@@ -42,7 +42,7 @@ Utenom plukkingen er det tid til avslapping, bading, lesing, utflukter, vinsmaki
 
 Trygghet:
 Normal førlighet anbefales for å delta. Vi anbefaler reise- og avbestillingsforsikring – innhøstingen styres av vær og modning, og programmet tilpasses dette.
-I nærområdet finnes apotek og legekontor. Nærmeste sykehus ligger ca. 30 minutter unna. Gi beskjed på forhånd ved allergier eller helsebehov.
+I nærområdet finnes apotek og legekontor. Gi beskjed på forhånd ved allergier eller helsebehov.
 $program_no$,
   program_en = $program_en$
 Welcome:
@@ -82,7 +82,7 @@ Outside picking there is time to relax, swim, read, take excursions, taste wine 
 
 Safety:
 Normal mobility is recommended. We advise travel and cancellation insurance – the harvest follows weather and ripeness, and the programme adapts accordingly.
-Pharmacy and doctor's surgery are nearby; the nearest hospital is about 30 minutes away. Please tell us in advance about allergies or health needs.
+Pharmacy and doctor's surgery are nearby. Please tell us in advance about allergies or health needs.
 $program_en$,
   updated_at = now()
 where slug = 'vindrueplukkeopplevelse';
