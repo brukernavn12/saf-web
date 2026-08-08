@@ -5,10 +5,13 @@ export default function robots(): MetadataRoute.Robots {
   const base = getSiteUrl().replace(/\/$/, "");
 
   return {
-    rules: {
-      userAgent: "*",
-      allow: ["/", "/no/", "/en/", "/sv/"],
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: ["/", "/no/", "/en/", "/sv/"],
+        disallow: ["/program/"],
+      },
+    ],
     sitemap: `${base}/sitemap.xml`,
   };
 }

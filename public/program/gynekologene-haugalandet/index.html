@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Gynekologene på Haugalandet — Villa Belle · 10.–13. september 2026</title>
+  <meta name="description" content="Program for privat gruppereise til Villa Belle i Pépieux, Languedoc." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Bytt bildene her */
+      --img-hero: url("/images/reiser/IMG_7034.jpg");
+      --img-band: url("/images/reiser/basseng%20ende.jpg");
+
+      --cream: #efe9dc;
+      --sage: #46592e;
+      --olive: #8c7f4f;
+      --text: #1a1a1a;
+      --text-soft: rgba(26, 26, 26, 0.68);
+      --text-muted: rgba(26, 26, 26, 0.48);
+      --line: rgba(70, 89, 46, 0.18);
+      --read: 760px;
+      --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+      --font-sans: Inter, system-ui, -apple-system, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--olive);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      width: min(100% - 2.5rem, var(--read));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--sage);
+    }
+
+    /* —— Hero —— */
+    .hero {
+      position: relative;
+      min-height: min(88vh, 720px);
+      display: flex;
+      align-items: flex-end;
+      color: var(--cream);
+      background-color: var(--sage);
+      background-image: var(--img-hero);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(26, 26, 26, 0.72) 0%,
+        rgba(26, 26, 26, 0.28) 45%,
+        rgba(26, 26, 26, 0.18) 100%
+      );
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 2.5rem, 960px);
+      margin: 0 auto;
+      padding: 4.5rem 0 3.25rem;
+    }
+
+    .hero .eyebrow {
+      color: rgba(239, 233, 220, 0.78);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      margin: 0;
+      color: var(--cream);
+      font-size: clamp(2.35rem, 5.5vw, 4.1rem);
+      max-width: 14ch;
+    }
+
+    .hero__lead {
+      margin: 1.15rem 0 0;
+      max-width: 34ch;
+      font-family: var(--font-serif);
+      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+      line-height: 1.45;
+      color: rgba(239, 233, 220, 0.92);
+    }
+
+    .hero__dates {
+      margin: 1.35rem 0 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: rgba(239, 233, 220, 0.72);
+    }
+
+    /* —— Sections —— */
+    section {
+      padding: 3.75rem 0;
+    }
+
+    section + section {
+      border-top: 1px solid var(--line);
+    }
+
+    .intro p {
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.75;
+      color: var(--text-soft);
+    }
+
+    .section-label {
+      margin: 0 0 1.5rem;
+    }
+
+    /* —— Travel —— */
+    .travel-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 720px) {
+      .travel-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    .travel-card {
+      background: rgba(70, 89, 46, 0.06);
+      border: 1px solid var(--line);
+      padding: 1.5rem 1.4rem 1.35rem;
+    }
+
+    .travel-card__dir {
+      margin: 0 0 0.35rem;
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: var(--sage);
+    }
+
+    .travel-card__when {
+      margin: 0 0 1.25rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .leg {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .flight-code {
+      margin: 0;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--olive);
+    }
+
+    .flight-route {
+      margin: 0;
+      font-size: 1.02rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .flight-route time {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--sage);
+    }
+
+    .transfer {
+      margin: 0.85rem 0;
+      padding-left: 0.85rem;
+      border-left: 2px solid rgba(140, 127, 79, 0.45);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .travel-note {
+      margin: 1.35rem 0 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* —— Program days —— */
+    .day {
+      padding: 2.5rem 0;
+    }
+
+    .day + .day {
+      border-top: 1px solid var(--line);
+    }
+
+    .day__head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .day__num {
+      font-family: var(--font-serif);
+      font-size: clamp(3.2rem, 8vw, 4.5rem);
+      line-height: 0.9;
+      color: var(--olive);
+      letter-spacing: -0.02em;
+    }
+
+    .day__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .day__weekday {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.55rem;
+      color: var(--sage);
+    }
+
+    .day__theme {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 1.35rem;
+    }
+
+    .item {
+      display: grid;
+      gap: 0.35rem;
+      padding-left: 1.1rem;
+      border-left: 2px solid rgba(140, 127, 79, 0.35);
+    }
+
+    @media (min-width: 640px) {
+      .item {
+        grid-template-columns: 5.5rem 1fr;
+        gap: 1.25rem;
+        align-items: start;
+        padding-left: 0;
+        border-left: none;
+      }
+    }
+
+    .item__time {
+      margin: 0;
+      font-size: 0.86rem;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.02em;
+      color: var(--olive);
+      padding-top: 0.2rem;
+    }
+
+    .item__title {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.18rem;
+      line-height: 1.35;
+      color: var(--sage);
+    }
+
+    .item__detail {
+      margin: 0.35rem 0 0;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--text-soft);
+    }
+
+    .item--anchor {
+      background: rgba(70, 89, 46, 0.07);
+      padding: 1rem 1.05rem;
+      border-left: none;
+    }
+
+    @media (min-width: 640px) {
+      .item--anchor {
+        padding: 1.1rem 1.2rem;
+        grid-column: 1 / -1;
+        grid-template-columns: 5.5rem 1fr;
+      }
+    }
+
+    .item--anchor .item__title {
+      font-size: 1.28rem;
+    }
+
+    /* —— Band image —— */
+    .band {
+      padding: 0;
+      border-top: none;
+    }
+
+    .band__img {
+      min-height: clamp(220px, 38vw, 420px);
+      background-color: var(--sage);
+      background-image: var(--img-band);
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* —— Guests —— */
+    .guests {
+      padding-top: 3rem;
+      padding-bottom: 3.5rem;
+    }
+
+    .guests .eyebrow {
+      margin-bottom: 0.85rem;
+    }
+
+    .guests__names {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 42rem;
+    }
+
+    /* —— Footer —— */
+    .site-footer {
+      background: var(--sage);
+      color: var(--cream);
+      padding: 3.25rem 0 2.75rem;
+    }
+
+    .site-footer .wrap {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .site-footer__brand {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      color: var(--cream);
+    }
+
+    .site-footer a {
+      color: rgba(239, 233, 220, 0.88);
+      text-decoration: underline;
+      text-decoration-color: rgba(239, 233, 220, 0.35);
+      text-underline-offset: 0.18em;
+    }
+
+    .site-footer a:hover {
+      color: var(--cream);
+      text-decoration-color: rgba(239, 233, 220, 0.7);
+    }
+
+    .site-footer__mail {
+      margin: 0.35rem 0 0;
+      font-size: 0.95rem;
+    }
+
+    .contacts {
+      display: grid;
+      gap: 0.55rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.95rem;
+    }
+
+    .contacts span {
+      display: inline-block;
+      min-width: 5.5rem;
+      color: rgba(239, 233, 220, 0.7);
+    }
+
+    .site-footer__note {
+      margin: 0.5rem 0 0;
+      max-width: 36rem;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: rgba(239, 233, 220, 0.48);
+    }
+
+    /* —— Reveal —— */
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.is-in {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" role="banner">
+    <div class="hero__inner">
+      <p class="eyebrow">Villa Belle · Pépieux · Languedoc</p>
+      <h1>Gynekologene på Haugalandet</h1>
+      <p class="hero__lead">Fire dager i Minervois — vin, langbord i hagen og landsbyer av stein.</p>
+      <p class="hero__dates">10.–13. september 2026</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro reveal" aria-label="Ingress">
+      <div class="wrap">
+        <p>
+          Huset ligger i Pépieux, midt i Minervois. Herfra er det kort vei til alt — vinrankene begynner der gaten slutter, Minerve ligger en halvtime unna, og resten av dagen er det ingenting som haster.
+        </p>
+      </div>
+    </section>
+
+    <section class="reveal" aria-labelledby="travel-heading">
+      <div class="wrap">
+        <p class="eyebrow section-label" id="travel-heading">Reisen</p>
+        <div class="travel-grid">
+          <article class="travel-card">
+            <h2 class="travel-card__dir">Ut</h2>
+            <p class="travel-card__when">Torsdag 10. september</p>
+            <div class="leg">
+              <p class="flight-code">KL 1172</p>
+              <p class="flight-route">Stavanger <time datetime="2026-09-10T06:10">06.10</time> → Amsterdam <time datetime="2026-09-10T07:45">07.45</time></p>
+            </div>
+            <p class="transfer">Bytte i Amsterdam</p>
+            <div class="leg">
+              <p class="flight-code">KL 1449</p>
+              <p class="flight-route">Amsterdam <time datetime="2026-09-10T09:05">09.05</time> → Toulouse <time datetime="2026-09-10T10:55">10.55</time></p>
+            </div>
+          </article>
+
+          <article class="travel-card">
+            <h2 class="travel-card__dir">Hjem</h2>
+            <p class="travel-card__when">Søndag 13. september</p>
+            <div class="leg">
+              <p class="flight-code">KL 1454</p>
+              <p class="flight-route">Toulouse <time datetime="2026-09-13T17:05">17.05</time> → Amsterdam <time datetime="2026-09-13T18:55">18.55</time></p>
+            </div>
+            <p class="transfer">Bytte i Amsterdam</p>
+            <div class="leg">
+              <p class="flight-code">KL 1183</p>
+              <p class="flight-route">Amsterdam <time datetime="2026-09-13T21:00">21.00</time> → Stavanger <time datetime="2026-09-13T22:30">22.30</time></p>
+            </div>
+          </article>
+        </div>
+        <p class="travel-note">
+          Flybillettene er sendt direkte til dere. Sjekk alltid flytidene mot billetten — det er billetten som gjelder. Programmet her er veiledende.
+        </p>
+      </div>
+    </section>
+
+    <section class="reveal" aria-labelledby="program-heading">
+      <div class="wrap">
+        <p class="eyebrow section-label" id="program-heading">Program</p>
+
+        <article class="day" aria-labelledby="day-10">
+          <div class="day__head">
+            <div class="day__num" aria-hidden="true">10</div>
+            <div class="day__meta">
+              <h2 class="day__weekday" id="day-10">Torsdag</h2>
+              <p class="day__theme">Ankomst</p>
+            </div>
+          </div>
+          <ol class="timeline">
+            <li class="item item--anchor">
+              <p class="item__time">10.55</p>
+              <div>
+                <h3 class="item__title">Landing i Toulouse</h3>
+                <p class="item__detail">Vi henter dere og kjører til Pépieux, knapt to timer gjennom Lauragais.</p>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">ca. 13.00</p>
+              <div>
+                <h3 class="item__title">Fremme på Villa Belle</h3>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">ca. 13.30</p>
+              <div>
+                <h3 class="item__title">Lunsj i hagen</h3>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">Ettermiddag</p>
+              <div>
+                <h3 class="item__title">Finne seg til rette</h3>
+                <p class="item__detail">Rom, bad, soling — ingen agenda.</p>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">ca. 19.30</p>
+              <div>
+                <h3 class="item__title">Middag hjemme i huset</h3>
+              </div>
+            </li>
+          </ol>
+        </article>
+
+        <article class="day" aria-labelledby="day-11">
+          <div class="day__head">
+            <div class="day__num" aria-hidden="true">11</div>
+            <div class="day__meta">
+              <h2 class="day__weekday" id="day-11">Fredag</h2>
+              <p class="day__theme">Vin</p>
+            </div>
+          </div>
+          <ol class="timeline">
+            <li class="item">
+              <p class="item__time">fra 08.30</p>
+              <div>
+                <h3 class="item__title">Frokost på Villa Belle</h3>
+              </div>
+            </li>
+            <li class="item item--anchor">
+              <p class="item__time">ca. 11.30</p>
+              <div>
+                <h3 class="item__title">Vinsmaking og lunsj ute i vinrankene</h3>
+                <p class="item__detail">Vi smaker oss gjennom et utvalg der druene faktisk vokser.</p>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">Ettermiddag</p>
+              <div>
+                <h3 class="item__title">Fri</h3>
+                <p class="item__detail">Hage, basseng, siesta.</p>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">ca. 19.30</p>
+              <div>
+                <h3 class="item__title">Middag hjemme i huset</h3>
+              </div>
+            </li>
+          </ol>
+        </article>
+
+        <article class="day" aria-labelledby="day-12">
+          <div class="day__head">
+            <div class="day__num" aria-hidden="true">12</div>
+            <div class="day__meta">
+              <h2 class="day__weekday" id="day-12">Lørdag</h2>
+              <p class="day__theme">Massasje og Minerve</p>
+            </div>
+          </div>
+          <ol class="timeline">
+            <li class="item">
+              <p class="item__time">fra 08.00</p>
+              <div>
+                <h3 class="item__title">Frokost på Villa Belle</h3>
+              </div>
+            </li>
+            <li class="item item--anchor">
+              <p class="item__time">09.30</p>
+              <div>
+                <h3 class="item__title">Massøren kommer</h3>
+                <p class="item__detail">Cirka 45 minutter hver. Rekkefølgen settes opp på stedet.</p>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">ca. 13.00</p>
+              <div>
+                <h3 class="item__title">Lunsj hjemme i huset</h3>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">Ettermiddag</p>
+              <div>
+                <h3 class="item__title">Landsbyen</h3>
+                <p class="item__detail">Tur gjennom Pépieux, stopp på puben, petanque for de som vil.</p>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">ca. 18.00</p>
+              <div>
+                <h3 class="item__title">Minerve</h3>
+                <p class="item__detail">Landsbyen ligger på en klippe mellom to juv. Vi går en runde før vi setter oss til bords.</p>
+              </div>
+            </li>
+            <li class="item item--anchor">
+              <p class="item__time">ca. 20.00</p>
+              <div>
+                <h3 class="item__title">Middag på Le Cantovent i Minerve</h3>
+                <p class="item__detail">Bordet er bestilt.</p>
+              </div>
+            </li>
+          </ol>
+        </article>
+
+        <article class="day" aria-labelledby="day-13">
+          <div class="day__head">
+            <div class="day__num" aria-hidden="true">13</div>
+            <div class="day__meta">
+              <h2 class="day__weekday" id="day-13">Søndag</h2>
+              <p class="day__theme">Hjemreise</p>
+            </div>
+          </div>
+          <ol class="timeline">
+            <li class="item">
+              <p class="item__time">10.00</p>
+              <div>
+                <h3 class="item__title">Brunsj på Villa Belle</h3>
+                <p class="item__detail">God tid. Pakking mellom slagene.</p>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">12.00</p>
+              <div>
+                <h3 class="item__title">Avreise fra Pépieux</h3>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">ca. 12.45</p>
+              <div>
+                <h3 class="item__title">Carcassonne</h3>
+                <p class="item__detail">Et stopp i middelalderbyen på veien.</p>
+              </div>
+            </li>
+            <li class="item">
+              <p class="item__time">ca. 15.00</p>
+              <div>
+                <h3 class="item__title">Fremme på Toulouse Blagnac</h3>
+              </div>
+            </li>
+            <li class="item item--anchor">
+              <p class="item__time">17.05</p>
+              <div>
+                <h3 class="item__title">Avgang</h3>
+              </div>
+            </li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="band" aria-hidden="true">
+      <div class="band__img"></div>
+    </section>
+
+    <section class="guests reveal" aria-labelledby="guests-heading">
+      <div class="wrap">
+        <p class="eyebrow" id="guests-heading">Deltakere</p>
+        <p class="guests__names">
+          Vanja Osmundsen · Susanne Helle Voll · Lone Berlin Varde Løvereide · Ingrid Hansen · Eli Wiksnes · Maren Elisabeth Baumann · Silje Karlsen · Gunnvor Merete Storesund
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <p class="site-footer__brand">Smaken av Frankrike</p>
+        <p class="site-footer__mail">
+          <a href="mailto:info@smakenavfrankrike.no">info@smakenavfrankrike.no</a>
+        </p>
+      </div>
+      <ul class="contacts">
+        <li>
+          <span>Elisabeth</span>
+          <a href="tel:+4790117435">+47 901 17 435</a>
+        </li>
+        <li>
+          <span>Morten</span>
+          <a href="tel:+4748006070">+47 480 06 070</a>
+        </li>
+      </ul>
+      <p class="site-footer__note">
+        Programmet er veiledende. Tider kan justeres underveis — været og vertskapet bestemmer litt selv.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var nodes = document.querySelectorAll(".reveal");
+      if (reduce || !("IntersectionObserver" in window)) {
+        nodes.forEach(function (el) {
+          el.classList.add("is-in");
+        });
+        return;
+      }
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-in");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      );
+      nodes.forEach(function (el) {
+        io.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
