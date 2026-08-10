@@ -409,6 +409,64 @@
       max-width: 42rem;
     }
 
+    /* —— Pause —— */
+    .pause {
+      padding-top: 0;
+      padding-bottom: 3rem;
+      border-top: none;
+    }
+
+    .pause-box {
+      border: 1px solid var(--line);
+      background: rgba(70, 89, 46, 0.04);
+      padding: 1.5rem 1.4rem 1.45rem;
+    }
+
+    .pause-box .eyebrow {
+      margin-bottom: 0.55rem;
+    }
+
+    .pause-box__title {
+      margin: 0 0 0.75rem;
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--sage);
+    }
+
+    .pause-box__intro {
+      margin: 0 0 1.25rem;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .pause-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .pause-list li {
+      margin: 0;
+    }
+
+    .pause-list strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 0.98rem;
+      font-weight: 400;
+      color: var(--sage);
+      margin-bottom: 0.15rem;
+    }
+
+    .pause-list span {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
     /* —— Footer —— */
     .site-footer {
       background: var(--sage);
@@ -732,6 +790,36 @@
 
     <section class="band" aria-hidden="true">
       <div class="band__img"></div>
+    </section>
+
+    <section class="pause reveal" aria-labelledby="pause-heading">
+      <div class="wrap">
+        <div class="pause-box">
+          <p class="eyebrow">Pauseaktiviteter</p>
+          <h2 class="pause-box__title" id="pause-heading">For rastløse sjeler</h2>
+          <p class="pause-box__intro">
+            Hvis noen vil ha litt mer å gjøre mellom hovedpunktene i programmet, finnes det flere muligheter i området. Noen aktiviteter må avtales på forhånd.
+          </p>
+          <ul class="pause-list">
+            <li>
+              <strong>Aktivt</strong>
+              <span>Tennis, padel, padling, løping, hike eller en ekstra sykkeletappe.</span>
+            </li>
+            <li>
+              <strong>Byliv og småstopp</strong>
+              <span>Bar, kafé, bakeri, chocolaterie, butikkrunde eller en rusletur i parken.</span>
+            </li>
+            <li>
+              <strong>Velvære</strong>
+              <span>Spa, massasje, pedikyr/manikyr eller en behandling.</span>
+            </li>
+            <li>
+              <strong>Kreativt</strong>
+              <span>Male, lese, ta bilder eller finne et stille hjørne.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section class="guests reveal" aria-labelledby="guests-heading">
